@@ -1,0 +1,11 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.taon-containers",
+
+  "packageJsonOverride": {
+    "author": "Dfilipiak",
+    "description": "Description for taon-containers. Hello world!",
+    "private": true
+  }
+}
