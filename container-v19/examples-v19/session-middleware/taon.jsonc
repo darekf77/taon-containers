@@ -1,0 +1,11 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.session-middleware",
+
+  "packageJsonOverride": {
+    "author": "Darek",
+    "description": "Description for session-middleware. Hello world!",
+    "private": true
+  }
+}

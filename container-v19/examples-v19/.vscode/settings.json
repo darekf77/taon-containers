@@ -100,7 +100,7 @@
     "**/.tnp": true,
     "projects": true
   },
-  "window.title": "projects/container-v19/examples-v19  [ ${activeEditorShort} ]",
+  "window.title": "taon-containers/container-v19/examples-v19  [ ${activeEditorShort} ]",
   "search.useIgnoreFiles": false,
   "search.include": [
     "**/src/**"

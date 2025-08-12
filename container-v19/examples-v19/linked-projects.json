@@ -36,8 +36,13 @@
       "relativeClonePath": "sample-migration"
     },
     {
+      "repoUrl": "git@github.com:darekf77/multiple-contexts-inheritance.git",
       "defaultBranch": "master",
       "relativeClonePath": "multiple-contexts-inheritance"
+    },
+    {
+      "defaultBranch": "master",
+      "relativeClonePath": "session-middleware"
     }
   ]
 }
