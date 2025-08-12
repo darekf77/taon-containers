@@ -12,146 +12,30 @@ import { Observable, map } from 'rxjs';
 import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
+import { SessionController } from './app/session.controller';
+import { SessionMiddleware } from './app/session.middleware';
 import { HOST_CONFIG } from './app.hosts';
 import { APP_ID } from './lib/build-info._auto-generated_';
 //#endregion
 
-console.log('hello world');
-console.log('Your backend host ' + HOST_CONFIG['app.ts']['MainContext'].host);
-console.log(
-  'Your frontend host ' + HOST_CONFIG['app.ts']['MainContext'].frontendHost,
-);
-
-//#region isomorphic-lib-v19 component
+//#region  session-middleware component
 //#region @browser
 @Component({
-  selector: 'app-isomorphic-lib-v19',
   standalone: false,
-  template: `hello from isomorphic-lib-v19<br />
-    Angular version: {{ angularVersion }}<br />
-    <br />
-    users from backend
-    <ul>
-      <li *ngFor="let user of users$ | async">{{ user | json }}</li>
-    </ul>
-    hello world from backend: <strong>{{ hello$ | async }}</strong> `,
-  styles: [
-    `
-      body {
-        margin: 0px !important;
-      }
-    `,
-  ],
+  template: 'hello world fromr session-middleware',
 })
-export class SessionMiddlewareComponent {
-  angularVersion =
-    VERSION.full +
-    ` mode: ${UtilsOs.isRunningInWebSQL() ? ' (websql)' : '(normal)'}`;
-  userApiService = inject(UserApiService);
-  readonly users$: Observable<User[]> = this.userApiService.getAll();
-  readonly hello$ = this.userApiService.userController
-    .helloWorld()
-    .received.observable.pipe(map(r => r.body.text));
-}
+export class SessionMiddlewareComponent {}
 //#endregion
 //#endregion
 
-//#region  isomorphic-lib-v19 api service
-//#region @browser
-@Injectable({
-  providedIn: 'root',
-})
-export class UserApiService extends Taon.Base.AngularService {
-  userController = this.injectController(UserController);
-  getAll(): Observable<User[]> {
-    return this.userController
-      .getAll()
-      .received.observable.pipe(map(r => r.body.json));
-  }
-}
-//#endregion
-//#endregion
-
-//#region  isomorphic-lib-v19 module
+//#region  session-middleware module
 //#region @browser
 @NgModule({
-  providers: [
-    {
-      provide: TAON_CONTEXT,
-      useFactory: () => MainContext,
-    },
-    providePrimeNG({
-      // inited ng prime - remove if not needed
-      theme: {
-        preset: Aura,
-      },
-    }),
-  ],
-  exports: [SessionMiddlewareComponent],
-  imports: [
-    CommonModule,
-    MaterialCssVarsModule.forRoot({
-      // inited angular material - remove if not needed
-      primary: '#4758b8',
-      accent: '#fedfdd',
-    }),
-  ],
   declarations: [SessionMiddlewareComponent],
+  imports: [CommonModule],
+  exports: [SessionMiddlewareComponent],
 })
 export class SessionMiddlewareModule {}
-//#endregion
-//#endregion
-
-//#region  isomorphic-lib-v19 entity
-@Taon.Entity({ className: 'User' })
-class User extends Taon.Base.AbstractEntity {
-  //#region @websql
-  @Taon.Orm.Column.String()
-  //#endregion
-  name?: string;
-}
-//#endregion
-
-//#region  isomorphic-lib-v19 controller
-@Taon.Controller({ className: 'UserController' })
-class UserController extends Taon.Base.CrudController<User> {
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  entityClassResolveFn = () => User;
-
-  @Taon.Http.GET()
-  helloWorld(): Taon.Response<string> {
-    //#region @websqlFunc
-    return async (req, res) => 'hello world';
-    //#endregion
-  }
-
-  @Taon.Http.GET()
-  getOsPlatform(): Taon.Response<string> {
-    //#region @websqlFunc
-    return async (req, res) => {
-      //#region @backend
-      return os.platform(); // for normal nodejs backend return real value
-      //#endregion
-      return 'no-platform-inside-browser-and-websql-mode';
-    };
-    //#endregion
-  }
-}
-//#endregion
-
-//#region  isomorphic-lib-v19 migration
-//#region @websql
-@Taon.Migration({
-  className: 'UserMigration',
-})
-class UserMigration extends Taon.Base.Migration {
-  userController = this.injectRepo(User);
-  async up(): Promise<any> {
-    const superAdmin = new User();
-    superAdmin.name = 'super-admin';
-    await this.userController.save(superAdmin);
-  }
-}
 //#endregion
 //#endregion
 
@@ -159,19 +43,9 @@ class UserMigration extends Taon.Base.Migration {
 var MainContext = Taon.createContext(() => ({
   ...HOST_CONFIG['app.ts']['MainContext'],
   contexts: { BaseContext },
-  //#region @websql
-  migrations: {
-    UserMigration,
-  },
-  //#endregion
-  controllers: {
-    UserController,
-  },
-  entities: {
-    User,
-  },
-  database: true,
-  // disabledRealtime: true,
+  middlewares: { SessionMiddleware },
+  controllers: { SessionController },
+  disabledRealtime: true,
 }));
 //#endregion
 
@@ -182,11 +56,12 @@ async function start(): Promise<void> {
   //#endregion
 
   if (UtilsOs.isBrowser) {
-    const users = (
-      await MainContext.getClassInstance(UserController).getAll().received
-    ).body?.json;
+    const message = (
+      await MainContext.getClassInstance(SessionController).helloWorld()
+        .received
+    ).body.text;
     console.log({
-      'users from backend': users,
+      'from backend': message,
     });
   }
 }

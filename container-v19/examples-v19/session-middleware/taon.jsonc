@@ -6,6 +6,7 @@
   "packageJsonOverride": {
     "author": "Darek",
     "description": "Description for session-middleware. Hello world!",
-    "private": true
+    "private": true,
+    "scripts": {}
   }
 }
