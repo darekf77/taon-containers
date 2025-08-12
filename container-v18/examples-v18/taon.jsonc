@@ -1,0 +1,10 @@
+{
+  "type": "container",
+  "version": "v18",
+  "dependenciesNamesForNpmLib": [],
+  "linkedProjects": ["electron-remote-service"],
+  "monorepo": true,
+  "resources": ["README.md"],
+  "smartContainerBuildTarget": "",
+  "packageJsonOverride": {}
+}

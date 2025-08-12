@@ -1,0 +1,18 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "dependenciesNamesForNpmLib": [],
+  "linkedProjects": [],
+
+  "resources": [
+    "README.md"
+  ],
+
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+
+    "scripts": {
+      "mkdocs": "python3 -m mkdocs"
+    }
+  }
+}

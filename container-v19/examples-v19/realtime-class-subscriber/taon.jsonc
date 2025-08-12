@@ -1,0 +1,10 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "resources": [],
+
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+    "private": true
+  }
+}
