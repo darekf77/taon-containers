@@ -1,3 +1,29 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "container"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "container-v16"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "container-v18"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "container-v19"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "container-v4"
+    }
+  ]
 }
