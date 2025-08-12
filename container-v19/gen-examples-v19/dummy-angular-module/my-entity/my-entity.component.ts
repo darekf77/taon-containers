@@ -15,6 +15,7 @@ import { _ } from 'tnp-core';
   templateUrl: './my-entity.component.html',
   styleUrls: ['./my-entity.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MyEntityComponent implements OnInit {
   // @HostBinding('style.minHeight.px') @Input() height: number = 100;
