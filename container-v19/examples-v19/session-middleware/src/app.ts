@@ -41,7 +41,7 @@ export class SessionMiddlewareModule {}
 
 //#region  isomorphic-lib-v19 context
 var MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['app.ts']['MainContext'],
+  ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
   middlewares: { SessionMiddleware },
   controllers: { SessionController },

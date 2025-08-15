@@ -8,13 +8,11 @@ import { routesMyEntity } from './my-entity.routes';
 //#endregion
 
 @NgModule({
-  //#region module options
   imports: [
     CommonModule,
     RouterModule.forChild(routesMyEntity),
   ],
   declarations: [MyEntityComponent],
-  //#endregion
 })
 export class MyEntityModule { }
 

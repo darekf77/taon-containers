@@ -35,7 +35,7 @@ export class RealtimeMessagesFromFeToBeComponent {
 
 //#region  realtime-subscribers context
 const MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['app.ts']['MainContext'],
+  ...HOST_CONFIG['MainContext'],
   useIpcWhenElectron: true,
   contextName: 'MainContext',
   contexts: { BaseContext },

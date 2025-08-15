@@ -32,7 +32,7 @@ function createWindow(): BrowserWindow {
     debug();
     win.webContents.openDevTools();
 
-    // require('electron-reloader')(module); // this hangs frontend randomly
+    // doNOTrequire('electron-reloader')(module); // this hangs frontend randomly
     win.loadURL(FRONTEND_HOST_URL_ELECTRON);
   } else {
     // Path when running electron executable

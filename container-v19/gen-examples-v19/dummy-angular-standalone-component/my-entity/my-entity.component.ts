@@ -1,3 +1,4 @@
+//#region imports
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -9,7 +10,7 @@ import {
   Output,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-
+//#endregion
 @Component({
   selector: 'app-my-entity',
   templateUrl: './my-entity.component.html',

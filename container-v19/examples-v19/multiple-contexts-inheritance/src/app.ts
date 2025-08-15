@@ -154,7 +154,7 @@ class UserMigration extends Taon.Base.Migration {
 
 //#region  isomorphic-lib-v19 context
 var MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['app.ts']['MainContext'],
+  ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
   migrations: {
     //#region @websql

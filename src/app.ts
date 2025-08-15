@@ -17,9 +17,9 @@ import { APP_ID } from './lib/build-info._auto-generated_';
 //#endregion
 
 console.log('hello world');
-console.log('Your backend host ' + HOST_CONFIG['app.ts']['MainContext'].host);
+console.log('Your backend host ' + HOST_CONFIG['MainContext'].host);
 console.log(
-  'Your frontend host ' + HOST_CONFIG['app.ts']['MainContext'].frontendHost,
+  'Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost,
 );
 
 //#region isomorphic-lib-v19 component
@@ -157,7 +157,7 @@ class UserMigration extends Taon.Base.Migration {
 
 //#region  isomorphic-lib-v19 context
 var MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['app.ts']['MainContext'],
+  ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
   //#region @websql
   migrations: {

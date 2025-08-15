@@ -24,7 +24,7 @@ services:
     ports:
       - "${HOST_BACKEND_PORT_1}:${HOST_BACKEND_PORT_1}"
     environment:
-      NODE_ENV: production
+      NODE_ENV: "${NODE_ENV}"
       HOST_BACKEND_PORT_1: "${HOST_BACKEND_PORT_1}"
       HOST_URL_1: "${HOST_URL_1}"
       FRONTEND_HOST_URL_1: "${FRONTEND_HOST_URL_1}"

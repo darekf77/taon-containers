@@ -6,8 +6,22 @@ import { MyEntityController } from './my-entity.controller';
 //#endregion
 
 export const MyEntityContext = Taon.createContext(() => ({
-  contextName: 'MyEntityContext',
-  abstract: true,
+  /**
+   * import HOST_CONFIG from app.hosts.ts if config initialization is needed
+   * HOST_CONFIG contains contextName and other crusial information for context
+   * seemless integration with Taon CLI
+   */
+  // ...HOST_CONFIG['MyEntityContext'],
+  contextName: 'MyEntityContext',  // not needed if using HOST_CONFIG object
+  /**
+   * set to false if you not going to initialize() this context independently
+   * ( initialized context creates express server and database )
+   */
+  abstract: false,
+  /**
+   * database:true - if this context is going to use database
+   */
+  database: false,
   contexts: { BaseContext },
   entities: { MyEntity },
   controllers: { MyEntityController }

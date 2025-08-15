@@ -7,7 +7,6 @@ import { MyEntityContainer } from './my-entity.container';
 //#endregion
 
 const routes: Routes = [
-  //#region routes
   {
     path: '',
     component: MyEntityContainer,
@@ -23,7 +22,6 @@ const routes: Routes = [
   //   loadChildren: () => import('othermodule')
   //     .then(m => m.OtherLazyModule),
   // },
-  //#endregion
 ];
 
 @NgModule({

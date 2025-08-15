@@ -17,8 +17,8 @@ import { APP_ID } from './lib/build-info._auto-generated_';
 //#endregion
 
 console.log('hello world');
-console.log('Your backend host ' + HOST_CONFIG['app.ts']['MainContext'].host);
-console.log('Your frontend host ' + HOST_CONFIG['app.ts']['MainContext'].frontendHost);
+console.log('Your backend host ' + HOST_CONFIG['MainContext'].host);
+console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
 
 //#region isomorphic-lib-v19 component
 //#region @browser
@@ -155,9 +155,15 @@ class UserMigration extends Taon.Base.Migration {
 
 //#region  isomorphic-lib-v19 context
 var MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['app.ts']['MainContext'],
+  ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
   //#region @websql
+  /**
+   * This is dummy migration - you DO NOT NEED need this migrations object
+   * if you are using HOST_CONFIG['MainContext'] that contains 'migrations' object.
+   * DELETE THIS 'migrations' object if you use taon CLI that generates
+   * migrations automatically inside /src/migrations folder.
+   */
   migrations: {
     UserMigration,
   },
@@ -173,8 +179,15 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(): Promise<void> {
+async function start(startParams:Taon.StartParams): Promise<void> {
   await MainContext.initialize();
+
+   //#region @backend
+   if (startParams.onlyMigrationRun || startParams.onlyMigrationRevertToTimestamp) {
+    process.exit(0);
+  }
+  //#endregion
+
   //#region @backend
   console.log(`Hello in NodeJs backend! os=${os.platform()}`);
   //#endregion

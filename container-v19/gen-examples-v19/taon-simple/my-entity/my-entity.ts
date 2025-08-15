@@ -14,4 +14,9 @@ export class MyEntity extends Taon.Base.AbstractEntity<MyEntity> {
   @Taon.Orm.Column.String(MyEntityDefaultsValues.description)
   //#endregion
   description?: string;
+
+  //#region @websql
+  @Taon.Orm.Column.DateTIme()
+  //#endregion
+  modificationDate?: string;
 }
