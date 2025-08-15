@@ -1146,6 +1146,11 @@
       // @trusted=minor
       "express-fileupload": "~1.5.1",
 
+      // @trusted=minor
+      "multer": "2.0.2",
+
+      "@types/multer": "2.0.0",
+
       // for data for nodejs (browser has it build it)
       // @trusted=minor
       "form-data": "~4.0.2",

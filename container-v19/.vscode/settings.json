@@ -87,7 +87,7 @@
   "tslint.enable": false,
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "git.ignoreLimitWarning": true,
-  "window.title": "projects/container-v19 () [ ${activeEditorShort}]",
+  "window.title": "taon-dev/taon-containers/container-v19  [ ${activeEditorShort} ]",
   "search.useIgnoreFiles": false,
 
   "search.include": [
