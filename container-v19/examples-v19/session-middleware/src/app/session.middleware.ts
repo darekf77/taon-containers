@@ -1,5 +1,11 @@
 //#region imports
-import { TaonMiddlewareInterceptOptions } from 'taon/src';
+import { AxiosResponse } from 'axios';
+import { map, Observable } from 'rxjs';
+import { TaonAddtionalMiddlewareMethodInfo } from 'taon/src';
+import {
+  TaonClientMiddlewareInterceptOptions,
+  TaonServerMiddlewareInterceptOptions,
+} from 'taon/src';
 import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 //#endregion
@@ -8,22 +14,52 @@ import { _ } from 'tnp-core/src';
   className: 'SessionMiddleware',
 })
 export class SessionMiddleware extends Taon.Base.Middleware {
-  async intercept({ server, client }: TaonMiddlewareInterceptOptions): Promise<void> {
-    if (client) {
-      //#region @browser
-      console.log(
-        'SessionMiddleware intercepting client request',
-        client?.req?.url,
-      );
-      //#endregions
-    }
-    if (server) {
-      //#region @websql
-      console.log(
-        'SessionMiddleware intercepting server request',
-        server?.req?.url,
-      );
-      //#endregion
-    }
+  interceptServer = void 0;
+  // interceptServer({ req, res, next, }: TaonServerMiddlewareInterceptOptions): Promise<void> | void {
+  //   console.log('SessionMiddleware intercepting server request', req?.url);
+  //   next();
+  // }
+
+  interceptClient = void 0;
+  // interceptClient({
+  //   req,
+  //   next,
+  // }: TaonClientMiddlewareInterceptOptions): Observable<AxiosResponse<any>> {
+  //   console.log('SessionMiddleware intercepting client request', req?.url);
+  //   return next.handle(req);
+  // }
+
+  interceptServerMethod(
+    { req, res, next }: TaonServerMiddlewareInterceptOptions,
+    {
+      methodName,
+      expressPath,
+      httpRequestType,
+    }: TaonAddtionalMiddlewareMethodInfo,
+  ): Promise<void> | void {
+    console.log(
+      `[${httpRequestType}] Intercepting server method: ${methodName} as ${expressPath}`,
+    );
+    next();
+  }
+
+  interceptClientMethod(
+    { req, next }: TaonClientMiddlewareInterceptOptions,
+    {
+      methodName,
+      expressPath,
+      httpRequestType,
+    }: TaonAddtionalMiddlewareMethodInfo,
+  ): Observable<AxiosResponse<any>> {
+    console.log(
+      `[${httpRequestType}] Intercepting client method: ${methodName} at ${expressPath}`,
+    );
+    return next.handle(req).pipe(
+      map(r => {
+        console.log('data', r.data);
+        r.data = `!!!${r.data}!!`;
+        return r;
+      }),
+    );
   }
 }

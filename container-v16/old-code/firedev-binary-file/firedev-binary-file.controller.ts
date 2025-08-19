@@ -269,7 +269,7 @@ export class FiredevBinaryFileController extends Firedev.Base
 
   //#region methods / _ get blob
   @Firedev.Http.GET({
-    overridResponseType: 'blob',
+    overrideResponseType: 'blob',
     path: '/get/blob',
   })
   private _getBlob(

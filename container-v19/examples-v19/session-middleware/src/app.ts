@@ -10,6 +10,7 @@ import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { Observable, map } from 'rxjs';
 import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
+import { TaonFullMaterialModule } from 'taon-ui/src'; // @browser
 import { UtilsOs } from 'tnp-core/src';
 
 import { SessionController } from './app/session.controller';
@@ -32,7 +33,7 @@ export class SessionMiddlewareComponent {}
 //#region @browser
 @NgModule({
   declarations: [SessionMiddlewareComponent],
-  imports: [CommonModule],
+  imports: [CommonModule,TaonFullMaterialModule],
   exports: [SessionMiddlewareComponent],
 })
 export class SessionMiddlewareModule {}
@@ -56,12 +57,18 @@ async function start(): Promise<void> {
   //#endregion
 
   if (UtilsOs.isBrowser) {
-    const message = (
-      await MainContext.getClassInstance(SessionController).helloWorld()
-        .received
-    ).body.text;
     console.log({
-      'from backend': message,
+      'from backend': (
+        await MainContext.getClassInstance(SessionController).helloWorld()
+          .received
+      ).body.text,
+    });
+
+    console.log({
+      'from backend': (
+        await MainContext.getClassInstance(SessionController).thisIsNice()
+          .received
+      ).body.text,
     });
   }
 }

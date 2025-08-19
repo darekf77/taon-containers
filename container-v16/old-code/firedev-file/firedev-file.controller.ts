@@ -87,7 +87,7 @@ export class FiredevFileController extends Firedev.Base
 
   //#region get blob only by src
   @Firedev.Http.GET({
-    overridResponseType: 'blob',
+    overrideResponseType: 'blob',
     path: '/blobonly/:src',
   })
   getBlobOnlyBy(
@@ -112,7 +112,7 @@ export class FiredevFileController extends Firedev.Base
 
   //#region delete by src
   @Firedev.Http.DELETE({
-    overridResponseType: 'blob',
+    overrideResponseType: 'blob',
     path: '/blobonly/:src',
   })
   deleteBy(
