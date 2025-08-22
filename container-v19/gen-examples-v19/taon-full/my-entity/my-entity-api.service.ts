@@ -13,13 +13,13 @@ export class MyEntityApiService extends Taon.Base.AngularService {
   public get allMyEntities$(): Observable<MyEntity[]> {
     return this.myEntityController
       .getAll()
-      .received.observable.pipe(map(res => res.body?.json));
+      .request().observable.pipe(map(res => res.body?.json));
   }
 
   public helloWorld(user): Observable<string> {
     return this.myEntityController
       .helloWord(user)
-      .received.observable.pipe(map(res => res.responseText as string));
+      .request().observable.pipe(map(res => res.responseText as string));
   }
 
   constructor() {

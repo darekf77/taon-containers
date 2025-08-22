@@ -13,7 +13,7 @@ export class EmailApiService extends Taon.Base.AngularService {
   public get allMyEntities$(): Observable<Email[]> {
     return this.emailController
       .getAll()
-      .received.observable.pipe(map(res => res.body.json));
+      .request().observable.pipe(map(res => res.body.json));
   }
 
   protected initControllers(): void {

@@ -45,7 +45,7 @@ export class UserApiService {
   userControlller = Taon.inject(()=> MainContext.getClass(UserController))
   getAll() {
     return this.userControlller.getAll()
-      .received
+      .request()
       .observable
       .pipe(map(r => r.body.json));
   }
@@ -111,7 +111,7 @@ async function start() {
   await MainContext.initialize();
 
   if (Taon.isBrowser) {
-    const users = (await MainContext.getClassInstance(UserController).getAll().received)
+    const users = (await MainContext.getClassInstance(UserController).getAll().request())
       .body?.json;
     console.log({
       'users from backend': users,

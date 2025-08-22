@@ -17,7 +17,7 @@ export class MyEntityApiService extends Taon.Base.AngularService {
   public get allMyEntities$(): Observable<MyEntity[]> {
     return this.myEntityController
       .getEntities()
-      .received.observable.pipe(map(res => res.body.json));
+      .request().observable.pipe(map(res => res.body.json));
   }
 
   constructor() {

@@ -26,7 +26,7 @@ export class MyEntityTerminalUI extends BaseCliWorkerTerminalUI<MyEntityWorker> 
         action: async () => {
           Helpers.info(`Stuff from backend will be fetched`);
           const ctrl = await this.worker.getControllerForRemoteConnection();
-          const list = (await ctrl.getEntities().received)?.body.json || [];
+          const list = (await ctrl.getEntities().request())?.body.json || [];
           console.log(list.map( c => `- ${c.id} ${c.description}` ).join('\n'));
           Helpers.info(`Fetched ${list.length} entities`);
           await UtilsTerminal.pressAnyKeyToContinueAsync({

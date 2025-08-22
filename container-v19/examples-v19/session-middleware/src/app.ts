@@ -60,14 +60,14 @@ async function start(): Promise<void> {
     console.log({
       'from backend': (
         await MainContext.getClassInstance(SessionController).helloWorld()
-          .received
+          .request()
       ).body.text,
     });
 
     console.log({
       'from backend': (
         await MainContext.getClassInstance(SessionController).thisIsNice()
-          .received
+          .request()
       ).body.text,
     });
   }

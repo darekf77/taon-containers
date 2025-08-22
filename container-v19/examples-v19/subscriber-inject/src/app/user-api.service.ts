@@ -18,6 +18,6 @@ export class UserApiService {
   getAll() {
     return this.userControlller
       .getAll()
-      .received.observable.pipe(map(r => r.body.json));
+      .request().observable.pipe(map(r => r.body.json));
   }
 }

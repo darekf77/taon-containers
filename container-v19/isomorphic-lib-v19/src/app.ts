@@ -13,7 +13,6 @@ import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
-import { APP_ID } from './lib/build-info._auto-generated_';
 //#endregion
 
 console.log('hello world');
@@ -49,7 +48,7 @@ export class IsomorphicLibV19Component {
   readonly users$: Observable<User[]> = this.userApiService.getAll();
   readonly hello$ = this.userApiService.userController
     .helloWorld()
-    .received.observable.pipe(map(r => r.body.text));
+    .request().observable.pipe(map(r => r.body.text));
 }
 //#endregion
 //#endregion
@@ -64,7 +63,7 @@ export class UserApiService extends Taon.Base.AngularService {
   getAll(): Observable<User[]> {
     return this.userController
       .getAll()
-      .received.observable.pipe(map(r => r.body.json));
+      .request().observable.pipe(map(r => r.body.json));
   }
 }
 //#endregion
@@ -179,7 +178,7 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(startParams:Taon.StartParams): Promise<void> {
+async function start(startParams?:Taon.StartParams): Promise<void> {
   await MainContext.initialize();
 
    //#region @backend
@@ -194,7 +193,7 @@ async function start(startParams:Taon.StartParams): Promise<void> {
 
   if (UtilsOs.isBrowser) {
     const users = (
-      await MainContext.getClassInstance(UserController).getAll().received
+      await MainContext.getClassInstance(UserController).getAll().request()
     ).body?.json;
     console.log({
       'users from backend': users,

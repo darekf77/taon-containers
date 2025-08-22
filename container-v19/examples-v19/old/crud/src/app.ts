@@ -50,7 +50,7 @@ export class UserApiService {
   getAll() {
     return this.userController
       .getAll()
-      .received.observable.pipe(map(data => data.body.json));
+      .request().observable.pipe(map(data => data.body.json));
   }
 }
 //#endregion
@@ -117,7 +117,7 @@ async function start() {
   await Context.initialize();
 
   if (Taon.isBrowser) {
-    const users = (await Context.getClassInstance(UserController).getAll().received)
+    const users = (await Context.getClassInstance(UserController).getAll().request())
       .body?.json;
     console.log({
       'users from backend': users,

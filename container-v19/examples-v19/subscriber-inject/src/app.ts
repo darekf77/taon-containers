@@ -16,7 +16,7 @@ async function start() {
 
   if (Taon.isBrowser) {
     const userController = AppContext.getClassInstance(UserController);
-    const users = (await userController.getAll().received).body?.json;
+    const users = (await userController.getAll().request()).body?.json;
     console.log({
       'users from backend': users,
     });
