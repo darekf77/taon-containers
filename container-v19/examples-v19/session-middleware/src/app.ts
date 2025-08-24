@@ -13,6 +13,8 @@ import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
 import { TaonFullMaterialModule } from 'taon-ui/src'; // @browser
 import { UtilsOs } from 'tnp-core/src';
 
+import { ChildSessionController } from './app/child-session.controller';
+import { ChildSessionMiddleware } from './app/child-session.middleware';
 import { SessionController } from './app/session.controller';
 import { SessionMiddleware } from './app/session.middleware';
 import { HOST_CONFIG } from './app.hosts';
@@ -33,7 +35,7 @@ export class SessionMiddlewareComponent {}
 //#region @browser
 @NgModule({
   declarations: [SessionMiddlewareComponent],
-  imports: [CommonModule,TaonFullMaterialModule],
+  imports: [CommonModule, TaonFullMaterialModule],
   exports: [SessionMiddlewareComponent],
 })
 export class SessionMiddlewareModule {}
@@ -44,8 +46,8 @@ export class SessionMiddlewareModule {}
 var MainContext = Taon.createContext(() => ({
   ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
-  middlewares: { SessionMiddleware },
-  controllers: { SessionController },
+  middlewares: { SessionMiddleware, ChildSessionMiddleware },
+  controllers: { SessionController, ChildSessionController },
   disabledRealtime: true,
 }));
 //#endregion
@@ -59,14 +61,16 @@ async function start(): Promise<void> {
   if (UtilsOs.isBrowser) {
     console.log({
       'from backend': (
-        await MainContext.getClassInstance(SessionController).helloWorld()
+        await MainContext.getClassInstance(SessionController)
+          .helloWorld()
           .request()
       ).body.text,
     });
 
     console.log({
       'from backend': (
-        await MainContext.getClassInstance(SessionController).thisIsNice()
+        await MainContext.getClassInstance(SessionController)
+          .thisIsNice()
           .request()
       ).body.text,
     });
