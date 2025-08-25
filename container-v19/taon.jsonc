@@ -599,7 +599,7 @@
       // @trusted=major
       "ngx-infinite-scroll": "~19.0.0",
 
-       // @trusted=major
+      // @trusted=major
       "ngx-spinner": "~19.0.0",
 
       //#endregion
@@ -1140,16 +1140,22 @@
       // @trusted=minor
       "express-session": "~1.18.1",
 
-      // smooth file uplload
+      // smooth file uplload @deprecated multer is better
       "@types/express-fileupload": "~1.5.0",
 
-      // @trusted=minor
+      // @trusted=minor @deprecated multer is better
       "express-fileupload": "~1.5.1",
+
+      "nodemailer": "~7.0.5",
+
+      // handle cookies in nodejs backend
+      "tough-cookie": "~6.0.0",
+      "axios-cookiejar-support": "~6.0.4",
 
       // @trusted=minor
       "multer": "2.0.2",
 
-      "@types/multer": "2.0.0",
+      "@types/multer": "~2.0.0",
 
       // for data for nodejs (browser has it build it)
       // @trusted=minor
@@ -1157,15 +1163,15 @@
 
       // secure express app
       // @trusted=minor
-      "helmet": "~7.2.0",
+      "helmet": "~8.1.0",
 
       // @trusted=minor
-      "@types/oauth2orize": "~1.11.5",
+      // "@types/oauth2orize": "~1.11.5",
 
-      // @trusted=minor
-      "@types/password-hash": "~1.2.24",
+      // @trusted=minor @deprecated very old not maintained
+      // "@types/password-hash": "~1.2.24",
 
-      // @trusted=minor
+      // @trusted=minor probably scrypt from native nodejs will do a better job
       "bcryptjs": "~2.4.3",
 
       // @trusted=minor
@@ -1177,7 +1183,9 @@
       // @trusted=minor
       //#endregion
 
-      "password-hash": "1.2.2",
+
+      // @deprecated very old not maintained
+      // "password-hash": "1.2.2",
 
       //#region DOCKER
       // @trusted=patch

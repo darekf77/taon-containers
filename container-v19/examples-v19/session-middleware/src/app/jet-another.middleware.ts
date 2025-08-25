@@ -1,20 +1,20 @@
 //#region imports
 import { AxiosResponse } from 'axios';
 import { map, Observable } from 'rxjs';
-import { TaonAddtionalMiddlewareMethodInfo } from 'taon/src';
 import {
+  Taon,
+  TaonAddtionalMiddlewareMethodInfo,
   TaonClientMiddlewareInterceptOptions,
   TaonServerMiddlewareInterceptOptions,
 } from 'taon/src';
-import { Taon } from 'taon/src';
 import { _ } from 'tnp-core/src';
 //#endregion
 
 @Taon.Middleware({
-  className: 'SessionMiddleware',
+  className: 'JetAnotherMiddleware',
 })
-export class SessionMiddleware extends Taon.Base.Middleware {
-  name = 'SessionMiddleware';
+export class JetAnotherMiddleware extends Taon.Base.Middleware {
+  name = 'JetAnotherMiddleware';
   interceptServer = void 0;
   // interceptServer({ req, res, next, }: TaonServerMiddlewareInterceptOptions): Promise<void> | void {
   //   console.log('SessionMiddleware intercepting server request', req?.url);

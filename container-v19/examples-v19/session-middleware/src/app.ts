@@ -19,6 +19,7 @@ import { SessionController } from './app/session.controller';
 import { SessionMiddleware } from './app/session.middleware';
 import { HOST_CONFIG } from './app.hosts';
 import { APP_ID } from './lib/build-info._auto-generated_';
+import { JetAnotherMiddleware } from './app/jet-another.middleware';
 //#endregion
 
 //#region  session-middleware component
@@ -46,7 +47,11 @@ export class SessionMiddlewareModule {}
 var MainContext = Taon.createContext(() => ({
   ...HOST_CONFIG['MainContext'],
   contexts: { BaseContext },
-  middlewares: { SessionMiddleware, ChildSessionMiddleware },
+  middlewares: {
+    SessionMiddleware,
+    ChildSessionMiddleware,
+    JetAnotherMiddleware,
+  },
   controllers: { SessionController, ChildSessionController },
   disabledRealtime: true,
 }));
@@ -59,21 +64,29 @@ async function start(): Promise<void> {
   //#endregion
 
   if (UtilsOs.isBrowser) {
+    // console.log({
+    //   'from backend': (
+    //     await MainContext.getClassInstance(SessionController)
+    //       .helloWorld()
+    //       .request()
+    //   ).body.text,
+    // });
+
     console.log({
       'from backend': (
-        await MainContext.getClassInstance(SessionController)
+        await MainContext.getClassInstance(ChildSessionController)
           .helloWorld()
           .request()
       ).body.text,
     });
 
-    console.log({
-      'from backend': (
-        await MainContext.getClassInstance(SessionController)
-          .thisIsNice()
-          .request()
-      ).body.text,
-    });
+    // console.log({
+    //   'from backend': (
+    //     await MainContext.getClassInstance(SessionController)
+    //       .thisIsNice()
+    //       .request()
+    //   ).body.text,
+    // });
   }
 }
 
