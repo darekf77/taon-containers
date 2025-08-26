@@ -12,7 +12,10 @@ import { SessionMiddleware } from './session.middleware';
 })
 export class SessionController extends Taon.Base.Controller {
   @Taon.Http.PUT({
-    middlewares: [SessionMiddleware]
+    middlewares: ({ parentMiddlewares }) => ({
+      ...parentMiddlewares,
+      SessionMiddleware,
+    }),
   })
   helloWorld(): Taon.Response<string> {
     //#region @websqlFunc
@@ -22,9 +25,11 @@ export class SessionController extends Taon.Base.Controller {
     //#endregion
   }
 
-
   @Taon.Http.GET({
-    middlewares: [SessionMiddleware]
+    middlewares: ({ parentMiddlewares }) => ({
+      ...parentMiddlewares,
+      SessionMiddleware,
+    }),
   })
   thisIsNice(): Taon.Response<string> {
     //#region @websqlFunc
