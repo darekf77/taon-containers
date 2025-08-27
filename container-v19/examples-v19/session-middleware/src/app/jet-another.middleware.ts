@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 import { map, Observable } from 'rxjs';
 import {
   Taon,
-  TaonAddtionalMiddlewareMethodInfo,
+  TaonAdditionalMiddlewareMethodInfo,
   TaonClientMiddlewareInterceptOptions,
   TaonServerMiddlewareInterceptOptions,
 } from 'taon/src';
@@ -36,7 +36,7 @@ export class JetAnotherMiddleware extends Taon.Base.Middleware {
       methodName,
       expressPath,
       httpRequestType,
-    }: TaonAddtionalMiddlewareMethodInfo,
+    }: TaonAdditionalMiddlewareMethodInfo,
   ): Promise<void> | void {
     console.log(
       `[${this.name}][${httpRequestType}] Intercepting server method: ${methodName} as ${expressPath}`,
@@ -50,7 +50,7 @@ export class JetAnotherMiddleware extends Taon.Base.Middleware {
       methodName,
       expressPath,
       httpRequestType,
-    }: TaonAddtionalMiddlewareMethodInfo,
+    }: TaonAdditionalMiddlewareMethodInfo,
   ): Observable<AxiosResponse<any>> {
     console.log(
       `[${this.name}][${httpRequestType}] Intercepting client method: ${methodName} at ${expressPath}`,
