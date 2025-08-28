@@ -41,8 +41,49 @@
       "relativeClonePath": "multiple-contexts-inheritance"
     },
     {
+      "repoUrl": "git@github.com:darekf77/session-middleware.git",
       "defaultBranch": "master",
       "relativeClonePath": "session-middleware"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-session.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "taon-session"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "electron-remote-service"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "realtime-class-subscriber"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "realtime-messages-from-be-to-fe"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "realtime-messages-from-fe-to-be"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "single-file"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "standalone-app"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-containers.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "taon-session"
     }
   ]
 }
