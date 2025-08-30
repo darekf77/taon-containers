@@ -10,6 +10,7 @@ import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { Observable, map } from 'rxjs';
 import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
+import { SimpleAuthContext } from 'taon-session/src';
 import { UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -157,7 +158,7 @@ class UserMigration extends Taon.Base.Migration {
 //#region  taon-session context
 var MainContext = Taon.createContext(() => ({
   ...HOST_CONFIG['MainContext'],
-  contexts: { BaseContext },
+  contexts: { BaseContext, SimpleAuthContext },
   //#region @websql
   /**
    * This is dummy migration - you DO NOT NEED need this migrations object

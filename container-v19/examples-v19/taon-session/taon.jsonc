@@ -6,6 +6,7 @@
   "packageJsonOverride": {
     "author": "Dfilipiak",
     "description": "Description for taon-session. Hello world!",
-    "private": true
+    "private": true,
+    "scripts": {}
   }
 }

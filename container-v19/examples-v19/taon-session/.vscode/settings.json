@@ -9,8 +9,8 @@
   ],
   "window.title": "container-v19/examples-v19/taon-session  [ ${activeEditorShort} ]",
   "workbench.colorCustomizations": {
-    "activityBar.background": "#b32334",
-    "statusBar.background": "#2e8474",
+    "activityBar.background": "#cdad2d",
+    "statusBar.background": "#cdad2d",
     "statusBar.debuggingBackground": "#15d8ff"
   },
   "files.watcherExclude": {

@@ -4,10 +4,11 @@ import { User } from "./user";
 @Taon.Subscriber({
   className: 'UserSubscriber',
 })
-export class UserSubscriber extends Taon.Base.Subscriber {
-  // listenTo() {
-  //   return User;
-  // }
+export class UserSubscriber extends Taon.Base.SubscriberForEntity<User> {
+
+  listenTo() {
+    return User;
+  }
 
   customEvent() {
     console.log('CUSTOM EVENT');
