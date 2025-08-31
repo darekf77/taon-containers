@@ -406,20 +406,20 @@
       // @trusted=major
       "conventional-changelog-cli": "~5.0.0",
 
-      // "@storybook/addon-docs": "~8.1.6",
-      // "@storybook/addon-essentials": "~8.1.6",
-      // "@storybook/addon-interactions": "~8.1.6",
-      // "@storybook/addon-links": "~8.1.6",
-      // "@storybook/addon-mdx-gfm": "^8.1.6",
-      // "@storybook/addon-storysource": "^8.1.6",
-      // "@storybook/addon-viewport": "^8.1.6",
-      // "@storybook/angular": "~8.1.6",
-      // "@storybook/blocks": "~8.1.6",
-      // "@storybook/manager-api": "~8.1.6",
-      // "@storybook/test": "~8.1.6",
-      // "@storybook/testing-library": "~0.2.2 ",
-      // "@storybook/theming": "~8.1.6",
-      // "storybook": "~8.1.6",
+      "@storybook/angular":">=9.0.0-0 <10",
+      "@storybook/addon-docs":">=9.0.0-0 <10",
+      "@storybook/addon-essentials":">=9.0.0-0 <10",
+      "@storybook/addon-interactions":">=9.0.0-0 <10",
+      "@storybook/addon-links":">=9.0.0-0 <10",
+      "@storybook/addon-mdx-gfm":">=9.0.0-0 <10",
+      "@storybook/addon-storysource":">=9.0.0-0 <10",
+      "@storybook/addon-viewport":">=9.0.0-0 <10",
+      "@storybook/blocks":">=9.0.0-0 <10",
+      "@storybook/manager-api":">=9.0.0-0 <10",
+      "@storybook/test":">=9.0.0-0 <10",
+      "@storybook/testing-library": null,
+      "@storybook/theming":">=9.0.0-0 <10",
+      "storybook": "^9.1.3",
       //#endregion
 
       //#region electron
@@ -559,22 +559,25 @@
       //#endregion
 
       //#region DATES
-      // handle dates
-      // @trusted=major
-      "ngx-moment": "6.0.2",
 
+      // @trusted=major
+      "ngx-date-fns": "~12.0.1",
       // usefull pipe for angular
       // @trusted=major
       "ngx-pipes": "3.2.2",
-
       "dateformat": "^3.0.3",
       "@types/dateformat": "^1.0.1",
       "date-fns": "^4.1.0",
 
+      // @deprecated use date-fns
+      // "ngx-moment": "6.0.2",
+      "ngx-moment": null,
+      // @deprecated use date-fns
+      //  "moment": "2.30.1",
+       "moment": null,
       // api change in new version
       // "dateformat": "~4.6.3",
       // "@types/dateformat": "~5.0.2",
-
       //#endregion
 
       //#region WYSIG
@@ -840,8 +843,6 @@
       // @trusted=patch
       "ts-json-schema-generator": "~2.4.0-next.7",
 
-      // can be installed with visual stdio as dependency on windows
-      // "@parcel/watcher": "2.3.0",
       // wrong types in current verison => replace with isomorphic-storage
       // @trusted=major
       "ngx-store": "3.1.1",
@@ -850,11 +851,10 @@
       // @trusted=patch
       "json5": "~2.2.3",
 
-      // @trusted=patch
+      // @trusted=patch TODO slow migration or hot replace with lodash-es
       "lodash": "~4.17.21",
-
-      // @trusted=major
-      "moment": "~2.30.1",
+      // @trusted=patch
+      "lodash-es": "~4.17.21",
 
       // @trusted=minor
       "pretty-error": "4.0.0",
@@ -903,6 +903,23 @@
 
       //#endregion
 
+      //#region FILE WATCHERS
+      // can be installed with visual stdio as dependency on windows
+      "@parcel/watcher": "2.5.1",
+      // @trusted=patch
+      "chokidar": "3.5.3",
+      // not needed anymore with chokidar 3
+      // "@types/chokidar": "~2.1.3",
+      "@types/chokidar": null,
+
+      // @deprecated very old and not maintained
+      // "@types/watch": "~1.0.6",
+      "@types/watch": null,
+      // @deprecated very old and not maintained
+      // "watch": "1.0.2",
+      "watch": null,
+      //#endregion
+
       //#region TODO RESOLVE
       "randomcolor": "^0.5.3",
 
@@ -926,7 +943,10 @@
 
       "json-stringify-safe": "^5.0.1",
       "@types/json-stringify-safe": "~5.0.3",
-      "circular-json": "^0.5.1",
+
+      // @deprecated
+      // "circular-json": "^0.5.1",
+      "circular-json": null,
 
       // @trusted=patch
       "json5-writer": "0.2.0",
@@ -938,10 +958,6 @@
       // @trusted=patch
       "cross-spawn": "~7.0.6",
 
-      // @trusted=patch
-      "chokidar": "3.5.3",
-
-      "@types/chokidar": "~2.1.3",
       "cpr": "^3.0.1",
       "mkdirp": "^0.5.1",
       "rimraf": "^2.6.2",
@@ -1008,12 +1024,6 @@
 
       // @trusted=patch
       "fuzzy": "0.1.3",
-
-      // @trusted=patch
-      "@types/watch": "~1.0.6",
-
-      // @trusted=patch
-      "watch": "1.0.2",
 
       "portfinder": "1.0.21",
 
@@ -1165,12 +1175,6 @@
       // @trusted=minor
       "helmet": "~8.1.0",
 
-      // @trusted=minor
-      // "@types/oauth2orize": "~1.11.5",
-
-      // @trusted=minor @deprecated very old not maintained
-      // "@types/password-hash": "~1.2.24",
-
       // @trusted=minor probably scrypt from native nodejs will do a better job
       "bcryptjs": "~2.4.3",
 
@@ -1181,11 +1185,18 @@
       "passport-http-bearer": "1.0.1",
 
       // @trusted=minor
-      //#endregion
+      // "@types/oauth2orize": "~1.11.5",
+      "@types/oauth2orize": null,
 
+      // @trusted=minor @deprecated very old not maintained
+      // "@types/password-hash": "~1.2.24",
+      "@types/password-hash": null,
 
+      // @trusted=minor
       // @deprecated very old not maintained
       // "password-hash": "1.2.2",
+      "password-hash": null,
+      //#endregion
 
       //#region DOCKER
       // @trusted=patch
@@ -1231,6 +1242,11 @@
 
       //#endregion
       "taon": "~19.0.0",
+    },
+    "optionalDependencies": {
+      "@parcel/watcher-darwin-x64": "2.5.1",
+      "@parcel/watcher-linux-x64-glibc": "2.5.1",
+      "@parcel/watcher-win32-x64-msvc": "2.5.1",
     },
   },
 }
