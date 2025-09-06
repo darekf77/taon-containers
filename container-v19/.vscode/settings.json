@@ -40,7 +40,9 @@
     "**/.firedev": true,
     "**/.taon": true,
     "**/.tnp": true,
-    "projects": true
+    "projects": true,
+    "src/lib/env/**/*.*": true,
+    "**/src/lib/env/**/*.*": true
   },
 
   "[typescriptreact]": {
@@ -105,5 +107,23 @@
 
   "files.watcherExclude": {
     "local_release/**": true
-  }
+  },
+
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+
+  "[dockercompose]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+
+  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.endOfLine": "auto"
 }

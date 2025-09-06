@@ -1217,7 +1217,7 @@
       // "tnp-cli": "18.0.5",
       "record-replay-req-res-scenario": "~19.0.0",
       "ng-talkback": "~19.0.0",
-      "vpn-split": "~18.0.20",
+      "vpn-split": "~19.0.40",
       "node-cli-tester": "~19.0.0",
       "static-columns": "~19.0.0",
       "taon-storage": "~19.0.0",
