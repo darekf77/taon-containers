@@ -12,18 +12,11 @@ import { MyEntityController } from './my-entity.controller';
 @Injectable()
 //#endregion
 export class MyEntityApiService extends Taon.Base.AngularService {
-  private myEntityController: MyEntityController;
+  private myEntityController = this.injectController(MyEntityController) ;
 
   public get allMyEntities$(): Observable<MyEntity[]> {
     return this.myEntityController
       .getEntities()
       .request().observable.pipe(map(res => res.body.json));
-  }
-
-  constructor() {
-    super();
-    this.myEntityController = Taon.inject(() =>
-      this.currentContext.getClass(MyEntityController),
-    );
   }
 }
