@@ -10,5 +10,6 @@
     "description": "Description for taon-containers. Hello world!",
     "private": true,
     "scripts": {}
-  }
+  },
+"removeAfterPullingFromGit": ["container-v19/examples-v19"]
 }

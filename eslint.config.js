@@ -9,7 +9,7 @@ module.exports = [
     ignores: ["projects/**/*"], // Optional: ignore specific folders
   },
   {
-    files: ["src/**/*.ts"], // Specify the source folder explicitly
+    files: ["src/**/*.ts", "gen-examples-v19/**/*.ts"], // Specify the source folder explicitly
     languageOptions: {
       parser: require("@typescript-eslint/parser"), // Correct parser import
       parserOptions: {
@@ -31,7 +31,7 @@ module.exports = [
       '@angular-eslint/component-class-suffix': [
         'warn',
         {
-          suffixes: ['Page', 'Component','Container'],
+          suffixes: ['Page', 'Component', 'Container'],
         },
       ],
       // '@angular-eslint/component-selector': [
@@ -50,7 +50,7 @@ module.exports = [
       //     style: 'camelCase',
       //   },
       // ],
-       // TO EXPENSIVE
+      // TO EXPENSIVE
       // '@typescript-eslint/member-ordering': [
       //   'warn',
       //   {
@@ -142,25 +142,25 @@ module.exports = [
         }
       ],
       '@typescript-eslint/explicit-function-return-type': [
-          'warn',
-          {
-            allowExpressions: true, // Allow function expressions (like anonymous functions) without return type
-            allowTypedFunctionExpressions: true, // Allow functions in type declarations (like in interfaces)
-            allowDirectConstAssertionInArrowFunctions: true, // Allow direct assertions
-            allowHigherOrderFunctions: true, // Allow higher-order functions without explicit return type
-            allowedNames: [], // List of getter names that are allowed to not have a return type
-            // enforceForGetters: true, // Enforce return type for getters
-            // enforceForSetters: false, // No need to enforce return type for setters (setters don't have return types)
-          },
-        ],
-        // '@typescript-eslint/typedef': [
-        //   'warn',
-        //   {
-        //     memberVariableDeclaration: true,
-        //     parameter: true,
-        //     propertyDeclaration: true,
-        //   },
-        // ],
+        'warn',
+        {
+          allowExpressions: true, // Allow function expressions (like anonymous functions) without return type
+          allowTypedFunctionExpressions: true, // Allow functions in type declarations (like in interfaces)
+          allowDirectConstAssertionInArrowFunctions: true, // Allow direct assertions
+          allowHigherOrderFunctions: true, // Allow higher-order functions without explicit return type
+          allowedNames: [], // List of getter names that are allowed to not have a return type
+          // enforceForGetters: true, // Enforce return type for getters
+          // enforceForSetters: false, // No need to enforce return type for setters (setters don't have return types)
+        },
+      ],
+      // '@typescript-eslint/typedef': [
+      //   'warn',
+      //   {
+      //     memberVariableDeclaration: true,
+      //     parameter: true,
+      //     propertyDeclaration: true,
+      //   },
+      // ],
     },
   },
   // NOTE: WE ARE NOT APPLYING PRETTIER IN THIS OVERRIDE, ONLY @ANGULAR-ESLINT/TEMPLATE
