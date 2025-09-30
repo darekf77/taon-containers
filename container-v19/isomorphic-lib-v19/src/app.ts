@@ -9,7 +9,7 @@ import Aura from '@primeng/themes/aura'; // @browser
 import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { Observable, map } from 'rxjs';
-import { Taon, BaseContext, TAON_CONTEXT } from 'taon/src';
+import { Taon, BaseContext, TAON_CONTEXT, EndpointContext } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -178,8 +178,9 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(startParams?:Taon.StartParams): Promise<void> {
-  await MainContext.initialize();
+async function start(startParams?:Taon.StartParams): Promise<EndpointContext[]> {
+  const ctxs = [] as EndpointContext[];
+  ctxs.push(await MainContext.initialize());
 
    //#region @backend
    if (startParams.onlyMigrationRun || startParams.onlyMigrationRevertToTimestamp) {
@@ -199,6 +200,7 @@ async function start(startParams?:Taon.StartParams): Promise<void> {
       'users from backend': users,
     });
   }
+  return ctxs;
 }
 
 export default start;

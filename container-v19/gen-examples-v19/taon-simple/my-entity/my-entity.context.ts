@@ -22,6 +22,10 @@ export const MyEntityContext = Taon.createContext(() => ({
    * database:true - if this context is going to use database
    */
   database: false,
+  // if you need a migration to work - uncomment
+  // migrations: {
+  //   ...MIGRATIONS_CLASSES_FOR_MyEntityContext,
+  // },
   contexts: { BaseContext },
   entities: { MyEntity },
   controllers: { MyEntityController }
