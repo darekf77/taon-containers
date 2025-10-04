@@ -11,7 +11,8 @@ import start from './---projectname---/app';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CoreModels } from 'tnp-core';
+import { ContextsEndpointStorage } from 'taon';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -50,6 +51,9 @@ export class AppComponent {
     this.removedPreloader = true;
     // @ts-ignore
     await start();
+    const endpoints = ContextsEndpointStorage.Instance.arr || [];
+    await Promise.all(endpoints.map(c => c.initControllersHook(ContextsEndpointStorage.Instance)));
+    console.log(CoreModels.SPECIAL_APP_READY_MESSAGE);
     this.inited = true;
     // Add the DynamicComponent to the container
     this.container.createComponent(componentFactory);

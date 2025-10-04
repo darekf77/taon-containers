@@ -106,6 +106,10 @@ class User extends Taon.Base.AbstractEntity {
   @Taon.Orm.Column.String()
   //#endregion
   name?: string;
+
+  getHello(): string {
+    return `hello ${this.name}`;
+  }
 }
 //#endregion
 
@@ -178,9 +182,8 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(startParams?:Taon.StartParams): Promise<EndpointContext[]> {
-  const ctxs = [] as EndpointContext[];
-  ctxs.push(await MainContext.initialize());
+async function start(startParams?:Taon.StartParams): Promise<void> {
+  await MainContext.initialize();
 
    //#region @backend
    if (startParams.onlyMigrationRun || startParams.onlyMigrationRevertToTimestamp) {
@@ -196,11 +199,10 @@ async function start(startParams?:Taon.StartParams): Promise<EndpointContext[]> 
     const users = (
       await MainContext.getClassInstance(UserController).getAll().request()
     ).body?.json;
-    console.log({
-      'users from backend': users,
-    });
+    for (const user of users || []) {
+      console.log(`user: ${user.name} - ${user.getHello()}`);
+    }
   }
-  return ctxs;
 }
 
 export default start;
