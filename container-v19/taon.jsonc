@@ -9,9 +9,29 @@
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
     "dependencies": {
-      //#region not needed anymore @deprecated
-      "@angular/http": null,
+      //#region @TOD/CHECK/EXPLORE
 
+      // 1. FIND STABLE SWAGGER GENERATOR
+      // swagger api client generation
+      // "@hey-api/openapi": "~3.0.0",
+
+      // 2. TYPESCRIPT-CLASS-HELPERS replace with something better if exists
+      // PROPER CLASS INJECTIONS https://github.com/typestack/typedi => usefull for typescript-class-helpers
+      // PROPER CLASS MAPPIGN usefull => https://github.com/typestack/class-transformer
+
+      // 3. ELECTRON APPS HANDLE HOT KEYS
+      // @ngneat/hotkeys
+
+      // 4. NICE MOBILE DEEP MENU jQUERY PLUGIN - find for angular
+      //  https://github.com/alizahid/slinky -> create or find angular plugin
+
+      //#endregion
+
+      //#region @DEPRECATED
+      // @deprecated
+      // "circular-json": "^0.5.1",
+      "circular-json": null,
+      "@angular/http": null,
       "hammerjs": null,
       "rxjs-compat": null,
       "@angular-devkit/build-optimizer": null,
@@ -28,7 +48,6 @@
       "html-webpack-plugin": null,
       "sw-toolbox": null,
       "gulp-inline-ng2-template": null,
-      "gulp": "^3.9.1",
       "autoprefixer": null,
       "circular-dependency-plugin": null,
       "copy-webpack-plugin": null,
@@ -65,29 +84,13 @@
       "babel-preset-env": null,
       "babel-preset-es2015": null,
       "node-sass": null,
+      "@types/oauth2orize": null,
+      "@types/password-hash": null,
+      "password-hash": null,
 
-      // TODO remove taon ui
-      // "taon-ui": null,
+      //  @deprecated
+      "@angular/flex-layout": null,
 
-      //#endregion
-      //#region FIND ALTERNATIVE
-      "svg-png-converter": null,
-
-      "@iconify/react": null,
-      "@types/socket.io": null,
-      "@types/socket.io-client": null,
-      "sqlite3": null,
-      "@ngneat/transloco": null,
-      "angular-tree-component": null,
-      "ngx-breadcrumbs": null,
-      "ng-modal-lib": null,
-      "tsickle": null,
-      "node-cli-test": null,
-      "button-dropdown": null,
-      "tnp-tools": null,
-
-      //#endregion
-      //#region maybe usefull
       // "@types/lodash.get": "^4.4.4",
       // "@types/lodash.isequal": "^4.5.3",
       // "@types/lodash.merge": "^4.6.4",
@@ -110,8 +113,26 @@
       // "lodash.isequal": ">= 4",
       // "lodash.merge": ">= 4",
       // "lodash.set": ">= 4",
+
+      "svg-png-converter": null,
+
+      "@iconify/react": null,
+      "@types/socket.io": null,
+      "@types/socket.io-client": null,
+      "sqlite3": null,
+      "@ngneat/transloco": null,
+      "angular-tree-component": null,
+      "ngx-breadcrumbs": null,
+      "ng-modal-lib": null,
+      "tsickle": null,
+      "node-cli-test": null,
+      "button-dropdown": null,
+      "tnp-tools": null,
+      // probably not needed
+      "gulp": "^3.9.1",
       //#endregion
-      //#region CORE PACKAGES
+
+      //#region CORE
       //  @trusted=major
       "@ngtools/webpack": "19.2.8",
 
@@ -175,9 +196,6 @@
       //  @trusted=major
       "@angular/compiler-cli": "~19.2.7",
 
-      //  @deprecated
-      "@angular/flex-layout": null,
-
       //  @trusted=major
       "rxjs": "~7.8.2",
 
@@ -225,8 +243,6 @@
       //  @trusted=patch
       "@types/q": "~1.5.8",
 
-      //#endregion
-      //#region CORE COMMUNICATION PACKAGES
       // socket communication
       //  @trusted=minor
       "socket.io": "~4.8.1",
@@ -238,18 +254,114 @@
       //  @trusted=major
       "axios": "~1.8.4",
 
+      // @trusted=patch
+      "ts-json-schema-generator": "~2.4.0-next.7",
+
+      // wrong types in current verison => replace with isomorphic-storage
+      // @trusted=major
+      "ngx-store": "3.1.1",
+
+      // SECUTIRY FIXES
+      // @trusted=patch
+      "json5": "~2.2.3",
+
+      // @trusted=patch TODO slow migration or hot replace with lodash-es
+      "lodash": "~4.17.21",
+      // @trusted=patch
+      "lodash-es": "~4.17.21",
+
+      // @trusted=minor
+      "pretty-error": "4.0.0",
+
+      // @trusted=minor
+      "http-proxy": "1.18.1",
+
+      // @trusted=major
+      "ng2-pdfjs-viewer": "~19.0.0",
+
+      // @trusted=major
+      "google-libphonenumber": "~3.2.40",
+
+      "copy-paste": "1.5.3",
+
+      // fantastic bundling ts into single js file
+      "esbuild": "~0.25.1",
+
+      "randomcolor": "^0.5.3",
+
+      // @trusted=patch
+      "buffer-shims": "1.0.0",
+
+      // @trusted=patch
+      "content-type": "~1.0.5",
+
+      // @trusted=major
+      "cheerio": "~1.0.0",
+
+      // @trusted=patch
+      "string-similarity": "~4.0.4",
+
+      // @trusted=major
+      "underscore": "~1.13.7",
+
+      "json-stringify-safe": "^5.0.1",
+      "@types/json-stringify-safe": "~5.0.3",
+
+      // @trusted=patch
+      "json5-writer": "0.2.0",
+
+      "@types/json5": "0.0.29",
+      "@types/lodash": "4.14.92",
+      "lnk": "~1.0.1",
+
+      // @trusted=patch
+      "cross-spawn": "~7.0.6",
+
+      "cpr": "^3.0.1",
+      "mkdirp": "^0.5.1",
+      "rimraf": "^2.6.2",
+
+      "fs-extra": "8.1.0",
+
+      "jscodeshift": "^0.6.3",
+
+      "@types/fs-extra": "^7.0.0",
+
+      "@types/rimraf": "^2.0.2",
+
+      "open": "7.2.1",
+
+      // @trusted=patch
+      "@types/chai": "~4.3.20",
+
+      // @trusted=patch
+      "@types/mocha": "~10.0.10",
+
+      // @trusted=patch
+      "detect-mocha": "0.1.0",
+
+      // @trusted=patch
+      "nodemon": "~2.0.22",
+
+      // @deprecated
+      "enum-values": "1.2.1",
+
+      "typescript-string-enums": "^1.0.0",
+
       //#endregion
+
       //#region DATABASES
 
       // typed sql
-      "taon-type-sql": "~19.0.0",
       "sql-template-strings": "~2.2.2",
       "sql-template-tag": "~5.2.1",
 
-      // outstanding crossplatform orm
+      // nofr now I am using taon-typeorm fork with my fixes
       // typeorm: "^0.3.10",
+
       // amazing sqlite drive without node-gyp
       // "better-sqlite3": "9.5.0",
+
       // awesome sql in browser
       // indexeddb just like localstorage
       // @githublink=https://github.com/sql-js/sql.js
@@ -275,10 +387,7 @@
       "app-root-path": "~3.1.0",
 
       //#endregion
-      //#region TODO create awesome routers
-      "path-to-regexp": "~6.2.2",
 
-      //#endregion
       //#region NGRX  / immutable @ngrx
       // @trusted=major
       "@ngrx/effects": "~19.1.0",
@@ -311,6 +420,7 @@
       "immer": "~10.0.2",
 
       //#endregion
+
       //#region TESTING / MOCKING
       //  @trusted=minor
       "mocha": "~10.8.2",
@@ -392,6 +502,7 @@
       "karma-coverage": null,
 
       //#endregion
+
       //#region DOCS
       // @trusted=major
       "@compodoc/compodoc": "~1.1.26",
@@ -406,23 +517,23 @@
       // @trusted=major
       "conventional-changelog-cli": "~5.0.0",
 
-      "@storybook/angular":">=9.0.0-0 <10",
-      "@storybook/addon-docs":">=9.0.0-0 <10",
-      "@storybook/addon-essentials":">=9.0.0-0 <10",
-      "@storybook/addon-interactions":">=9.0.0-0 <10",
-      "@storybook/addon-links":">=9.0.0-0 <10",
-      "@storybook/addon-mdx-gfm":">=9.0.0-0 <10",
-      "@storybook/addon-storysource":">=9.0.0-0 <10",
-      "@storybook/addon-viewport":">=9.0.0-0 <10",
-      "@storybook/blocks":">=9.0.0-0 <10",
-      "@storybook/manager-api":">=9.0.0-0 <10",
-      "@storybook/test":">=9.0.0-0 <10",
+      "@storybook/angular": ">=9.0.0-0 <10",
+      "@storybook/addon-docs": ">=9.0.0-0 <10",
+      "@storybook/addon-essentials": ">=9.0.0-0 <10",
+      "@storybook/addon-interactions": ">=9.0.0-0 <10",
+      "@storybook/addon-links": ">=9.0.0-0 <10",
+      "@storybook/addon-mdx-gfm": ">=9.0.0-0 <10",
+      "@storybook/addon-storysource": ">=9.0.0-0 <10",
+      "@storybook/addon-viewport": ">=9.0.0-0 <10",
+      "@storybook/blocks": ">=9.0.0-0 <10",
+      "@storybook/manager-api": ">=9.0.0-0 <10",
+      "@storybook/test": ">=9.0.0-0 <10",
       "@storybook/testing-library": null,
-      "@storybook/theming":">=9.0.0-0 <10",
+      "@storybook/theming": ">=9.0.0-0 <10",
       "storybook": "^9.1.3",
       //#endregion
 
-      //#region electron
+      //#region ELECTRON
       "electron": "30.5.1",
 
       "electron-builder": "~26.0.12",
@@ -462,16 +573,21 @@
       "webpack-dev-server": "~5.0.4",
 
       //#endregion
-      //#region FORMLY
-      // "@ngx-formly/bootstrap": "6.0.0-next.8",
-      // @trusted=major
-      "@ngx-formly/core": "~6.3.12",
 
-      // "@ngx-formly/ionic": "6.0.0-next.8", disabled for now
+      //#region FORMLY
+      "@ngx-formly/bootstrap": "~7.0.0",
+
       // @trusted=major
-      "@ngx-formly/material": "~6.3.12",
+      "@ngx-formly/core": "~7.0.0",
+
+      // @trusted=major
+      "@ngx-formly/material": "~7.0.0",
+
+      // @trusted=major
+      "@ngx-formly/primeng":"~7.0.0",
 
       //#endregion
+
       //#region VALIDATION
       // validation decorator based (https://github.com/typestack/class-validator)
       //  @trusted=patch
@@ -496,6 +612,7 @@
       "ajv": "~8.17.1",
 
       //#endregion
+
       //#region THREADS / WORKERS
       // threads lib: (https://github.com/andywer/threads.js)
       //  @trusted=patch
@@ -508,6 +625,7 @@
       "file-type": "~17.1.6",
 
       //#endregion
+
       //#region GRAPHICS GAMES
       // box 2d physics engine
       // planck-js
@@ -540,6 +658,7 @@
       "pica": "9.0.1",
 
       //#endregion
+
       //#region ICONS
       //  @trusted=patch
       "font-awesome": "4.7.0",
@@ -574,7 +693,7 @@
       "ngx-moment": null,
       // @deprecated use date-fns
       //  "moment": "2.30.1",
-       "moment": null,
+      "moment": null,
       // api change in new version
       // "dateformat": "~4.6.3",
       // "@types/dateformat": "~5.0.2",
@@ -606,6 +725,14 @@
       "ngx-spinner": "~19.0.0",
 
       //#endregion
+
+      //#region ANALYTICS
+
+      // decode browser user-agent cookie
+      "ua-parser-js": "~2.0.6",
+
+      //#endregion
+
       //#region STRING MANIPULATIONS
       // compare advanced strings
       // @trusted=patch
@@ -633,6 +760,7 @@
       "typescript-formatter": "~7.2.2",
 
       //#endregion
+
       //#region CLI
       // "commander": "10.0.1",
       // ----- TRANSLATIONS
@@ -643,13 +771,19 @@
       // @trusted=major
       "@ngx-translate/http-loader": "~16.0.1",
 
+      // TODO improve ng2-logger with this
+      // "pino": "~10.0.0",
+      // "pino-pretty":"~13.1.2"
+
       //#endregion
+
       //#region FLASHY UI EXTENSIONS
       // awesome typing effect
       // @trusted=major
       "ngx-typed-js": "2.1.1",
 
       //#endregion
+
       //#region UI EXTENSIONS
       // top right corner notifications
       // "ngx-toastr": "14.2.2",
@@ -747,6 +881,9 @@
       // @trusted=patch
       "rallax.js": "2.0.4",
 
+      // prezi style presentatiosn
+      "impress.js": "~1.1.0",
+
       // nice menu for mobile apps (is based on deprecated flex layout)
       // "@angular-material-extensions/fab-menu": "6.1.0",
       // additonal thing for material https://ng-matero.github.io/extensions/components/progress/overview
@@ -778,7 +915,11 @@
       // @trusted=major @angular
       "@primeng/themes": "~19.1.2",
 
+      // dummy content for loading
+      "@ngneat/content-loader": "~7.0.0",
+
       //#endregion
+
       //#region LINT
       // @trusted=major
       "@angular-eslint/builder": "~19.3.0",
@@ -839,60 +980,6 @@
       // "@commitlint/prompt-cli": "^12.1.1",
       //#endregion
       //#endregion
-      //#region USE IT
-      // @trusted=patch
-      "ts-json-schema-generator": "~2.4.0-next.7",
-
-      // wrong types in current verison => replace with isomorphic-storage
-      // @trusted=major
-      "ngx-store": "3.1.1",
-
-      // SECUTIRY FIXES
-      // @trusted=patch
-      "json5": "~2.2.3",
-
-      // @trusted=patch TODO slow migration or hot replace with lodash-es
-      "lodash": "~4.17.21",
-      // @trusted=patch
-      "lodash-es": "~4.17.21",
-
-      // @trusted=minor
-      "pretty-error": "4.0.0",
-
-      // @trusted=minor
-      "http-proxy": "1.18.1",
-
-      // "minimist": "1.2.0",
-      //#endregion
-      //#region CHECK/EXPLORE
-      // HANDLE HOT KEYS  @ngneat/hotkeys
-      // INPUT MASKS FOR EMIAL, IPs, ETC.  @ngneat/input-mask inputmask@5 @types/inputmask@5
-      // FAKE LOADING POST CONTENT https://github.com/ngneat/content-loader
-      // DOCS SERACH MENU cmd+k menu @ngneat/overview @ngneat/cmdk
-      // MOBILE DEEP MENU jQUERY PLUGIN https://github.com/alizahid/slinky -> create or find angular plugin
-      // -------
-      // PROPER CLASS INJECTIONS https://github.com/typestack/typedi => usefull for typescript-class-helpers
-      // PROPER CLASS MAPPIGN usefull => https://github.com/typestack/class-transformer
-      // ADD SOMEDAY
-      // cheerio: "1.0.0-rc.12",
-      // "impress.js":"1.1.0",
-      // @trusted=major
-      "ng2-pdfjs-viewer": "~19.0.0",
-
-      // @trusted=major
-      "google-libphonenumber": "~3.2.40",
-
-      // "print-js": "^1.6.0",
-      // "@ngx-formly/primeng":"~6.1.8",
-      // "ng-swagger-gen": "~2.3.1",
-
-      "copy-paste": "1.5.3",
-
-      // @trusted=major
-      "@vercel/ncc": "~0.38.3",
-      "esbuild": "~0.25.1",
-
-      //#endregion
 
       //#region URGENT TO UPDATE
       // @trusted=major
@@ -918,77 +1005,6 @@
       // @deprecated very old and not maintained
       // "watch": "1.0.2",
       "watch": null,
-      //#endregion
-
-      //#region TODO RESOLVE
-      "randomcolor": "^0.5.3",
-
-      // @trusted=major
-      "uuid": "~11.1.0",
-
-      // @trusted=patch
-      "buffer-shims": "1.0.0",
-
-      // @trusted=patch
-      "content-type": "~1.0.5",
-
-      // @trusted=major
-      "cheerio": "~1.0.0",
-
-      // @trusted=patch
-      "string-similarity": "~4.0.4",
-
-      // @trusted=major
-      "underscore": "~1.13.7",
-
-      "json-stringify-safe": "^5.0.1",
-      "@types/json-stringify-safe": "~5.0.3",
-
-      // @deprecated
-      // "circular-json": "^0.5.1",
-      "circular-json": null,
-
-      // @trusted=patch
-      "json5-writer": "0.2.0",
-
-      "@types/json5": "0.0.29",
-      "@types/lodash": "4.14.92",
-      "lnk": "~1.0.1",
-
-      // @trusted=patch
-      "cross-spawn": "~7.0.6",
-
-      "cpr": "^3.0.1",
-      "mkdirp": "^0.5.1",
-      "rimraf": "^2.6.2",
-
-      "fs-extra": "8.1.0",
-
-      "jscodeshift": "^0.6.3",
-
-      "@types/fs-extra": "^7.0.0",
-
-      "@types/rimraf": "^2.0.2",
-
-      "open": "7.2.1",
-
-      // @trusted=patch
-      "@types/chai": "~4.3.20",
-
-      // @trusted=patch
-      "@types/mocha": "~10.0.10",
-
-      // @trusted=patch
-      "detect-mocha": "0.1.0",
-
-      // @trusted=patch
-      "nodemon": "~2.0.22",
-
-      // @deprecated
-      "enum-values": "1.2.1",
-
-      "typescript-string-enums": "^1.0.0",
-
       //#endregion
 
       //#region BACKEND FILES/SYSTEM
@@ -1107,6 +1123,10 @@
       //#endregion
 
       //#region BACKEND HTTP SERVER
+
+      // create awesome routers
+      "path-to-regexp": "~6.2.2",
+
       // @trusted=minor
       "@types/http-proxy": "~1.17.16",
 
@@ -1146,21 +1166,15 @@
       // @trusted=minor
       "compression": "1.7.4",
 
-      // handle user session auth
-      // @trusted=minor
-      "express-session": "~1.18.1",
+      "nodemailer": "~7.0.5",
+      //#endregion
 
+      //#region BACKEND FILE UPLOAD
       // smooth file uplload @deprecated multer is better
       "@types/express-fileupload": "~1.5.0",
 
       // @trusted=minor @deprecated multer is better
       "express-fileupload": "~1.5.1",
-
-      "nodemailer": "~7.0.5",
-
-      // handle cookies in nodejs backend
-      "tough-cookie": "~6.0.0",
-      "axios-cookiejar-support": "~6.0.4",
 
       // @trusted=minor
       "multer": "2.0.2",
@@ -1170,13 +1184,32 @@
       // for data for nodejs (browser has it build it)
       // @trusted=minor
       "form-data": "~4.0.2",
+      //endregion
 
-      // secure express app
+      //#region BACKEND AUTHENTICATION & AUTHORIZATION
+
+      // handle cookies in nodejs backend
+      "tough-cookie": "~6.0.0",
+      "axios-cookiejar-support": "~6.0.4",
+
+      // handle user session auth
+      // @trusted=minor
+      "express-session": "~1.18.1",
+
+      // secure express app with special browser headers
       // @trusted=minor
       "helmet": "~8.1.0",
 
+      "express-rate-limit": "~8.1.0",
+
       // @trusted=minor probably scrypt from native nodejs will do a better job
       "bcryptjs": "~2.4.3",
+
+      // @trusted=major
+      "uuid": "~11.1.0",
+
+      // hasing passwords just like bcrypt but more modern and secure
+      "@node-rs/argon2": "2.0.2",
 
       // @trusted=minor
       "passport": "~0.7.0",
@@ -1184,18 +1217,15 @@
       // @trusted=minor
       "passport-http-bearer": "1.0.1",
 
-      // @trusted=minor
-      // "@types/oauth2orize": "~1.11.5",
-      "@types/oauth2orize": null,
+      // web tokens
+      "jsonwebtoken": "~9.0.2",
 
-      // @trusted=minor @deprecated very old not maintained
-      // "@types/password-hash": "~1.2.24",
-      "@types/password-hash": null,
+      // 2fa authenticator
+      "otplib": "~12.0.1",
 
-      // @trusted=minor
-      // @deprecated very old not maintained
-      // "password-hash": "1.2.2",
-      "password-hash": null,
+      // generate qr code for 2fa
+      "qrcode": "~1.5.4",
+
       //#endregion
 
       //#region DOCKER
@@ -1210,7 +1240,7 @@
       //#region my packages
       "taon-typeorm": "~19.0.0",
       "taon-ui": "~19.0.2",
-
+      "taon-type-sql": "~19.0.0",
       // "taon-crud": "18.0.5",
       // "taon-ports": "18.0.5",
       // "taon-ui": "18.0.6",
@@ -1241,6 +1271,7 @@
       "ng2-rest-swagger-generator": "~19.0.0",
 
       //#endregion
+
       "taon": "~19.0.0",
     },
     "optionalDependencies": {

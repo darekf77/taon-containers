@@ -42,7 +42,9 @@
     "**/.tnp": true,
     "projects": true,
     "src/lib/env/**/*.*": true,
-    "**/src/lib/env/**/*.*": true
+    "**/src/lib/env/**/*.*": true,
+    "dist-*": true,
+    "**/dist-*": true
   },
 
   "[typescriptreact]": {
