@@ -1055,14 +1055,14 @@
       "fast-glob": "~3.3.2",
 
       // @useBy=tnp-helpers      @useBy=tnp-core
-      "sloc": "^0.2.0",
+      "sloc": "^0.3.2",
 
       // @trusted=major
       "simple-git": "~3.27.0",
 
       "fkill": "6.1.0",
       "ps-list": "6.1.0",
-      "check-node-version": "^3.2.0",
+      "check-node-version": null,
       "command-exists": "^1.2.2",
       "@types/systeminformation": "~3.54.1",
       "systeminformation": "^3.45.7",
