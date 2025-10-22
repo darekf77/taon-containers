@@ -584,7 +584,7 @@
       "@ngx-formly/material": "~7.0.0",
 
       // @trusted=major
-      "@ngx-formly/primeng":"~7.0.0",
+      "@ngx-formly/primeng": "~7.0.0",
 
       //#endregion
 
@@ -1008,8 +1008,10 @@
       //#endregion
 
       //#region BACKEND FILES/SYSTEM
+
+      "vscode": null,
       // @trusted=patch
-      "vscode": "1.1.37",
+      "@types/vscode": "1.105.0",
 
       "cross-env": "7.0.2",
       "node-localstorage": "2.1.6",
