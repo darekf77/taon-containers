@@ -330,7 +330,7 @@
     "sharp": "~0.34.2",
     "simple-git": "~3.27.0",
     "sinon": "~16.1.3",
-    "sloc": "^0.2.0",
+    "sloc": "^0.3.2",
     "socket.io": "~4.8.1",
     "socket.io-client": "~4.7.5",
     "sort-package-json": "^1.11.0",
