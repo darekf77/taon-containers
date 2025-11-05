@@ -584,11 +584,12 @@
       "@ngx-formly/material": "~7.0.0",
 
       // @trusted=major
-      "@ngx-formly/primeng":"~7.0.0",
+      "@ngx-formly/primeng": "~7.0.0",
 
       //#endregion
 
       //#region VALIDATION
+
       // validation decorator based (https://github.com/typestack/class-validator)
       //  @trusted=patch
       "class-validator": "~0.14.1",
@@ -596,12 +597,8 @@
       //  @trusted=patch
       "class-transformer": "0.5.1",
 
-      // amazing schema validation (decide betwwen yup vs joi)
       //  @trusted=patch
-      "yup": "~1.0.0-beta.8",
-
-      //  @trusted=patch
-      "joi": "~17.13.3",
+      "zod": "~4.1.2",
 
       // validation function based
       //  @trusted=patch
@@ -1008,8 +1005,10 @@
       //#endregion
 
       //#region BACKEND FILES/SYSTEM
+
+      "vscode": null,
       // @trusted=patch
-      "vscode": "1.1.37",
+      "@types/vscode": "1.105.0",
 
       "cross-env": "7.0.2",
       "node-localstorage": "2.1.6",
@@ -1055,14 +1054,14 @@
       "fast-glob": "~3.3.2",
 
       // @useBy=tnp-helpers      @useBy=tnp-core
-      "sloc": "^0.2.0",
+      "sloc": "^0.3.2",
 
       // @trusted=major
       "simple-git": "~3.27.0",
 
       "fkill": "6.1.0",
       "ps-list": "6.1.0",
-      "check-node-version": "^3.2.0",
+      "check-node-version": null,
       "command-exists": "^1.2.2",
       "@types/systeminformation": "~3.54.1",
       "systeminformation": "^3.45.7",

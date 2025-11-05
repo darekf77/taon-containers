@@ -39,7 +39,7 @@ export class MyEntityTerminalUI extends BaseCliWorkerTerminalUI<MyEntityWorker> 
     return {
       ...this.chooseAction,
       ...myActions,
-      ...super.getWorkerTerminalActions({ chooseAction: false }),
+      ...super.getWorkerTerminalActions({ ...options, chooseAction: false }),
     };
     //#endregion
   }
