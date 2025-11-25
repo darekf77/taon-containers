@@ -5278,9 +5278,25 @@
                   ]
                 }
               ]
+            },
+            "lastBuildTagHash": {
+              "type": "string"
+            },
+            "publisher": {
+              "type": "string"
+            },
+            "displayName": {
+              "type": "string"
             }
           },
           "additionalProperties": false
+        },
+        "removeAfterPullingFromGit": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Folders to remove after pulling from git. Usefull when you have some folders that are not needed in git but there just waiting to be deleted after pulling from git. This may be useful after refactor/moving huge folders around."
         },
         "overrided": {
           "type": "object",
@@ -5336,7 +5352,10 @@
         "v4",
         "v16",
         "v18",
-        "v20"
+        "v19",
+        "v20",
+        "v21",
+        "v22"
       ]
     },
     "JsonValue": {
