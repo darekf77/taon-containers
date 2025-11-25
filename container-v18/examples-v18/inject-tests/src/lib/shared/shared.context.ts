@@ -1,4 +1,4 @@
-import { BaseContext, Taon, createContext } from 'taon/src';
+import { TaonBaseContext, Taon, createContext } from 'taon/src';
 import { Session } from './session/sesison';
 import { User } from './user/user';
 import { UserController } from './user/user.controller';
@@ -10,7 +10,7 @@ import { AdminController } from './admin/admin.controller';
 export const SharedContext = createContext(() => ({
   contextName: 'SharedContext',
   host: 'http://abstract.host.com',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   entities: { User, Session, Admin },
   controllers: { SessionController, UserController, AdminController },
   repositories: { UserRepository },

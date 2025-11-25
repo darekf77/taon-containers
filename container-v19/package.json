@@ -353,7 +353,6 @@
     "task.js": "^0.1.5",
     "threads": "1.7.0",
     "tnp": "~19.0.1",
-    "tnp-config": "~19.0.0",
     "tnp-core": "~19.0.0",
     "tnp-helpers": "~19.0.0",
     "tnp-models": "~19.0.0",

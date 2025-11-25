@@ -1,7 +1,7 @@
 //#region imports
 import {
   Taon,
-  BaseContext,
+  TaonBaseContext,
   TaonAdminModeConfigurationComponent,
 } from 'taon/src';
 import { Helpers } from 'tnp-core/src';
@@ -131,7 +131,7 @@ var MainContext = Taon.createContext(() => ({
   host,
   frontendHost,
   contextName: 'MainContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   migrations: { ...MIGRATIONS_CLASSES_FOR_MainContext },
   controllers: {
     UserController,
@@ -156,7 +156,7 @@ var SecondContext = Taon.createContext(() => ({
   host: host2,
   frontendHost: frontendHost2,
   contextName: 'SecondContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   migrations: { ...MIGRATIONS_CLASSES_FOR_SecondContext },
   controllers: {
     UserController,

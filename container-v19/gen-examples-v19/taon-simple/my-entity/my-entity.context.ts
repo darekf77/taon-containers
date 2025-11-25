@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, BaseContext } from 'taon';
+import { Taon, TaonBaseContext } from 'taon';
 
 import { MyEntity } from './my-entity';
 import { MyEntityController } from './my-entity.controller';
@@ -26,7 +26,7 @@ export const MyEntityContext = Taon.createContext(() => ({
   // migrations: {
   //   ...MIGRATIONS_CLASSES_FOR_MyEntityContext,
   // },
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   entities: { MyEntity },
   controllers: { MyEntityController }
 }))

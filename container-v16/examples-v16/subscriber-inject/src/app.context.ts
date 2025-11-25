@@ -1,4 +1,4 @@
-import { Firedev, BaseContext } from 'firedev/src';
+import { Firedev, TaonBaseContext } from 'firedev/src';
 import { HOST_BACKEND_PORT } from './app.hosts';
 import { UserController } from './app/user.controller';
 import { User } from './app/user';
@@ -9,7 +9,7 @@ const host = 'http://localhost:' + HOST_BACKEND_PORT;
 export const AppContext = Firedev.createContext(() => ({
   host,
   contextName: 'AppContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   controllers: {
     UserController,
     // PUT FIREDEV CONTORLLERS HERE

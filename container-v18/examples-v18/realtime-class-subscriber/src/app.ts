@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, BaseContext } from 'taon/src';
+import { Taon, TaonBaseContext } from 'taon/src';
 import {
   Observable,
   Subject,
@@ -126,7 +126,7 @@ var MainContext = Taon.createContext(() => ({
   host: host1,
   frontendHost: frontendHost1,
   contextName: 'MainContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   controllers: { RealtimeUserController },
   subscribers: { RealtimeClassSubscriber },
   entities: { RealtimeUserEntity: UserEntity },

@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, BaseContext } from 'taon/src';
+import { Taon, TaonBaseContext } from 'taon/src';
 import { Observable, map, scan } from 'rxjs';
 import {
   CLIENT_DEV_NORMAL_APP_PORT,
@@ -47,7 +47,7 @@ const MainContext = Taon.createContext(() => ({
   useIpcWhenElectron: true,
   frontendHost: frontendHost1,
   contextName: 'MainContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   controllers: {},
   entities: {},
   database: true,

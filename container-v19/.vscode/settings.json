@@ -90,7 +90,9 @@
     "src/lib/env/**/*.*": true,
     "**/src/lib/env/**/*.*": true,
     "dist-*": true,
-    "**/dist-*": true
+    "**/dist-*": true,
+    "*.rest": true,
+    "**/*.rest": true
   },
 
   "[typescriptreact]": {

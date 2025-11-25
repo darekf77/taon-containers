@@ -3,7 +3,7 @@ import { Utils, crossPlatformPath, _, Helpers, path } from 'tnp-core/src';
 import { FiredevBinaryFile } from '../firedev-binary-file';
 import type { FiredevBinaryFileController } from '../firedev-binary-file.controller';
 import { Project } from 'tnp/src';
-import { config } from 'tnp-config/src';
+import { config } from 'tnp-core/src';
 import { CoreModels } from 'tnp-core/src';
 import axios from 'axios';
 //#region @browser

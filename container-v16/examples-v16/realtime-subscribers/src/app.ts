@@ -1,5 +1,5 @@
 //#region imports
-import { Firedev, BaseContext } from 'firedev/src';
+import { Firedev, TaonBaseContext } from 'firedev/src';
 import { Observable, map } from 'rxjs';
 import {
   CLIENT_DEV_NORMAL_APP_PORT,
@@ -113,7 +113,7 @@ const MainContext = Firedev.createContext(() => ({
   useIpcWhenElectron: true,
   frontendHost: frontendHost1,
   contextName: 'MainContext',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   controllers: {
     UserController,
     // PUT FIREDEV CONTORLLERS HERE
@@ -132,7 +132,7 @@ const MainContext = Firedev.createContext(() => ({
 //   useIpcWhenElectron: true,
 //   frontendHost: frontendHost1,
 //   contextName: 'MainContext2',
-//   contexts: { BaseContext },
+//   contexts: { TaonBaseContext },
 //   controllers: {
 //     UserController,
 //     // PUT FIREDEV CONTORLLERS HERE

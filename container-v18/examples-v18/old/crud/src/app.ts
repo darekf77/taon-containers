@@ -1,5 +1,5 @@
 //#region imports
-import { BaseContext, Taon } from 'taon/src';
+import { TaonBaseContext, Taon } from 'taon/src';
 import { Observable, map } from 'rxjs';
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region @websql
@@ -97,7 +97,7 @@ const host = 'http://localhost:' + HOST_BACKEND_PORT;
 var Context = Taon.createContext(() => ({
   host,
   contextName: 'Context',
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   controllers: {
     UserController,
     // PUT FIREDEV CONTORLLERS HERE

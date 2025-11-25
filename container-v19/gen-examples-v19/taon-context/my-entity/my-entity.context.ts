@@ -1,5 +1,5 @@
 //#region imports
-import { BaseContext, Taon } from 'taon/src';
+import { TaonBaseContext, Taon } from 'taon/src';
 
 import { MyEntity } from './my-entity';
 //#endregion
@@ -21,7 +21,7 @@ export const MyEntityContext = Taon.createContext(()=> ({
    * database:true - if this context is going to use database
    */
   database: false,
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   entities:{
     MyEntity
   },

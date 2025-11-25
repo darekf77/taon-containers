@@ -1,5 +1,5 @@
 //#region imports
-import { Firedev, BaseContext } from 'firedev/src';
+import { Firedev, TaonBaseContext } from 'firedev/src';
 import { Observable, map } from 'rxjs';
 import { HOST_BACKEND_PORT } from './app.hosts';
 //#region @browser
@@ -90,7 +90,7 @@ class UserController extends Firedev.Base.CrudController<User> {
 const MainContext = Firedev.createContext(()=>({
   host,
   contextName: 'MainContext',
-  contexts:{ BaseContext },
+  contexts:{ TaonBaseContext },
   controllers: {
     UserController,
     // PUT FIREDEV CONTORLLERS HERE

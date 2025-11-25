@@ -321,7 +321,7 @@
       "mkdirp": "^0.5.1",
       "rimraf": "^2.6.2",
 
-      "fs-extra": "~10",
+      "fs-extra": "~10.1.0",
 
       "jscodeshift": "^0.6.3",
 
@@ -1249,7 +1249,7 @@
       "static-columns": "~19.0.0",
       "taon-storage": "~19.0.0",
       "tnp-core": "~19.0.0",
-      "tnp-config": "~19.0.0",
+      "tnp-config": null,
       "ng2-logger": "~19.0.0",
       "typescript-class-helpers": "~19.0.0",
       "tnp-models": "~19.0.0",

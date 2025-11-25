@@ -3,11 +3,24 @@
 const angularEslintRecommended = require('@angular-eslint/eslint-plugin').configs.recommended;
 const angularTemplateProcessInlineTemplates = require('@angular-eslint/eslint-plugin-template').configs['process-inline-templates'];
 const prettierConfig = require('eslint-config-prettier');
+const tsRecommended = require("@typescript-eslint/eslint-plugin").configs.recommended;
 
 // eslint.config.js
 module.exports = [
   {
-    ignores: ["projects/**/*"], // Optional: ignore specific folders
+    ignores: [
+      "projects/**/*",
+      "dist/**/*",
+      "dist-nocutsrc/**/*",
+      "node_modules/**/*",
+      "tmp-*/**/*",
+      "taon.json",
+      "tsconfig*",
+      ".vscode/**/*",
+      "taon-config-standalone.schema.json",
+      "taon-config-container.schema.json",
+      "run.js",
+    ], // Optional: ignore specific folders
   },
   {
     files: ["src/**/*.ts"], // Specify the source folder explicitly
@@ -15,6 +28,7 @@ module.exports = [
       parser: require("@typescript-eslint/parser"), // Correct parser import
       parserOptions: {
         project: ['tsconfig.json'],
+        tsconfigRootDir: __dirname,
         createDefaultProgram: true,
       },
     },
@@ -24,6 +38,8 @@ module.exports = [
       "@angular-eslint": require("@angular-eslint/eslint-plugin"),
     },
     rules: {
+      // @UNCOMMENT LINE BELOW TO ENABLE TYPESCRIPT RECOMMENDED RULES (STRICT)
+      // ...tsRecommended.rules,
       ...angularEslintRecommended.rules,
       ...angularTemplateProcessInlineTemplates.rules,
       ...prettierConfig.rules,
@@ -35,6 +51,18 @@ module.exports = [
           suffixes: ['Page', 'Component','Container'],
         },
       ],
+
+      "lines-between-class-members": [
+        "warn",
+        "always",
+        { exceptAfterSingleLine: false }
+      ],
+
+      // "padding-line-between-statements": [
+      //   "warn",
+      //   { "blankLine": "always", "prev": "export", "next": "export" }
+      // ],
+
       // '@angular-eslint/component-selector': [
       //   'warn',
       //   {
