@@ -8,8 +8,13 @@ import { VERSION } from '@angular/core'; // @browser
 import Aura from '@primeng/themes/aura'; // @browser
 import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
-import { Observable, map } from 'rxjs';
-import { Taon, TaonBaseContext, TAON_CONTEXT, EndpointContext } from 'taon/src';
+import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import {
+  Taon,
+  TaonBaseContext,
+  TAON_CONTEXT,
+  EndpointContext,
+} from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -20,6 +25,7 @@ console.log('Your backend host ' + HOST_CONFIG['MainContext'].host);
 console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
 
 //#region isomorphic-lib-v19 component
+
 //#region @browser
 @Component({
   selector: 'app-isomorphic-lib-v19',
@@ -31,7 +37,9 @@ console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
     <ul>
       <li *ngFor="let user of users$ | async">{{ user | json }}</li>
     </ul>
-    hello world from backend: <strong>{{ hello$ | async }}</strong> `,
+    hello world from backend: <strong>{{ hello$ | async }}</strong>
+    <br />
+    <button (click)="addUser()">Add new example user with random name</button>`,
   styles: [
     `
       body {
@@ -44,32 +52,58 @@ export class IsomorphicLibV19Component {
   angularVersion =
     VERSION.full +
     ` mode: ${UtilsOs.isRunningInWebSQL() ? ' (websql)' : '(normal)'}`;
+
   userApiService = inject(UserApiService);
-  readonly users$: Observable<User[]> = this.userApiService.getAll();
+
+  private refresh = new BehaviorSubject<void>(undefined);
+
+  readonly users$: Observable<User[]> = this.refresh.pipe(
+    switchMap(() =>
+      this.userApiService.userController
+        .getAll()
+        .request()
+        .observable.pipe(map(r => r.body.json)),
+    ),
+  );
+
   readonly hello$ = this.userApiService.userController
     .helloWorld()
-    .request().observable.pipe(map(r => r.body.text));
+    .request()
+    .observable.pipe(map(r => r.body.text));
+
+  async addUser(): Promise<void> {
+    const newUser = new User();
+    newUser.name = `user-${Math.floor(Math.random() * 1000)}`;
+    await this.userApiService.userController.save(newUser).request();
+    this.refresh.next();
+  }
 }
 //#endregion
+
 //#endregion
 
 //#region  isomorphic-lib-v19 api service
+
 //#region @browser
 @Injectable({
   providedIn: 'root',
 })
 export class UserApiService extends Taon.Base.AngularService {
   userController = this.injectController(UserController);
+
   getAll(): Observable<User[]> {
     return this.userController
       .getAll()
-      .request().observable.pipe(map(r => r.body.json));
+      .request()
+      .observable.pipe(map(r => r.body.json));
   }
 }
 //#endregion
+
 //#endregion
 
 //#region  isomorphic-lib-v19 module
+
 //#region @browser
 @NgModule({
   providers: [
@@ -97,6 +131,7 @@ export class UserApiService extends Taon.Base.AngularService {
 })
 export class IsomorphicLibV19Module {}
 //#endregion
+
 //#endregion
 
 //#region  isomorphic-lib-v19 entity
@@ -133,6 +168,7 @@ class UserController extends Taon.Base.CrudController<User> {
       //#region @backend
       return os.platform(); // for normal nodejs backend return real value
       //#endregion
+
       return 'no-platform-inside-browser-and-websql-mode';
     };
     //#endregion
@@ -141,12 +177,14 @@ class UserController extends Taon.Base.CrudController<User> {
 //#endregion
 
 //#region  isomorphic-lib-v19 migration
+
 //#region @websql
 @Taon.Migration({
   className: 'UserMigration',
 })
 class UserMigration extends Taon.Base.Migration {
   userController = this.injectRepo(User);
+
   async up(): Promise<any> {
     const superAdmin = new User();
     superAdmin.name = 'super-admin';
@@ -154,12 +192,14 @@ class UserMigration extends Taon.Base.Migration {
   }
 }
 //#endregion
+
 //#endregion
 
 //#region  isomorphic-lib-v19 context
 var MainContext = Taon.createContext(() => ({
   ...HOST_CONFIG['MainContext'],
   contexts: { TaonBaseContext },
+
   //#region @websql
   /**
    * This is dummy migration - you DO NOT NEED need this migrations object
@@ -171,6 +211,7 @@ var MainContext = Taon.createContext(() => ({
     UserMigration,
   },
   //#endregion
+
   controllers: {
     UserController,
   },
@@ -182,11 +223,14 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(startParams?:Taon.StartParams): Promise<void> {
+async function start(startParams?: Taon.StartParams): Promise<void> {
   await MainContext.initialize();
 
-   //#region @backend
-   if (startParams.onlyMigrationRun || startParams.onlyMigrationRevertToTimestamp) {
+  //#region @backend
+  if (
+    startParams.onlyMigrationRun ||
+    startParams.onlyMigrationRevertToTimestamp
+  ) {
     process.exit(0);
   }
   //#endregion
