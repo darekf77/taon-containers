@@ -5323,6 +5323,10 @@
           },
           "description": "Static resurces for site project, that are going to be included in release dist"
         },
+        "createOnlyTagWhenRelease": {
+          "type": "boolean",
+          "description": "Don't release inside children -> only tag the version"
+        },
         "monorepo": {
           "type": "boolean",
           "description": "Project is monorepo"
@@ -5333,7 +5337,7 @@
         },
         "microFrontendMainProjectName": {
           "type": "string",
-          "description": "Container projects can be used as micro frontends with router:  <site-path>/  (microFrontendMainProjectName)  <site-path>/_/other-project-name"
+          "description": "! TODO implement this Container projects can be used as micro frontends with router:  <site-path>/  (microFrontendMainProjectName)  <site-path>/_/other-project-name"
         }
       },
       "required": [

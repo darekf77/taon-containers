@@ -1,15 +1,14 @@
 {
   "type": "container",
   "version": "v19",
-  "appId": "com.domain.example.taon-containers",
-
+  "createOnlyTagWhenRelease": true,
   "monorepo": true,
 
   "removeAfterPullingFromGit": ["container-v19/examples-v19"],
-"packageJsonOverride": {
-  "author": "Dfilipiak",
-  "description": "Description for taon-containers. Hello world!",
-  "private": true,
-  "scripts": {}
-}
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+    "description": "All taon packages in a single monorepo",
+    "private": true,
+    "scripts": {}
+  }
 }
