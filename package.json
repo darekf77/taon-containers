@@ -1,8 +1,8 @@
 {
   "name": "taon-containers",
-  "version": "19.0.3",
+  "version": "19.0.6",
   "scripts": {},
-  "author": "Dfilipiak",
+  "author": "Dariusz Filipiak",
   "private": true,
   "dependencies": {
     "7zip-bin": "~5.2.0",
@@ -358,7 +358,7 @@
     "zod": "~4.1.2",
     "zone.js": "~0.13.0"
   },
-  "description": "Description for taon-containers. Hello world!",
+  "description": "All taon packages in a single monorepo",
   "main": "dist/app.electron.js",
   "optionalDependencies": {
     "@parcel/watcher-darwin-x64": "2.5.1",
