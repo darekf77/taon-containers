@@ -8,7 +8,7 @@
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
     "description": "All taon packages in a single monorepo",
-    "private": true,
+    "private": false,
     "scripts": {}
   }
 }
