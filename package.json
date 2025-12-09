@@ -1,9 +1,9 @@
 {
   "name": "taon-containers",
-  "version": "19.0.6",
+  "version": "19.0.7",
   "scripts": {},
   "author": "Dariusz Filipiak",
-  "private": true,
+  "private": false,
   "dependencies": {
     "7zip-bin": "~5.2.0",
     "@angular-builders/custom-webpack": "~19.0.1",
