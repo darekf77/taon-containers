@@ -9,13 +9,8 @@ import Aura from '@primeng/themes/aura'; // @browser
 import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
-import {
-  Taon,
-  TaonBaseContext,
-  TAON_CONTEXT,
-  EndpointContext,
-} from 'taon/src';
-import { UtilsOs } from 'tnp-core/src';
+import { Taon, TaonBaseContext, TAON_CONTEXT, EndpointContext } from 'taon/src';
+import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
 //#endregion
@@ -228,8 +223,8 @@ async function start(startParams?: Taon.StartParams): Promise<void> {
 
   //#region @backend
   if (
-    startParams.onlyMigrationRun ||
-    startParams.onlyMigrationRevertToTimestamp
+    startParams?.onlyMigrationRun ||
+    startParams?.onlyMigrationRevertToTimestamp
   ) {
     process.exit(0);
   }
@@ -240,9 +235,15 @@ async function start(startParams?: Taon.StartParams): Promise<void> {
   //#endregion
 
   if (UtilsOs.isBrowser) {
-    const users = (
+    let users = (
       await MainContext.getClassInstance(UserController).getAll().request()
     ).body?.json;
+
+    if (UtilsOs.isElectron) {
+      // TODO QUICK_FIX (ng2-rest refactor for ipc needed)
+      users = users.map(u => new User().clone(u));
+    }
+
     for (const user of users || []) {
       console.log(`user: ${user.name} - ${user.getHello()}`);
     }
