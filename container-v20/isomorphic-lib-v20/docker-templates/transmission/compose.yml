@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  transmission:
+    image: linuxserver/transmission:latest
+    container_name: transmission
+    ports:
+      - "9091:9091"
+      - "51413:51413"
+      - "51413:51413/udp"
+    environment:
+      - TZ=Europe/Warsaw
+      # Optional: set where Transmission writes files (defaults to /downloads)
+      - TRANSMISSION_DOWNLOAD_DIR=/downloads
+      - TRANSMISSION_INCOMPLETE_DIR_ENABLED=true
+      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+      # Optional: enable auth (uncomment & change)
+      # - TRANSMISSION_RPC_AUTHENTICATION_REQUIRED=true
+      # - TRANSMISSION_RPC_USERNAME=myuser
+      # - TRANSMISSION_RPC_PASSWORD=mypassword
+    volumes:
+      - "C:/Users/%USERNAME%/Downloads:/downloads"
+      - "C:/Users/%USERNAME%/transmission-config:/config"
+    restart: unless-stopped
+
+
+# Run in Windows PowerShell
+# docker run -d `
+#   --name transmission `
+#   -p 9091:9091 `
+#   -p 51413:51413 `
+#   -p 51413:51413/udp `
+#   -e TZ=Europe/Warsaw `
+#   -v "$env:USERPROFILE\Downloads:/downloads" `
+#   -v "$env:USERPROFILE\transmission-config:/config" `
+#   --restart unless-stopped `
+#   linuxserver/transmission:latest
+
