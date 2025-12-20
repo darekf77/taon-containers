@@ -42,6 +42,7 @@
       "jasmine-spec-reporter": null,
       "karma-coverage-istanbul-reporter": null,
       "protractor": null,
+      "tnp-config": null,
       "core-js": null,
       "core-js-compat": null,
       "webpack-cli": null,
@@ -1236,41 +1237,55 @@
       //#endregion
 
       //#region my packages
+      // @updateToContainerMajor
       "taon-typeorm": "~19.0.0",
+      // @updateToContainerMajor
       "taon-ui": "~19.0.2",
+      // @updateToContainerMajor
       "taon-type-sql": "~19.0.0",
-      // "taon-crud": "18.0.5",
-      // "taon-ports": "18.0.5",
-      // "taon-ui": "18.0.6",
-      // "tnp-cli": "18.0.5",
+      // @updateToContainerMajor
       "record-replay-req-res-scenario": "~19.0.0",
+      // @updateToContainerMajor
       "ng-talkback": "~19.0.0",
+      // @updateToContainerMajor
       "vpn-split": "~19.0.40",
+      // @updateToContainerMajor
       "node-cli-tester": "~19.0.0",
+      // @updateToContainerMajor
       "static-columns": "~19.0.0",
+      // @updateToContainerMajor
       "taon-storage": "~19.0.0",
+      // @updateToContainerMajor
       "tnp-core": "~19.0.0",
-      "tnp-config": null,
+      // @updateToContainerMajor
       "ng2-logger": "~19.0.0",
+      // @updateToContainerMajor
       "typescript-class-helpers": "~19.0.0",
+      // @updateToContainerMajor
       "tnp-models": "~19.0.0",
+      // @updateToContainerMajor
       "json10-writer": "~19.0.0",
+      // @updateToContainerMajor
       "tnp-helpers": "~19.0.0",
+      // @updateToContainerMajor
       "incremental-compiler": "~19.0.0",
-      // "any-project-cli": "18.0.6",
-      // "taon-crud-deamon": "18.0.6",
-      // "tnp-db": "18.0.6",
+      // @updateToContainerMajor
       "magic-renamer": "~19.0.0",
+      // @updateToContainerMajor
       "isomorphic-region-loader": "~19.0.0",
+      // @updateToContainerMajor
       "tnp": "~19.0.1",
+      // @updateToContainerMajor
       "lodash-walk-object": "~19.0.0",
+      // @updateToContainerMajor
       "json10": "~19.0.0",
+      // @updateToContainerMajor
       "ng2-rest": "~19.0.0",
+      // @updateToContainerMajor
       "ng2-rest-swagger-generator": "~19.0.0",
-
-      //#endregion
-
+      // @updateToContainerMajor
       "taon": "~19.0.0",
+      //#endregion
     },
     "optionalDependencies": {
       "@parcel/watcher-darwin-x64": "2.5.1",
