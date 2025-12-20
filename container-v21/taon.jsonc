@@ -982,7 +982,7 @@
       // @trusted=major
       "reflect-metadata": "~0.2.2",
 
-      // @trusted=major
+      // @trusted=patch @deprecated
       "q": "1.5.1",
 
       //#endregion
