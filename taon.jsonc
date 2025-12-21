@@ -1,6 +1,6 @@
 {
   "type": "container",
-  "version": "v19",
+  "version": "v21",
   "appId": "com.domain.example.taon-containers",
   "autoReleaseConfigAllowedItems": [],
   "createOnlyTagWhenRelease": true,
