@@ -43,6 +43,7 @@
       "karma-coverage-istanbul-reporter": null,
       "protractor": null,
       "tnp-config": null,
+      "tnp-models": null,
       "core-js": null,
       "core-js-compat": null,
       "webpack-cli": null,
@@ -1262,8 +1263,6 @@
       "ng2-logger": "~21.0.0",
       // @updateToContainerMajor
       "typescript-class-helpers": "~21.0.0",
-      // @updateToContainerMajor
-      "tnp-models": "~21.0.0",
       // @updateToContainerMajor
       "json10-writer": "~21.0.0",
       // @updateToContainerMajor
