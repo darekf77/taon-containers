@@ -1,9 +1,10 @@
 {
   "name": "taon-containers",
-  "version": "21.0.3",
+  "version": "21.0.4",
   "scripts": {},
   "author": "Dariusz Filipiak",
   "private": false,
+  "bin": {},
   "dependencies": {
     "7zip-bin": "~5.2.0",
     "@angular-builders/custom-webpack": "~20.0.0",
@@ -362,6 +363,5 @@
     "@parcel/watcher-darwin-x64": "2.5.1",
     "@parcel/watcher-linux-x64-glibc": "2.5.1",
     "@parcel/watcher-win32-x64-msvc": "2.5.1"
-  },
-  "bin": {}
+  }
 }

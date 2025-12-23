@@ -27,6 +27,7 @@
     "tmp-src/**/*"
   ],
   "exclude": [
+ #   "node_modules",  I want watching!
     "preview",
     "projects",
     "docs",

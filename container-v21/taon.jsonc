@@ -226,7 +226,7 @@
       // "@types/bun": "^1.1.5",
 
       //  @trusted=minor
-      "typescript": "5.9.3",
+      "typescript": "5.9.2",
 
       //  @trusted=patch
       "type-fest": "~4.39.1",

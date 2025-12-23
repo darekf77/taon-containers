@@ -6,11 +6,9 @@
 /.taon
 /.tnp
 /.vscode/launch.json
-/*.filetemplate
 /*.rest
 /*.sqlite
 /**/.DS_Store
-/**/*.filetemplate
 /browser
 /BUILD-INFO.md
 /chrome-profiler-events*.json

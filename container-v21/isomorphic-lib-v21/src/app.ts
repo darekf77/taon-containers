@@ -9,7 +9,21 @@ import Aura from '@primeng/themes/aura'; // @browser
 import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
-import { Taon, TaonBaseContext, TAON_CONTEXT, EndpointContext } from 'taon/src';
+import {
+  Taon,
+  TaonBaseContext,
+  TAON_CONTEXT,
+  EndpointContext,
+  TaonBaseAngularService,
+  TaonEntity,
+  StringColumn,
+  TaonBaseAbstractEntity,
+  TaonBaseCrudController,
+  TaonController,
+  GET,
+  TaonMigration,
+  TaonBaseMigration,
+} from 'taon/src';
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -83,7 +97,7 @@ export class IsomorphicLibV21Component {
 @Injectable({
   providedIn: 'root',
 })
-export class UserApiService extends Taon.Base.AngularService {
+export class UserApiService extends TaonBaseAngularService {
   userController = this.injectController(UserController);
 
   getAll(): Observable<User[]> {
@@ -130,10 +144,10 @@ export class IsomorphicLibV21Module {}
 //#endregion
 
 //#region  isomorphic-lib-v21 entity
-@Taon.Entity({ className: 'User' })
-class User extends Taon.Base.AbstractEntity {
+@TaonEntity({ className: 'User' })
+class User extends TaonBaseAbstractEntity {
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   name?: string;
 
@@ -144,19 +158,19 @@ class User extends Taon.Base.AbstractEntity {
 //#endregion
 
 //#region  isomorphic-lib-v21 controller
-@Taon.Controller({ className: 'UserController' })
-class UserController extends Taon.Base.CrudController<User> {
+@TaonController({ className: 'UserController' })
+class UserController extends TaonBaseCrudController<User> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   entityClassResolveFn = () => User;
 
-  @Taon.Http.GET()
+  @GET()
   helloWorld(): Taon.Response<string> {
     //#region @websqlFunc
     return async (req, res) => 'hello world';
     //#endregion
   }
 
-  @Taon.Http.GET()
+  @GET()
   getOsPlatform(): Taon.Response<string> {
     //#region @websqlFunc
     return async (req, res) => {
@@ -174,10 +188,10 @@ class UserController extends Taon.Base.CrudController<User> {
 //#region  isomorphic-lib-v21 migration
 
 //#region @websql
-@Taon.Migration({
+@TaonMigration({
   className: 'UserMigration',
 })
-class UserMigration extends Taon.Base.Migration {
+class UserMigration extends TaonBaseMigration {
   userController = this.injectRepo(User);
 
   async up(): Promise<any> {
