@@ -1,13 +1,30 @@
 //#region imports
 import * as os from 'os'; // @backend
 
-import { CommonModule } from '@angular/common'; // @browser
-import { NgModule, inject, Injectable } from '@angular/core'; // @browser
+import { AsyncPipe, CommonModule, JsonPipe, NgFor } from '@angular/common'; // @browser
+import {
+  NgModule,
+  inject,
+  Injectable,
+  APP_INITIALIZER,
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  isDevMode,
+  mergeApplicationConfig,
+} from '@angular/core'; // @browser
 import { Component, OnInit } from '@angular/core'; // @browser
 import { VERSION } from '@angular/core'; // @browser
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
+import { provideRouter, RouterOutlet, Routes } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
+import { provideServerRendering, withRoutes } from '@angular/ssr';
+import { RenderMode, ServerRoute } from '@angular/ssr';
 import Aura from '@primeng/themes/aura'; // @browser
 import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
-import { providePrimeNG } from 'primeng/config'; // @browser
+// import { providePrimeNG } from 'primeng/config'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import {
   Taon,
@@ -27,6 +44,7 @@ import {
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
+
 //#endregion
 
 console.log('hello world');
@@ -37,8 +55,19 @@ console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
 
 //#region @browser
 @Component({
-  selector: 'app-isomorphic-lib-v21',
-  standalone: false,
+  selector: 'app-root',
+
+  imports: [
+    RouterOutlet,
+    AsyncPipe,
+    NgFor,
+    JsonPipe,
+    // MaterialCssVarsModule.forRoot({
+    //   // inited angular material - remove if not needed
+    //   primary: '#4758b8',
+    //   accent: '#fedfdd',
+    // }),
+  ],
   template: `hello from isomorphic-lib-v21<br />
     Angular version: {{ angularVersion }}<br />
     <br />
@@ -57,7 +86,7 @@ console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
     `,
   ],
 })
-export class IsomorphicLibV21Component {
+export class IsomorphicLibV21App {
   angularVersion =
     VERSION.full +
     ` mode: ${UtilsOs.isRunningInWebSQL() ? ' (websql)' : '(normal)'}`;
@@ -111,36 +140,56 @@ export class UserApiService extends TaonBaseAngularService {
 
 //#endregion
 
-//#region  isomorphic-lib-v21 module
-
+//#region  isomorphic-lib-v21 routes
 //#region @browser
-@NgModule({
+export const IsomorphicLibV21ServerRoutes: ServerRoute[] = [
+  {
+    path: '**',
+    renderMode: RenderMode.Prerender,
+  },
+];
+export const routes: Routes = [];
+//#endregion
+//#endregion
+
+//#region  isomorphic-lib-v21 app configs
+//#region @browser
+export const IsomorphicLibV21AppConfig: ApplicationConfig = {
   providers: [
     {
       provide: TAON_CONTEXT,
       useFactory: () => MainContext,
     },
-    providePrimeNG({
-      // inited ng prime - remove if not needed
-      theme: {
-        preset: Aura,
-      },
+    // providePrimeNG({
+    //   // inited ng prime - remove if not needed
+    //   theme: {
+    //     preset: Aura,
+    //   },
+    // }),
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: () => IsomorphicLibV21StartFunction,
+    },
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  exports: [IsomorphicLibV21Component],
-  imports: [
-    CommonModule,
-    MaterialCssVarsModule.forRoot({
-      // inited angular material - remove if not needed
-      primary: '#4758b8',
-      accent: '#fedfdd',
-    }),
-  ],
-  declarations: [IsomorphicLibV21Component],
-})
-export class IsomorphicLibV21Module {}
-//#endregion
+};
 
+export const IsomorphicLibV21ServerConfig: ApplicationConfig = {
+  providers: [provideServerRendering(withRoutes(IsomorphicLibV21ServerRoutes))],
+};
+
+export const IsomorphicLibV21Config = mergeApplicationConfig(
+  IsomorphicLibV21AppConfig,
+  IsomorphicLibV21ServerConfig,
+);
+//#endregion
 //#endregion
 
 //#region  isomorphic-lib-v21 entity
@@ -232,7 +281,10 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(startParams?: Taon.StartParams): Promise<void> {
+//#region  isomorphic-lib-v21 start function
+const IsomorphicLibV21StartFunction = async (
+  startParams?: Taon.StartParams,
+): Promise<void> => {
   await MainContext.initialize();
 
   //#region @backend
@@ -262,6 +314,7 @@ async function start(startParams?: Taon.StartParams): Promise<void> {
       console.log(`user: ${user.name} - ${user.getHello()}`);
     }
   }
-}
+};
+//#endregion
 
-export default start;
+export default IsomorphicLibV21StartFunction;

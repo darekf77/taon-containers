@@ -1,13 +1,5 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
-import { loadSqlJs } from './sqljs-loader';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { ProjectNameAppConfig, ProjectNameApp } from './app/app';
 
-async function init() {
-  await loadSqlJs();
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch(err => console.error(err));
-}
-
-init();
+bootstrapApplication(ProjectNameApp, ProjectNameAppConfig)
+  .catch((err) => console.error(err));
