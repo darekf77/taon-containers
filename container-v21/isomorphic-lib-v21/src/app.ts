@@ -148,7 +148,7 @@ export const IsomorphicLibV21ServerRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
   },
 ];
-export const routes: Routes = [];
+export const IsomorphicLibV21ClientRoutes: Routes = [];
 //#endregion
 //#endregion
 
@@ -172,7 +172,7 @@ export const IsomorphicLibV21AppConfig: ApplicationConfig = {
       useFactory: () => IsomorphicLibV21StartFunction,
     },
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(IsomorphicLibV21ClientRoutes),
     provideClientHydration(withEventReplay()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
