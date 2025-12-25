@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "github.copilot",
+    "github.copilot-chat",
     "ibm.output-colorizer",
     "mikael.angular-beastcode",
     "simonsiefke.svg-preview",
@@ -16,6 +16,7 @@
     "ctcuff.font-preview",
     "dbaeumer.vscode-eslint",
     "dnicolson.binary-plist",
+    "eamodio.gitlens",
     "eg2.tslint",
     "esbenp.prettier-vscode",
     "henry-li.vscode-import-formatter",
@@ -34,7 +35,6 @@
     "natewallace.angular2-inline",
     "natqe.reload",
     "nemesv.copy-file-name",
-    "oven.bun-vscode",
     "qwtel.sqlite-viewer",
     "redhat.vscode-xml",
     "ritwickdey.create-file-folder",
@@ -47,8 +47,8 @@
     "taddison.gitlazy",
     "unifiedjs.vscode-mdx",
     "tommasov.hosts",
+    "franklinteixeira205.primeflex",
     "firsttris.vscode-jest-runner",
-    "waderyan.gitblame",
     "wenfangdu.snippet-generator",
     "xabikos.javascriptsnippets",
     "nidu.copy-json-path",
@@ -60,6 +60,7 @@
     "davidanson.vscode-markdownlint",
     "bibhasdn.unique-lines",
     "streetsidesoftware.code-spell-checker",
+    "tshino.kb-macro",
     "gruntfuggly.todo-tree",
     "ms-vscode-remote.remote-ssh",
     "tomoki1207.pdf",
@@ -68,6 +69,7 @@
     "christian-kohler.path-intellisense",
     "thebearingedge.vscode-sql-lit",
     "ms-vscode-remote.remote-wsl",
-    "kgrzywocz.wsl-path"
+    "kgrzywocz.wsl-path",
+    "imgildev.vscode-angular-generator"
   ]
 }
