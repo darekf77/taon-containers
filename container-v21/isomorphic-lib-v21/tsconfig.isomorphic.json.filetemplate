@@ -1,33 +1,30 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "declaration": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2022",
+      "dom"
+    ],
     "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "./tmp-src",
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "es2022",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "es2022",
-      "dom"
-    ],
     "types": [
       "node"
-    ],
-    "rootDir": "./tmp-src",
-    "outDir": "dist"
+    ]
   },
-  "include": [
-    "tmp-src/**/*"
-  ],
   "exclude": [
- #   "node_modules",  I want watching!
+#   "node_modules",  I want watching!
     "preview",
     "projects",
     "docs",
@@ -42,5 +39,8 @@
     "src/**/*.spec.ts",
     "tmp-site-src",
     "tmp-tests-context"
+  ],
+  "include": [
+    "tmp-src/**/*"
   ]
 }

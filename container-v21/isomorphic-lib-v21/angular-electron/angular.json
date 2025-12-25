@@ -5,51 +5,14 @@
       "@angular-eslint/schematics"
     ]
   },
-  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "angular-electron": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        },
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
-          "options": {
-            "outputPath": {
-              "base": "dist"
-            },
-            "index": "src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "src/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "browser": "src/main.ts"
-          },
           "configurations": {
             "dev": {
-              "optimization": false,
-              "outputHashing": "none",
-              "sourceMap": true,
-              "namedChunks": false,
               "aot": false,
               "extractLicenses": true,
               "fileReplacements": [
@@ -57,13 +20,13 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.dev.ts"
                 }
-              ]
+              ],
+              "namedChunks": false,
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true
             },
             "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "fileReplacements": [
@@ -71,59 +34,44 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
-              ]
-            }
+              ],
+              "namedChunks": false,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false
+            },
             "testing": {
               "polyfills": [
                 "zone.js",
                 "zone.js/testing"
               ]
             }
-          }
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "options": {
-            "buildTarget": "angular-electron:build"
           },
-          "configurations": {
-            "dev": {
-              "buildTarget": "angular-electron:build:dev"
+          "options": {
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "browser": "src/main.ts",
+            "index": "src/index.html",
+            "inlineStyleLanguage": "scss",
+            "outputPath": {
+              "base": "dist"
             },
-            "production": {
-              "buildTarget": "angular-electron:build:production"
-            }
+            "polyfills": [
+              "zone.js"
+            ],
+            "scripts": [],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "tsConfig": "src/tsconfig.app.json"
           }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "angular-electron:build"
-          }
-        },
-        "test": {
-          "builder": "@angular/build:unit-test",
-          "options": {
-            "runner": "vitest",
-            "tsConfig": "src/tsconfig.spec.json",
-            "browsers": [
-              "chromium"
-            ],
-            "buildTarget": "angular-electron:build:testing",
-            "coverage": true,
-            "coverageReporters": [
-              "html",
-              "lcovonly"
-            ],
-            "reporters": [
-              ["default", { "summary": true }],
-              [
-                "html",
-                {
-                  "outputFile": "test-results/vitest/index.html"
-                }
-              ]
-            ]
           }
         },
         "lint": {
@@ -134,12 +82,66 @@
               "src/**/*.html"
             ]
           }
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "dev": {
+              "buildTarget": "angular-electron:build:dev"
+            },
+            "production": {
+              "buildTarget": "angular-electron:build:production"
+            }
+          },
+          "options": {
+            "buildTarget": "angular-electron:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "browsers": [
+              "chromium"
+            ],
+            "buildTarget": "angular-electron:build:testing",
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcovonly"
+            ],
+            "reporters": [
+              [
+                "default",
+                {
+                  "summary": true
+                }
+              ],
+              [
+                "html",
+                {
+                  "outputFile": "test-results/vitest/index.html"
+                }
+              ]
+            ],
+            "runner": "vitest",
+            "tsConfig": "src/tsconfig.spec.json"
+          }
         }
-      }
+      },
+      "prefix": "app",
+      "projectType": "application",
+      "root": "",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "sourceRoot": "src"
     },
     "angular-electron-e2e": {
-      "root": "e2e",
-      "projectType": "application",
       "architect": {
         "lint": {
           "builder": "@angular-eslint/builder:lint",
@@ -149,22 +151,20 @@
             ]
           }
         }
-      }
+      },
+      "projectType": "application",
+      "root": "e2e"
     },
     "my-lib": {
-      "projectType": "library",
-      "root": "projects/my-lib",
-      "sourceRoot": "projects/my-lib/src",
-      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
-            "production": {
-              "tsConfig": "projects/my-lib/tsconfig.lib.prod.json"
-            },
             "development": {
               "tsConfig": "projects/my-lib/tsconfig.lib.json"
+            },
+            "production": {
+              "tsConfig": "projects/my-lib/tsconfig.lib.prod.json"
             }
           },
           "defaultConfiguration": "production"
@@ -175,7 +175,11 @@
             "tsConfig": "projects/my-lib/tsconfig.spec.json"
           }
         }
-      }
+      },
+      "prefix": "lib",
+      "projectType": "library",
+      "root": "projects/my-lib",
+      "sourceRoot": "projects/my-lib/src"
     }
   },
   "schematics": {
@@ -191,9 +195,6 @@
     "@schematics/angular:directive": {
       "type": "directive"
     },
-    "@schematics/angular:service": {
-      "type": "service"
-    },
     "@schematics/angular:guard": {
       "typeSeparator": "."
     },
@@ -208,6 +209,10 @@
     },
     "@schematics/angular:resolver": {
       "typeSeparator": "."
+    },
+    "@schematics/angular:service": {
+      "type": "service"
     }
-  }
+  },
+  "version": 1
 }

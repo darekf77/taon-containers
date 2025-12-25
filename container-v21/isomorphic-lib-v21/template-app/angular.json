@@ -1,50 +1,137 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "app": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+    "angular-electron": {
       "architect": {
         "build": {
           "builder": "@angular/build:application",
-          "options": {
-            "preserveSymlinks": true,
-            "outputPath": {
-              "base": "dist/app",
-              "browser": "browser",
-              "server": "server"
+          "configurations": {
+            "dev": {
+              "aot": false,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "namedChunks": false,
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true
             },
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "baseHref": "/",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ],
-            "styles": ["src/styles.scss"],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
+            "production": {
+              "aot": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "namedChunks": false,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false
             }
           },
+          "options": {
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "browser": "src/main.ts",
+            "index": "src/index.html",
+            "inlineStyleLanguage": "scss",
+            "outputPath": {
+              "base": "dist"
+            },
+            "polyfills": [
+              "zone.js"
+            ],
+            "scripts": [],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "tsConfig": "src/tsconfig.app.json"
+          }
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
           "configurations": {
+            "development": {
+              "buildTarget": "angular-electron:build:dev"
+            },
+            "production": {
+              "buildTarget": "angular-electron:build:production"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "angular-electron:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "browsers": [
+              "chromium"
+            ],
+            "buildTarget": "angular-electron:build:testing",
+            "coverage": true,
+            "coverageReporters": [
+              "html",
+              "lcovonly"
+            ],
+            "reporters": [
+              [
+                "default",
+                {
+                  "summary": true
+                }
+              ],
+              [
+                "html",
+                {
+                  "outputFile": "test-results/vitest/index.html"
+                }
+              ]
+            ],
+            "runner": "vitest",
+            "tsConfig": "src/tsconfig.spec.json"
+          }
+        }
+      },
+      "projectType": "application",
+      "root": "",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "sourceRoot": "src"
+    },
+    "app": {
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "configurations": {
+            "development": {
+              "extractLicenses": false,
+              "optimization": false,
+              "sourceMap": true
+            },
             "production": {
               "budgets": [],
               "fileReplacements": [
@@ -55,23 +142,90 @@
               ],
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "production",
+          "options": {
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "baseHref": "/",
+            "browser": "src/main.ts",
+            "index": "src/index.html",
+            "inlineStyleLanguage": "scss",
+            "outputMode": "server",
+            "outputPath": {
+              "base": "dist/app",
+              "browser": "browser",
+              "server": "server"
+            },
+            "preserveSymlinks": true,
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "ssr": {
+              "entry": "src/server.ts"
+            },
+            "styles": [
+              "src/styles.scss"
+            ],
+            "tsConfig": "tsconfig.app.json"
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "configurations": {
+            "development": {
+              "devServerTarget": "app16:serve:development"
+            }
+          },
+          "options": {
+            "devServerTarget": "app16:serve",
+            "headless": false,
+            "testingType": "component",
+            "watch": true
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "headless": false,
+            "watch": true
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "configurations": {
+            "production": {
+              "devServerTarget": "app16:serve:production"
+            }
+          },
+          "options": {
+            "devServerTarget": "app16:serve"
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "configurations": {
+            "production": {
+              "devServerTarget": "app16:serve:production"
+            }
+          },
+          "options": {
+            "devServerTarget": "app16:serve",
+            "headless": false,
+            "watch": true
+          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "app:build:production"
-            },
             "development": {
               "buildTarget": "app:build:development"
+            },
+            "production": {
+              "buildTarget": "app:build:production"
             }
           },
           "defaultConfiguration": "development"
@@ -79,71 +233,25 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
-            "scripts": []
-          }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "app16:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app16:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "app16:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "app16:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "app16:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app16:serve:production"
-            }
+            "inlineStyleLanguage": "scss",
+            "karmaConfig": "karma.conf.js",
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "scripts": [],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "tsConfig": "tsconfig.spec.json"
           }
         }
-      }
-    },
-    "angular-electron": {
-      "root": "",
-      "sourceRoot": "src",
+      },
       "projectType": "application",
+      "root": "",
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
@@ -152,148 +260,37 @@
           "style": "scss"
         }
       },
-      "prefix": "app",
+      "sourceRoot": "src"
+    },
+    "my-lib": {
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "preserveSymlinks": true,
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "./angular.webpack.js",
-              "replaceDuplicatePlugins": true
-            }
-          },
-          "configurations": {
-            "dev": {
-              "optimization": false,
-              "outputHashing": "none",
-              "sourceMap": true,
-              "namedChunks": false,
-              "aot": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
-                }
-              ]
-            },
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
-            },
-            "web": {
-              "optimization": false,
-              "outputHashing": "none",
-              "sourceMap": true,
-              "namedChunks": false,
-              "aot": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.web.ts"
-                }
-              ]
-            },
-            "web-production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.web.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "buildTarget": "angular-electron:build"
-          },
+          "builder": "@angular/build:ng-packagr",
           "configurations": {
             "development": {
-              "buildTarget": "angular-electron:build:dev"
+              "tsConfig": "projects/my-lib/tsconfig.lib.json"
             },
             "production": {
-              "buildTarget": "angular-electron:build:production"
-            },
-            "web": {
-              "buildTarget": "angular-electron:build:web"
-            },
-            "web-production": {
-              "buildTarget": "angular-electron:build:web-production"
+              "tsConfig": "projects/my-lib/tsconfig.lib.prod.json"
             }
           },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "defaultConfiguration": "production",
           "options": {
-            "buildTarget": "angular-electron:build"
+            "project": "projects/my-lib/ng-package.json"
           }
         },
         "test": {
-          "builder": "@angular-builders/custom-webpack:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills-test.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "scripts": [],
-            "styles": ["src/styles.scss"],
-            "assets": ["src/favicon.ico", "src/assets"],
-            "customWebpackConfig": {
-              "path": "./angular.webpack.js",
-              "replaceDuplicatePlugins": true
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "tsConfig": "projects/my-lib/tsconfig.spec.json"
           }
         }
-      }
+      },
+      "prefix": "lib",
+      "projectType": "library",
+      "root": "projects/my-lib",
+      "sourceRoot": "projects/my-lib/src"
     }
   },
-  "cli": {
-    "analytics": false,
-    "schematicCollections": ["@cypress/schematic", "@schematics/angular"]
-  }
+  "version": 1
 }
