@@ -226,7 +226,7 @@
       // "@types/bun": "^1.1.5",
 
       //  @trusted=minor
-      "typescript": "5.9.2",
+      "typescript": "5.9.3",
 
       //  @trusted=patch
       "type-fest": "~4.39.1",
@@ -1239,8 +1239,8 @@
       // @trusted=minor probably scrypt from native nodejs will do a better job
       "bcryptjs": "~2.4.3",
 
-      // @trusted=major
-      "uuid": "~13.0.0",
+      // @trusted=path
+      "uuid": "~11.0.0",
 
       // hasing passwords just like bcrypt but more modern and secure
       "@node-rs/argon2": "2.0.2",
