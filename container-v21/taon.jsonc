@@ -37,7 +37,6 @@
       "rxjs-compat": null,
       "@angular-devkit/build-optimizer": null,
       "@angular-devkit/schematics": null,
-      "@angular/language-service": "21.0.3",
       "@types/jasminewd2": null,
       "codelyzer": null,
       "jasmine-spec-reporter": null,
@@ -139,7 +138,7 @@
 
       //#region CORE
       //  @trusted=major
-      "@ngtools/webpack": "21.0.4",
+      "@ngtools/webpack": "~21.0.4",
 
       //  @trusted=major
       "@angular/animations": "~21.0.6",
@@ -148,16 +147,16 @@
       "@angular/cdk": "~21.0.5",
 
       //  @trusted=major
-      "@angular/common": "~21.0.3",
+      "@angular/common": "~21.0.6",
 
       //  @trusted=major
-      "@angular/compiler": "~21.0.3",
+      "@angular/compiler": "~21.0.6",
 
       //  @trusted=major
-      "@angular/core": "~21.0.3",
+      "@angular/core": "~21.0.6",
 
       //  @trusted=major
-      "@angular/forms": "~21.0.3",
+      "@angular/forms": "~21.0.6",
 
       //  @trusted=major
       "@angular/elements": "~21.0.6",
@@ -166,22 +165,22 @@
       "@angular/material": "~21.0.5",
 
       //  @trusted=major
-      "@angular/platform-browser": "~21.0.3",
+      "@angular/platform-browser": "~21.0.6",
 
       //  @trusted=major
-      "@angular/platform-browser-dynamic": "~21.0.3",
+      "@angular/platform-browser-dynamic": "~21.0.6",
 
       //  @trusted=major
-      "@angular/platform-server": "^21.0.6",
+      "@angular/platform-server": "~21.0.6",
 
       //  @trusted=major
-      "@angular/ssr": "^21.0.4",
+      "@angular/ssr": "~21.0.4",
 
       //  @trusted=major
       "@angular/pwa": "~21.0.4",
 
       //  @trusted=major
-      "@angular/router": "~21.0.3",
+      "@angular/router": "~21.0.6",
 
       //  @trusted=major
       "@angular/service-worker": "~21.0.6",
@@ -196,13 +195,16 @@
       "@angular-devkit/core": "~21.0.4",
 
       //  @trusted=major
-      "@angular/cli": "~21.0.2",
+      "@angular/cli": "~21.0.4",
 
       //  @trusted=major
-      "@angular/compiler-cli": "~21.0.3",
+      "@angular/compiler-cli": "~21.0.6",
 
       //  @trusted=major
-      "@angular/build": "21.0.2",
+      "@angular/build": "21.0.4",
+
+      //  @trusted=major
+      "@angular/language-service": "~21.0.3",
 
       //  @trusted=major
       "rxjs": "~7.8.2",
@@ -257,7 +259,7 @@
 
       // socket communication
       //  @trusted=minor
-      "socket.io": "~4.8.1",
+      "socket.io": "~4.8.3",
 
       //  @trusted=minor
       "socket.io-client": "~4.7.5",
@@ -399,29 +401,29 @@
 
       //#region NGRX  / immutable @ngrx
       // @trusted=major
-      "@ngrx/effects": "~21.0.0",
+      "@ngrx/effects": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/entity": "~21.0.0",
+      "@ngrx/entity": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/router-store": "~21.0.0",
+      "@ngrx/router-store": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/schematics": "~21.0.0",
+      "@ngrx/schematics": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/store": "~21.0.0",
+      "@ngrx/store": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/store-devtools": "~21.0.0",
+      "@ngrx/store-devtools": "~21.0.1",
 
       // @trusted=major
-      "@ngrx/component-store": "~21.0.0",
+      "@ngrx/component-store": "~21.0.1",
 
       // fantastic immutable arrays
       // @trusted=major
-      "@ngrx/data": "~21.0.0",
+      "@ngrx/data": "~21.0.1",
 
       // @trusted=major
       "immutable": "~5.1.4",
@@ -811,8 +813,8 @@
       // @trusted=patch
       "sweetalert2": "~11.4.38",
 
-      // @trusted=patch
-      "@sweetalert2/ngx-sweetalert2": "~12.0.2",
+      // @trusted=major
+      "@sweetalert2/ngx-sweetalert2": "~14.1.1",
 
       // top horizontal request progress bard, v9 dla angular 15 (inuse)
       // @trusted=major
@@ -823,7 +825,7 @@
       // "@ngx-loading-bar/router": "6.0.2",
       // slim scroll, v10 for angular 15
       // @trusted=major
-      "ngx-scrollbar": "~19.0.0",
+      "ngx-scrollbar": "~19.1.0",
 
       // easy rxjs destroy
       "@ngneat/until-destroy": "~10.0.0",
@@ -921,7 +923,7 @@
       //  + tooltips
       //  + color picker
       // @trusted=major
-      "@ng-matero/extensions": "~21.1.0",
+      "@ng-matero/extensions": "~21.1.2",
 
       // @trusted=major
       "primeflex": "~4.0.0",
@@ -942,28 +944,28 @@
 
       //#region LINT
       // @trusted=major
-      "@angular-eslint/builder": "~21.0.1",
+      "@angular-eslint/builder": "~21.1.0",
 
       // @trusted=major
-      "@angular-eslint/eslint-plugin": "~21.0.1",
+      "@angular-eslint/eslint-plugin": "~21.1.0",
 
       // @trusted=major
-      "@angular-eslint/eslint-plugin-template": "~21.0.1",
+      "@angular-eslint/eslint-plugin-template": "~21.1.0",
 
       // @trusted=major
-      "@angular-eslint/schematics": "~21.0.1",
+      "@angular-eslint/schematics": "~21.1.0",
 
       // @trusted=major
-      "@angular-eslint/template-parser": "~21.0.1",
+      "@angular-eslint/template-parser": "~21.1.0",
 
       // @trusted=major
-      "@typescript-eslint/eslint-plugin": "~8.48.1",
+      "@typescript-eslint/eslint-plugin": "~8.50.1",
 
       // @trusted=major
-      "@typescript-eslint/parser": "~8.48.1",
+      "@typescript-eslint/parser": "~8.50.1",
 
       // @trusted=major
-      "eslint": "~9.39.1",
+      "eslint": "~9.39.2",
 
       // @trusted=major
       "eslint-config-prettier": "~10.1.8",
