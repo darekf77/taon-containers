@@ -1,67 +1,67 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  NgZone,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
-import { Taon } from 'taon/src';
-// @ts-ignore
-import start from './---projectname---/app';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModels } from 'tnp-core/src';
-import { ContextsEndpointStorage } from 'taon/src';
+// import {
+//   Component,
+//   ComponentFactoryResolver,
+//   NgZone,
+//   ViewChild,
+//   ViewContainerRef,
+// } from '@angular/core';
+// import { Taon } from 'taon/src';
+// // @ts-ignore
+// import start from './---projectname---/app';
+// import { CommonModule } from '@angular/common';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { CoreModels } from 'tnp-core/src';
+// import { ContextsEndpointStorage } from 'taon/src';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: false,
-})
-export class AppComponent {
-  @ViewChild('container', { read: ViewContainerRef, static: true })
-  container!: ViewContainerRef;
-  title = 'app';
-  removedPreloader = false;
-  inited = false;
-  constructor(
-    ngzone: NgZone,
-    private componentFactoryResolver: ComponentFactoryResolver,
-  ) {
-    Taon.initNgZone(ngzone);
-  }
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.scss'],
+//   standalone: false,
+// })
+// export class AppComponent {
+//   @ViewChild('container', { read: ViewContainerRef, static: true })
+//   container!: ViewContainerRef;
+//   title = 'app';
+//   removedPreloader = false;
+//   inited = false;
+//   constructor(
+//     ngzone: NgZone,
+//     private componentFactoryResolver: ComponentFactoryResolver,
+//   ) {
+//     Taon.initNgZone(ngzone);
+//   }
 
-  async ngOnInit() {
-    removeElement('taonpreloadertoremove');
-    this.container.clear();
+//   async ngOnInit() {
+//     removeElement('taonpreloadertoremove');
+//     this.container.clear();
 
-    // Create a factory for the DynamicComponent
-    const componentFactory = // @ts-ignore
-      this.componentFactoryResolver.resolveComponentFactory(
-        // @ts-ignore
-        '<<<TO_REPLACE_COMPONENT>>>',
-      );
+//     // Create a factory for the DynamicComponent
+//     const componentFactory = // @ts-ignore
+//       this.componentFactoryResolver.resolveComponentFactory(
+//         // @ts-ignore
+//         '<<<TO_REPLACE_COMPONENT>>>',
+//       );
 
-    const colorToReplace = 'TAON_TO_REPLACE_COLOR';
-    if (colorToReplace) {
-      document.body.style.backgroundColor = colorToReplace;
-    }
+//     const colorToReplace = 'TAON_TO_REPLACE_COLOR';
+//     if (colorToReplace) {
+//       document.body.style.backgroundColor = colorToReplace;
+//     }
 
-    this.removedPreloader = true;
-    // @ts-ignore
-    await start();
-    const endpoints = ContextsEndpointStorage.Instance.arr || [];
-    await Promise.all(endpoints.map(c => c.initControllersHook(ContextsEndpointStorage.Instance)));
-    console.log(CoreModels.SPECIAL_APP_READY_MESSAGE);
-    this.inited = true;
-    // Add the DynamicComponent to the container
-    this.container.createComponent(componentFactory);
-  }
-}
+//     this.removedPreloader = true;
+//     // @ts-ignore
+//     await start();
+//     const endpoints = ContextsEndpointStorage.Instance.arr || [];
+//     await Promise.all(endpoints.map(c => c.initControllersHook(ContextsEndpointStorage.Instance)));
+//     console.log(CoreModels.SPECIAL_APP_READY_MESSAGE);
+//     this.inited = true;
+//     // Add the DynamicComponent to the container
+//     this.container.createComponent(componentFactory);
+//   }
+// }
 
-function removeElement(id) {
-  var elem = document.getElementById(id);
-  return elem.parentNode.removeChild(elem);
-}
+// function removeElement(id) {
+//   var elem = document.getElementById(id);
+//   return elem.parentNode.removeChild(elem);
+// }

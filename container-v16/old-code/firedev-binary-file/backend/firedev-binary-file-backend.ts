@@ -33,7 +33,7 @@ const storIndexdDb = localForge.createInstance({
   storeName: [
     'firedev-binary-file',
     'INDEXEDDB',
-    _.kebabCase(environment?.currentProjectGenericName),
+    _.kebabCase(environment?.currentProjectGenericName), // TODO change this
   ].join('_'),
 });
 //#endregion
