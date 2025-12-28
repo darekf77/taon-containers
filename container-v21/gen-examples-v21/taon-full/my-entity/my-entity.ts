@@ -1,20 +1,25 @@
 //#region imports
-import { Taon } from 'taon/src';
+import {
+  CustomColumn,
+  Taon,
+  TaonBaseAbstractEntity,
+  TaonEntity,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { MyEntityDefaultsValues } from './my-entity.defaults-values';
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'MyEntity',
   createTable: true,
 })
-export class MyEntity extends Taon.Base.AbstractEntity<MyEntity> {
+export class MyEntity extends TaonBaseAbstractEntity<MyEntity> {
   //#region @websql
-  @Taon.Orm.Column.Custom({
+  @CustomColumn({
     type: 'varchar',
     length: 100,
-    default: MyEntityDefaultsValues.description
+    default: MyEntityDefaultsValues.description,
   })
   //#endregion
   description?: string;

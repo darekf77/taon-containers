@@ -1,22 +1,28 @@
 //#region imports
-import { Taon } from 'taon/src';
+import {
+  DateTimeColumn,
+  StringColumn,
+  Taon,
+  TaonBaseAbstractEntity,
+  TaonEntity,
+} from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { MyEntityDefaultsValues } from './my-entity.defaults-values';
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'MyEntity',
   createTable: true,
 })
-export class MyEntity extends Taon.Base.AbstractEntity<MyEntity> {
+export class MyEntity extends TaonBaseAbstractEntity<MyEntity> {
   //#region @websql
-  @Taon.Orm.Column.String(MyEntityDefaultsValues.description)
+  @StringColumn(MyEntityDefaultsValues.description)
   //#endregion
   description?: string;
 
   //#region @websql
-  @Taon.Orm.Column.DateTIme()
+  @DateTimeColumn()
   //#endregion
   modificationDate?: string;
 }

@@ -1,12 +1,12 @@
 //#region imports
-import { Taon } from 'taon/src';
+import { Taon, TaonBaseProvider, TaonProvider } from 'taon/src';
 import { _ } from 'tnp-core/src';
 //#endregion
 
-@Taon.Provider({
-  className: 'MyEntityProvier',
+@TaonProvider({
+  className: 'MyEntityProvider',
 })
-export class MyEntityProvier extends Taon.Base.Provider {
+export class MyEntityProvider extends TaonBaseProvider {
 
 
 

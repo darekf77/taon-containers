@@ -1,23 +1,23 @@
 //#region imports
-import { Taon } from 'taon/src';
+import { GET, Taon, TaonBaseCrudController, TaonController } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
 
 import { MyEntity } from './my-entity';
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'MyEntityController',
 })
-export class MyEntityController extends Taon.Base.CrudController<MyEntity> {
+export class MyEntityController extends TaonBaseCrudController<MyEntity> {
   entityClassResolveFn: () => typeof MyEntity = () => MyEntity;
 
-  @Taon.Http.GET()
-   helloWorld(): Taon.Response<string> {
+  @GET()
+  helloWorld(): Taon.Response<string> {
     //#region @websqlFunc
     return async (req, res) => {
       return 'hello world';
-    }
+    };
     //#endregion
   }
 }
