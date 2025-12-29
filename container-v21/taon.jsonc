@@ -426,6 +426,9 @@
       "@ngrx/data": "~21.0.1",
 
       // @trusted=major
+      "@ngrx/signals": "~21.0.1",
+
+      // @trusted=major
       "immutable": "~5.1.4",
 
       "immer": "~10.0.2",
