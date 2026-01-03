@@ -8,7 +8,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Copy your built frontend files into the container
-COPY . /usr/share/nginx/html
+COPY ./browser /usr/share/nginx/html
 
 # Optional: copy custom nginx config
 # COPY nginx.conf /etc/nginx/nginx.conf

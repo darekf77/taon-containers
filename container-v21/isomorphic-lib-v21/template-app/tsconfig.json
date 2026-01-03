@@ -9,6 +9,7 @@
   },
   "compileOnSave": false,
   "compilerOptions": {
+    // "useUnknownInCatchVariables": true, TODO use it later
     "allowSyntheticDefaultImports": true,
     // "esModuleInterop": true, weird problem with libs and default imports
     "baseUrl": "./",

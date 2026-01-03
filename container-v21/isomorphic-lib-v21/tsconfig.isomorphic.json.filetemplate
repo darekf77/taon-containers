@@ -9,6 +9,7 @@
       "es2022",
       "dom"
     ],
+#    "useUnknownInCatchVariables": true, TODO use it later
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",

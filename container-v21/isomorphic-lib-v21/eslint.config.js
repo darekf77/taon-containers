@@ -52,7 +52,7 @@ module.exports = [
       //     suffixes: ['Page', 'Component','Container'],
       //   },
       // ],
-
+      "@typescript-eslint/no-implicit-any-catch": "error",
       "lines-between-class-members": [
         "warn",
         "always",

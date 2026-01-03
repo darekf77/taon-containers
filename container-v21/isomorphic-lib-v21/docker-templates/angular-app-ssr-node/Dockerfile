@@ -6,10 +6,6 @@ WORKDIR /app
 # Copy source code
 COPY . .
 
-
-# Install Node.js deps
-RUN npm install
-
 EXPOSE 80
 
 ENV NODE_ENV=production

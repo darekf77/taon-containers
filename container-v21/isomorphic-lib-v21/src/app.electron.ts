@@ -94,7 +94,7 @@ async function startElectron() {
         createWindow();
       }
     });
-  } catch (e) {
+  } catch (e: unknown) {
     // Catch Error
     throw e;
   }

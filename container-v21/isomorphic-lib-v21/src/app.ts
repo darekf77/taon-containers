@@ -299,21 +299,6 @@ const IsomorphicLibV21StartFunction = async (
   //#region @backend
   console.log(`Hello in NodeJs backend! os=${os.platform()}`);
   //#endregion
-
-  if (UtilsOs.isBrowser) {
-    let users = (
-      await MainContext.getClassInstance(UserController).getAll().request()
-    ).body?.json;
-
-    if (UtilsOs.isElectron) {
-      // TODO QUICK_FIX (ng2-rest refactor for ipc needed)
-      users = users.map(u => new User().clone(u));
-    }
-
-    for (const user of users || []) {
-      console.log(`user: ${user.name} - ${user.getHello()}`);
-    }
-  }
 };
 //#endregion
 
