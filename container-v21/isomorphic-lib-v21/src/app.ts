@@ -1,9 +1,8 @@
 //#region imports
 import * as os from 'os'; // @backend
 
-import { AsyncPipe, CommonModule, JsonPipe, NgFor } from '@angular/common'; // @browser
+import { AsyncPipe, JsonPipe, NgFor } from '@angular/common'; // @browser
 import {
-  NgModule,
   inject,
   Injectable,
   APP_INITIALIZER,
@@ -11,21 +10,26 @@ import {
   provideBrowserGlobalErrorListeners,
   isDevMode,
   mergeApplicationConfig,
+  provideZonelessChangeDetection,
 } from '@angular/core'; // @browser
-import { Component, OnInit } from '@angular/core'; // @browser
+import { Component } from '@angular/core'; // @browser
 import { VERSION } from '@angular/core'; // @browser
 import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideRouter, RouterOutlet, Routes } from '@angular/router';
+import { provideRouter, Routes } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import Aura from '@primeng/themes/aura'; // @browser
-import { MaterialCssVarsModule } from 'angular-material-css-vars'; // @browser
-// import { providePrimeNG } from 'primeng/config'; // @browser
+import { providePrimeNG } from 'primeng/config'; // @browser
+import { toSignal } from '@angular/core/rxjs-interop'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { MatCardModule } from '@angular/material/card'; // @browser
+import { MatIconModule } from '@angular/material/icon'; // @browser
+import { MatDividerModule } from '@angular/material/divider'; // @browser
+import { MatButtonModule } from '@angular/material/button'; // @browser
 import {
   Taon,
   TaonBaseContext,
@@ -58,25 +62,34 @@ console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
   selector: 'app-root',
 
   imports: [
-    RouterOutlet,
+    // RouterOutlet,
     AsyncPipe,
+    MatCardModule,
+    MatIconModule,
+    MatDividerModule,
+    MatButtonModule,
     NgFor,
     JsonPipe,
-    // MaterialCssVarsModule.forRoot({
-    //   // inited angular material - remove if not needed
-    //   primary: '#4758b8',
-    //   accent: '#fedfdd',
-    // }),
   ],
   template: `hello from isomorphic-lib-v21<br />
     Angular version: {{ angularVersion }}<br />
     <br />
     users from backend
-    <ul>
-      <li *ngFor="let user of users$ | async">{{ user | json }}</li>
-    </ul>
+    <mat-card appearance="outlined">
+      <mat-card-content
+        >Simple card
+        <ul>
+          @for (user of users(); track user.id) {
+            <li>{{ user | json }}</li>
+          }
+        </ul>
+      </mat-card-content>
+    </mat-card>
     hello world from backend: <strong>{{ hello$ | async }}</strong>
     <br />
+    <button mat-flat-button>
+      <mat-icon>delete</mat-icon>
+    </button>
     <button (click)="addUser()">Add new example user with random name</button>`,
   styles: [
     `
@@ -95,13 +108,16 @@ export class IsomorphicLibV21App {
 
   private refresh = new BehaviorSubject<void>(undefined);
 
-  readonly users$: Observable<User[]> = this.refresh.pipe(
-    switchMap(() =>
-      this.userApiService.userController
-        .getAll()
-        .request()
-        .observable.pipe(map(r => r.body.json)),
+  readonly users = toSignal(
+    this.refresh.pipe(
+      switchMap(() =>
+        this.userApiService.userController
+          .getAll()
+          .request()
+          .observable.pipe(map(r => r.body.json)),
+      ),
     ),
+    { initialValue: [] },
   );
 
   readonly hello$ = this.userApiService.userController
@@ -156,16 +172,17 @@ export const IsomorphicLibV21ClientRoutes: Routes = [];
 //#region @browser
 export const IsomorphicLibV21AppConfig: ApplicationConfig = {
   providers: [
+    provideZonelessChangeDetection(),
     {
       provide: TAON_CONTEXT,
       useFactory: () => MainContext,
     },
-    // providePrimeNG({
-    //   // inited ng prime - remove if not needed
-    //   theme: {
-    //     preset: Aura,
-    //   },
-    // }),
+    providePrimeNG({
+      // inited ng prime - remove if not needed
+      theme: {
+        preset: Aura,
+      },
+    }),
     {
       provide: APP_INITIALIZER,
       multi: true,
