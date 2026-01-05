@@ -1,0 +1,23 @@
+<div class="tasks-wrapper">
+  <!-- header / input -->
+  <div class="new-task">
+    <input
+      #titleInput
+      type="text"
+      placeholder="Enter task title…"
+      [value]="newTitle()"
+      (input)="newTitle.set(titleInput.value)"
+      (keydown.enter)="submitNewTask()" />
+  </div>
+
+  <!-- list -->
+  <div class="tasks">
+    @for (task of tasks(); track task.id) {
+      <app-task
+        class="mb-0"
+        [taskData]="task"
+        (completed)="completed.emit($event)"
+        (deleted)="deleted.emit($event)" />
+    }
+  </div>
+</div>

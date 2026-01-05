@@ -1,7 +1,7 @@
 //#region imports
 import { Taon, TaonBaseContext } from 'taon';
 
-import { MyEntity } from './my-entity';
+import { MyEntity } from './my-entity.entity';
 import { MyEntityController } from './my-entity.controller';
 //#endregion
 

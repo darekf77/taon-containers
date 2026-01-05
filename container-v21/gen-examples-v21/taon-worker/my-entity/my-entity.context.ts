@@ -2,7 +2,7 @@
 import { Taon, TaonBaseContext } from 'taon/src';
 import { getBaseCliWorkerDatabaseConfig } from 'tnp-helpers/src';
 
-import { MyEntity } from './my-entity';
+import { MyEntity } from './my-entity.entity';
 import { MyEntityController } from './my-entity.controller';
 import { MyEntityRepository } from './my-entity.repository';
 //#endregion

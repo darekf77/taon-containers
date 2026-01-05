@@ -3,7 +3,7 @@ import { Taon, ClassHelpers, TaonController, GET } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import { TaonBaseCliWorkerController } from 'tnp-helpers/src';
 
-import { MyEntity } from './my-entity';
+import { MyEntity } from './my-entity.entity';
 import { MyEntityRepository } from './my-entity.repository';
 //#endregion
 

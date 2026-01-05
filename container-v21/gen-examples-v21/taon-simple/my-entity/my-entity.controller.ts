@@ -9,7 +9,7 @@ import {
 } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
-import { MyEntity } from './my-entity';
+import { MyEntity } from './my-entity.entity';
 //#endregion
 
 @TaonController({

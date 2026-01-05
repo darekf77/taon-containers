@@ -7,11 +7,25 @@
 @import 'primeicons/primeicons.css';
 @import 'animate.css/animate.min.css';
 
+// :root {
+//   /* Primary */
+//   --mdc-theme-primary: #4758b8;
+//   --mdc-theme-on-primary: #ffffff;
+
+//   /* Secondary / Accent */
+//   --mdc-theme-secondary: #fedfdd;
+//   --mdc-theme-on-secondary: #000000;
+
+//   /* Optional */
+//   --mdc-theme-surface: #ffffff;
+//   --mdc-theme-background: #fafafa;
+// }
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url("#{ vars.$basename }assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2")
+  src: url('#{ vars.$basename }assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2')
     format('woff2');
 }
 
@@ -36,8 +50,8 @@
   display: block !important;
 }
 
-
-body, html {
+body,
+html {
   margin: 0px !important; // TODO QUICK FIX for weird chrome padding
   overflow: hidden; // for ngx-scrollbar to work
 }

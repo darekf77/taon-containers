@@ -1,0 +1,25 @@
+<div
+  class="task"
+  [class.task--completed]="taskData().completed">
+  <label class="checkbox">
+    <input
+      type="checkbox"
+      [checked]="taskData().completed"
+      (change)="toggleCompleted()" />
+  </label>
+
+  <div class="content">
+    <div class="title">
+      {{ taskData().title || 'Untitled task' }}
+    </div>
+    <div class="meta">#{{ taskData().id }}</div>
+  </div>
+
+  <button
+    class="delete"
+    type="button"
+    (click)="deleteTask()"
+    aria-label="Delete task">
+    ✕
+  </button>
+</div>

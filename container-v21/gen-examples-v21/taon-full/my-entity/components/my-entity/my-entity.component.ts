@@ -1,6 +1,10 @@
 //#region imports
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+} from '@angular/core';
 
 import { MyEntity } from '../../my-entity';
 //#endregion
@@ -11,10 +15,8 @@ import { MyEntity } from '../../my-entity';
   styleUrls: ['./my-entity.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
 })
 export class MyEntityComponent {
-  @Input() model: MyEntity;
+  model = input<MyEntity>();
 }

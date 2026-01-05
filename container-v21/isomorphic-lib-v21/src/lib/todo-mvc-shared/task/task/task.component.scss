@@ -1,0 +1,68 @@
+:host {
+  display: block;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &--completed {
+    opacity: 0.6;
+
+    .title {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.checkbox {
+  input {
+    transform: scale(2);
+  }
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .meta {
+    font-size: 11px;
+    color: #6b7280;
+  }
+}
+
+.delete {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+
+  &:hover {
+    color: #ef4444;
+    background: #fee2e2;
+  }
+}

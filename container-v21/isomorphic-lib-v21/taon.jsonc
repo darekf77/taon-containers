@@ -1,38 +1,27 @@
 {
- "type": "isomorphic-lib",
- "version": "v21",
- "dependenciesNamesForNpmLib": [],
- "appId": "com.domain.example.isomorphic-lib-v21",
+  "type": "isomorphic-lib",
+  "version": "v21",
+  "dependenciesNamesForNpmLib": [],
+  "appId": "com.domain.example.isomorphic-lib-v21",
 
- "autoReleaseConfigAllowedItems": [
-  {
-   "artifactName": "npm-lib-and-cli-tool"
+  "autoReleaseConfigAllowedItems": [
+    {
+      "artifactName": "npm-lib-and-cli-tool",
+      "releaseType": "manual",
+      "taskName": "npm",
+    },
+  ],
+
+  "isCoreProject": true,
+  "resources": ["README.md"],
+  // this generates exports from every ts files inside /src/lib folder
+  "shouldGenerateAutogenIndexFile": true,
+
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+    "description": "Description for isomorphic-lib-v21. Hello world!",
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {},
   },
- //  {
- //   "artifactName": "angular-node-app"
- //  },
- //  {
- //   "artifactName": "docs-webapp"
- //  },
- //  {
- //   "artifactName": "vscode-plugin"
- //  },
- //  {
- //   "artifactName": "electron-app"
- //  },
- //  {
- //   "artifactName": "mobile-app"
- //  }
- ],
-
- "isCoreProject": true,
- "resources": ["README.md"],
-
- "packageJsonOverride": {
-  "author": "Dariusz Filipiak",
-  "description": "Description for isomorphic-lib-v21. Hello world!",
-  "license": "UNLICENSED",
-  "private": true,
-  "scripts": {}
- }
 }

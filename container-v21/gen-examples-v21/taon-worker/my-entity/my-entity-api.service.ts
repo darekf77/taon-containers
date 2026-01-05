@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Taon, TaonBaseAngularService } from 'taon/src';
 
-import type { MyEntity } from './my-entity';
+import type { MyEntity } from './my-entity.entity';
 import { MyEntityController } from './my-entity.controller';
 //#endregion
 

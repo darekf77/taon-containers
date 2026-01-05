@@ -1,0 +1,5 @@
+<app-tasks-list
+  [tasks]="tasks | async"
+  (completed)="onTaskCompleted($event)"
+  (deleted)="onTaskDeleted($event)"
+  (add)="onTaskAdded($event)" />
