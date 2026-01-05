@@ -42,7 +42,7 @@
               "outputHashing": "all",
               "sourceMap": false
             },
-            "development-websql": {
+            "development-static": {
               "aot": false,
               "extractLicenses": true,
               "fileReplacements": [
@@ -56,7 +56,7 @@
               "outputHashing": "none",
               "sourceMap": true
             },
-            "production-websql": {
+            "production-static": {
               "aot": true,
               "extractLicenses": true,
               "fileReplacements": [
@@ -104,11 +104,11 @@
             "production": {
               "buildTarget": "angular-electron:build:production"
             },
-            "development-websql": {
-              "buildTarget": "angular-electron:build:development-websql"
+            "development-static": {
+              "buildTarget": "angular-electron:build:development-static"
             },
-            "production-websql": {
-              "buildTarget": "angular-electron:build:production-websql"
+            "production-static": {
+              "buildTarget": "angular-electron:build:production-static"
             }
           },
           "defaultConfiguration": "development",
@@ -188,13 +188,13 @@
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json"
             },
-            "development-websql": {
+            "development-static": {
               "extractLicenses": false,
               "optimization": false,
               "sourceMap": true,
               "outputMode": "static"
             },
-            "production-websql": {
+            "production-static": {
               "budgets": [],
               "fileReplacements": [
                 {
@@ -286,11 +286,11 @@
             "production": {
               "buildTarget": "app:build:production"
             },
-            "development-websql": {
-              "buildTarget": "app:build:development-websql"
+            "development-static": {
+              "buildTarget": "app:build:development-static"
             },
-            "production-websql": {
-              "buildTarget": "app:build:production-websql"
+            "production-static": {
+              "buildTarget": "app:build:production-static"
             }
           },
           "defaultConfiguration": "development"
