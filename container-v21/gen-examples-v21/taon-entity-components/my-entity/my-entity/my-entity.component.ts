@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
 } from '@angular/core';
 
 import { MyEntity } from '../../my-entity';
@@ -13,10 +14,15 @@ import { MyEntity } from '../../my-entity';
   selector: 'my-entity',
   templateUrl: './my-entity.component.html',
   styleUrls: ['./my-entity.component.scss'],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule],
+  imports: [],
 })
 export class MyEntityComponent {
-  model = input<MyEntity>();
+  model = input.required<MyEntity>();
+  change = output<MyEntity>();
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+  }
 }
