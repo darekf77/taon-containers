@@ -58,8 +58,9 @@ import {
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
-import { TodoMvcContext } from './app/todo-mvc/todo-mvc.context';
-import { HelloWorldSimpleContext } from './app/hello-world-simple/hello-world-simple.context';
+// @placeholder-for-imports
+import { TodoMvcContext } from './app/todo-mvc/todo-mvc.context'; // @app-ts-generated
+import { HelloWorldSimpleContext } from './app/hello-world-simple/hello-world-simple.context'; // @app-ts-generated
 //#endregion
 
 console.log('hello world');
@@ -433,8 +434,9 @@ const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
   await MainContext.initialize();
-  await TodoMvcContext.initialize();
-  await HelloWorldSimpleContext.initialize();
+  // @placeholder-for-contexts-init
+  await TodoMvcContext.initialize(); // @app-ts-generated
+  await HelloWorldSimpleContext.initialize(); // @app-ts-generated
   // INIT ALL ACTIVE CONTEXTS HERE
 
   //#region @backend
