@@ -64,7 +64,9 @@ import { HOST_CONFIG } from './app.hosts';
 
 console.log('hello world');
 console.log('Your backend host ' + HOST_CONFIG['IsomorphicLibV21Context'].host);
-console.log('Your frontend host ' + HOST_CONFIG['IsomorphicLibV21Context'].frontendHost);
+console.log(
+  'Your frontend host ' + HOST_CONFIG['IsomorphicLibV21Context'].frontendHost,
+);
 
 //#region isomorphic-lib-v21 component
 
@@ -183,6 +185,7 @@ export class IsomorphicLibV21App {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     console.log(globalThis?.location.pathname);
+    Taon.removeLoader();
   }
 
   taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
