@@ -1,5 +1,5 @@
 // @ts-nocheck
-// This file is auto-generated. Do not modify.
+// This file is auto-generated during init process. Do not modify.
 // This disable this auto generate file.
 // set property "shouldGenerateAutogenIndexFile: false" 
 // in taon.jsonc of your project. 

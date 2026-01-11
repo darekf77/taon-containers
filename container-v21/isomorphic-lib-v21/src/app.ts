@@ -26,6 +26,7 @@ import {
   RouterOutlet,
   ActivatedRoute,
   Routes,
+  Route,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
@@ -58,13 +59,12 @@ import {
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
-import { TodoMvcContext } from './app/todo-mvc/todo-mvc.context';
-import { HelloWorldSimpleContext } from './app/hello-world-simple/hello-world-simple.context';
+// @placeholder-for-imports
 //#endregion
 
 console.log('hello world');
-console.log('Your backend host ' + HOST_CONFIG['MainContext'].host);
-console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
+console.log('Your backend host ' + HOST_CONFIG['IsomorphicLibV21Context'].host);
+console.log('Your frontend host ' + HOST_CONFIG['IsomorphicLibV21Context'].frontendHost);
 
 //#region isomorphic-lib-v21 component
 
@@ -163,12 +163,15 @@ console.log('Your frontend host ' + HOST_CONFIG['MainContext'].frontendHost);
   `,
 })
 export class IsomorphicLibV21App {
-  navItems = IsomorphicLibV21ClientRoutes.filter(r => r.path !== undefined).map(
-    r => ({
-      path: r.path === '' ? '/' : `/${r.path}`,
-      label: r.path === '' ? 'Home' : `${r.path}`,
-    }),
-  );
+  navItems =
+    IsomorphicLibV21ClientRoutes.length <= 1
+      ? []
+      : IsomorphicLibV21ClientRoutes.filter(r => r.path !== undefined).map(
+          r => ({
+            path: r.path === '' ? '/' : `/${r.path}`,
+            label: r.path === '' ? 'Home' : `${r.path}`,
+          }),
+        );
 
   activatedRoute = inject(ActivatedRoute);
 
@@ -269,34 +272,14 @@ export const IsomorphicLibV21ClientRoutes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: () => {
+      if (IsomorphicLibV21ClientRoutes.length === 1) {
+        return '';
+      }
       return IsomorphicLibV21ClientRoutes.find(r => r.path !== '')!.path!;
     },
   },
-  {
-    path: 'todo-mvc',
-    providers: [
-      {
-        provide: TAON_CONTEXT,
-        useFactory: () => TodoMvcContext,
-      },
-    ],
-    loadChildren: () =>
-      import('./app/todo-mvc/todo-mvc.routes').then(m => m.TodoMvcRoutes),
-  },
-  {
-    path: 'hello-world-simple',
-    providers: [
-      {
-        provide: TAON_CONTEXT,
-        useFactory: () => HelloWorldSimpleContext,
-      },
-    ],
-    loadChildren: () =>
-      import('./app/hello-world-simple/hello-world-simple.routes').then(
-        m => m.HelloWorldSimpleRoutes,
-      ),
-  },
   // PUT ALL ROUTES HERE
+  // @placeholder-for-routes
 ];
 //#endregion
 //#endregion
@@ -308,7 +291,7 @@ export const IsomorphicLibV21AppConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     {
       provide: TAON_CONTEXT,
-      useFactory: () => MainContext,
+      useFactory: () => IsomorphicLibV21Context,
     },
     providePrimeNG({
       theme: {
@@ -403,8 +386,8 @@ class UserMigration extends TaonBaseMigration {
 //#endregion
 
 //#region  isomorphic-lib-v21 context
-var MainContext = Taon.createContext(() => ({
-  ...HOST_CONFIG['MainContext'],
+var IsomorphicLibV21Context = Taon.createContext(() => ({
+  ...HOST_CONFIG['IsomorphicLibV21Context'],
   contexts: { TaonBaseContext },
 
   //#region @websql
@@ -432,9 +415,8 @@ var MainContext = Taon.createContext(() => ({
 const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
-  await MainContext.initialize();
-  await TodoMvcContext.initialize();
-  await HelloWorldSimpleContext.initialize();
+  await IsomorphicLibV21Context.initialize();
+  // @placeholder-for-contexts-init
   // INIT ALL ACTIVE CONTEXTS HERE
 
   //#region @backend

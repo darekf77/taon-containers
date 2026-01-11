@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Task } from '../task.entity';
-import { TaskComponent } from 'isomorphic-lib-v21/src';
+import { TaskComponent } from '../task/task.component';
 //#endregion
 
 @Component({
