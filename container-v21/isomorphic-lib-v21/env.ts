@@ -5,5 +5,15 @@ const env: Partial<EnvOptions> = {
     title: 'Isomorphic Lib V 18',
     useDomain: true,
   },
+  loading: {
+     preAngularBootstrap: {
+      background: 'gray',
+      loader: {
+        name: 'lds-default',
+        color: 'black',
+      }
+     }
+  }
+
 };
 export default env;

@@ -1,17 +1,14 @@
 //#region imports
 import { TaonBaseContext, Taon } from 'taon/src';
 
-import { MyEntity } from './my-entity';
 //#endregion
 
-export const MyEntityContext = Taon.createContext(() => ({
-  contextName: 'MyEntityContext',
+export const MyEntityAbstractContext = Taon.createContext(() => ({
+  contextName: 'MyEntityAbstractContext',
   abstract: true,
   database: false,
   contexts: { TaonBaseContext },
-  entities: {
-    MyEntity,
-  },
+  entities: { },
   controllers: {},
   repositories: {},
   middlewares: {},

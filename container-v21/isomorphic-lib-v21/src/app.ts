@@ -11,6 +11,7 @@ import {
   isDevMode,
   mergeApplicationConfig,
   provideZonelessChangeDetection,
+  signal,
 } from '@angular/core'; // @browser
 import { Component } from '@angular/core'; // @browser
 import { VERSION } from '@angular/core'; // @browser
@@ -87,9 +88,11 @@ console.log(
     JsonPipe,
   ],
   template: `
+  @if (itemsLoaded()) {
     @if (navItems.length > 0) {
       <nav
         mat-tab-nav-bar
+        class="shadow-1"
         [tabPanel]="tabPanel">
         @for (item of navItems; track item.path) {
           <a
@@ -162,9 +165,11 @@ console.log(
         </mat-card-content>
       </mat-card>
     }
+  }
   `,
 })
 export class IsomorphicLibV21App {
+  itemsLoaded = signal(false);
   navItems =
     IsomorphicLibV21ClientRoutes.length <= 1
       ? []
@@ -185,7 +190,10 @@ export class IsomorphicLibV21App {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     console.log(globalThis?.location.pathname);
-    Taon.removeLoader();
+    // TODO set below from 1000 to zero in production
+    Taon.removeLoader(1000).then(() => {
+      this.itemsLoaded.set(true);
+    });
   }
 
   taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
