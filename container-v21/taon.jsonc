@@ -11,10 +11,6 @@
     "dependencies": {
       //#region @TOD/CHECK/EXPLORE
 
-      // 1. FIND STABLE SWAGGER GENERATOR
-      // swagger api client generation
-      // "@hey-api/openapi": "~3.0.0",
-
       // 2. TYPESCRIPT-CLASS-HELPERS replace with something better if exists
       // PROPER CLASS INJECTIONS https://github.com/typestack/typedi => usefull for typescript-class-helpers
       // PROPER CLASS MAPPIGN usefull => https://github.com/typestack/class-transformer
@@ -1343,8 +1339,18 @@
       // @updateToContainerMajor
       "ng2-rest": "~21.0.0",
 
+      //#region REST SWAGGER GENERATORS
       // @updateToContainerMajor
       "ng2-rest-swagger-generator": "~21.0.0",
+      // general openapi generator
+      // "@hey-api/openapi-ts": "0.90.3",
+      // coudl be use for swagger parsing and building new swagger gen
+      // "@apidevtools/json-schema-ref-parser": "14.2.1",
+      // openapi 2.x
+      "ng-openapi-gen": "1.0.5",
+      // openapi 3.x
+      "ng-swagger-gen": "2.3.1",
+      //#endregion
 
       // @updateToContainerMajor
       "taon": "~21.0.0",
