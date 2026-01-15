@@ -63,11 +63,9 @@ import { HOST_CONFIG } from './app.hosts';
 // @placeholder-for-imports
 //#endregion
 
-console.log('hello world');
-console.log('Your backend host ' + HOST_CONFIG['IsomorphicLibV21Context'].host);
-console.log(
-  'Your frontend host ' + HOST_CONFIG['IsomorphicLibV21Context'].frontendHost,
-);
+const firstHostConfig = (Object.values(HOST_CONFIG) || [])[0];
+console.log('Your backend host ' + firstHostConfig?.host);
+console.log('Your frontend host ' + firstHostConfig?.frontendHost);
 
 //#region isomorphic-lib-v21 component
 
@@ -88,84 +86,84 @@ console.log(
     JsonPipe,
   ],
   template: `
-  @if (itemsLoaded()) {
-    @if (navItems.length > 0) {
-      <nav
-        mat-tab-nav-bar
-        class="shadow-1"
-        [tabPanel]="tabPanel">
-        @for (item of navItems; track item.path) {
-          <a
-            mat-tab-link
-            href="javascript:void(0)"
-            [style.text-decoration]="
-              (activePath === item.path && !forceShowBaseRootApp) ||
-              ('/' === item.path && forceShowBaseRootApp)
-                ? 'underline'
-                : 'none'
-            "
-            (click)="navigateTo(item)">
-            @if (item.path === '/') {
-              <mat-icon
-                aria-hidden="false"
-                aria-label="Example home icon"
-                fontIcon="home"></mat-icon>
-            } @else {
-              {{ item.label }}
-            }
-          </a>
-        }
-      </nav>
+    @if (itemsLoaded()) {
+      @if (navItems.length > 0) {
+        <nav
+          mat-tab-nav-bar
+          class="shadow-1"
+          [tabPanel]="tabPanel">
+          @for (item of navItems; track item.path) {
+            <a
+              mat-tab-link
+              href="javascript:void(0)"
+              [style.text-decoration]="
+                (activePath === item.path && !forceShowBaseRootApp) ||
+                ('/' === item.path && forceShowBaseRootApp)
+                  ? 'underline'
+                  : 'none'
+              "
+              (click)="navigateTo(item)">
+              @if (item.path === '/') {
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  fontIcon="home"></mat-icon>
+              } @else {
+                {{ item.label }}
+              }
+            </a>
+          }
+        </nav>
 
-      <mat-tab-nav-panel #tabPanel>
-        @if (!forceShowBaseRootApp) {
-          <router-outlet />
-        }
-      </mat-tab-nav-panel>
+        <mat-tab-nav-panel #tabPanel>
+          @if (!forceShowBaseRootApp) {
+            <router-outlet />
+          }
+        </mat-tab-nav-panel>
+      }
+      @if (navItems.length === 0 || forceShowBaseRootApp) {
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3>Basic app info</h3>
+            Name: isomorphic-lib-v21<br />
+            Angular version: {{ angularVersion }}<br />
+            Taon backend: {{ taonMode }}<br />
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3>Example users from backend API:</h3>
+            <ul>
+              @for (user of users(); track user.id) {
+                <li>
+                  {{ user | json }}
+                  <button
+                    mat-flat-button
+                    (click)="deleteUser(user)">
+                    <mat-icon>delete user</mat-icon>
+                  </button>
+                </li>
+              }
+            </ul>
+            <br />
+            <button
+              class="ml-1"
+              matButton="outlined"
+              (click)="addUser()">
+              Add new example user with random name
+            </button>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3>Example hello world from backend API:</h3>
+            hello world from backend: <strong>{{ hello$ | async }}</strong>
+          </mat-card-content>
+        </mat-card>
+      }
     }
-    @if (navItems.length === 0 || forceShowBaseRootApp) {
-      <mat-card class="m-2">
-        <mat-card-content>
-          <h3>Basic app info</h3>
-          Name: isomorphic-lib-v21<br />
-          Angular version: {{ angularVersion }}<br />
-          Taon backend: {{ taonMode }}<br />
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="m-2">
-        <mat-card-content>
-          <h3>Example users from backend API:</h3>
-          <ul>
-            @for (user of users(); track user.id) {
-              <li>
-                {{ user | json }}
-                <button
-                  mat-flat-button
-                  (click)="deleteUser(user)">
-                  <mat-icon>delete user</mat-icon>
-                </button>
-              </li>
-            }
-          </ul>
-          <br />
-          <button
-            class="ml-1"
-            matButton="outlined"
-            (click)="addUser()">
-            Add new example user with random name
-          </button>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="m-2">
-        <mat-card-content>
-          <h3>Example hello world from backend API:</h3>
-          hello world from backend: <strong>{{ hello$ | async }}</strong>
-        </mat-card-content>
-      </mat-card>
-    }
-  }
   `,
 })
 export class IsomorphicLibV21App {

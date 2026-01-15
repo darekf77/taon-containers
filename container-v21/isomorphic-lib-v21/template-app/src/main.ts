@@ -1,3 +1,4 @@
+import './bootstrap';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { ProjectNameAppConfig, ProjectNameApp } from './app/app';
 
