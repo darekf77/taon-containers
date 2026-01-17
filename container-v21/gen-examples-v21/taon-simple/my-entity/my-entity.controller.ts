@@ -10,6 +10,7 @@ import {
 import { _ } from 'tnp-core/src';
 
 import { MyEntity } from './my-entity.entity';
+import { MyEntityRepository } from './my-entity.repository';
 //#endregion
 
 @TaonController({
@@ -17,6 +18,8 @@ import { MyEntity } from './my-entity.entity';
 })
 export class MyEntityController extends TaonBaseCrudController<MyEntity> {
   entityClassResolveFn: () => typeof MyEntity = () => MyEntity;
+
+  myEntityRepository = this.injectCustomRepository(MyEntityRepository);
 
   //#region methods & getters / hello world
   @GET()

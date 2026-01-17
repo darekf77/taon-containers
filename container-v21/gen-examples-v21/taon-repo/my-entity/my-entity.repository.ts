@@ -1,9 +1,8 @@
 //#region imports
-import { Taon, TaonBaseRepository, TaonRepository } from 'taon/src';
+import { TaonBaseRepository, TaonRepository } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
-import { _ } from 'tnp-core/src';
 
-import { MyEntity } from './my-entity';
+import { MyEntity } from './my-entity.entity';
 //#endregion
 
 @TaonRepository({

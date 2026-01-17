@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, TaonBaseContext } from 'taon/src';
+import { createContextTemplate, TaonBaseContext } from 'taon/src';
 import { getBaseCliWorkerDatabaseConfig } from 'tnp-helpers/src';
 
 import { MyEntity } from './my-entity.entity';
@@ -9,7 +9,7 @@ import { MyEntityRepository } from './my-entity.repository';
 
 const appId = 'my-entity-worker-app.project.worker';
 
-export const MyEntityContext = Taon.createContextTemplate(() => ({
+export const MyEntityContext = createContextTemplate(() => ({
   contextName: 'MyEntityContext',
   appId,
   skipWritingServerRoutes: true,

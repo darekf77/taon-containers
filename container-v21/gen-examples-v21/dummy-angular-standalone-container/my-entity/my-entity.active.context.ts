@@ -1,9 +1,9 @@
 //#region imports
 // @generated-imports-here
-import { TaonBaseContext, Taon } from 'taon/src';
+import { TaonBaseContext, createContext } from 'taon/src';
 //#endregion
 
-export const MyEntityActiveContext = Taon.createContext(() => ({
+export const MyEntityActiveContext = createContext(() => ({
   ...HOST_CONFIG['MyEntityActiveContext'],
   contextName: 'MyEntityActiveContext',
   database: true,

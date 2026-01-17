@@ -1,12 +1,11 @@
 //#region imports
-import { Taon, ClassHelpers, TaonController, TaonBaseRepository } from 'taon/src';
+import { TaonBaseRepository, TaonRepository } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
-import { _ } from 'tnp-core/src';
 
 import { MyEntity } from './my-entity.entity';
 //#endregion
 
-@TaonController({
+@TaonRepository({
   className: 'MyEntityRepository',
 })
 export class MyEntityRepository extends TaonBaseRepository<MyEntity> {

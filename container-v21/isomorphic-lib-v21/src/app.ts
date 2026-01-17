@@ -421,7 +421,7 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
 //#endregion
 
 //#region  isomorphic-lib-v21 start function
-const IsomorphicLibV21StartFunction = async (
+export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
   await IsomorphicLibV21Context.initialize();

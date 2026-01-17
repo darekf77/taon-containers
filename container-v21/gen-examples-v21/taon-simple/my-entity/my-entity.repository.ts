@@ -1,5 +1,5 @@
 //#region imports
-import { TaonBaseRepository, TaonRepository } from 'taon/src';
+import { Taon, TaonBaseRepository, TaonRepository } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
 
@@ -15,7 +15,7 @@ export class MyEntityRepository extends TaonBaseRepository<MyEntity> {
   /**
    * TODO remove this demo example method
    */
-  async countEntitiesWithEvenId(): Promise<number> {
+  async countEntitesWithEvenId(): Promise<number> {
     //#region @websqlFunc
     const result = await this.count({
       where: {
