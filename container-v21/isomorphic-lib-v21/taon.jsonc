@@ -10,6 +10,17 @@
       "releaseType": "manual",
       "taskName": "npm",
     },
+    {
+      "artifactName": "angular-node-app",
+      "releaseType": "static-pages",
+      "taskName": "static-pages",
+    },
+    {
+      "artifactName": "angular-node-app",
+      "releaseType": "manual",
+      "taonInstanceIp": "127.0.0.1",
+      "taskName": "local-demo",
+    },
   ],
 
   "isCoreProject": true,
