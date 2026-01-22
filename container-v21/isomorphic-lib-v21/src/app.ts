@@ -14,7 +14,14 @@ import {
   signal,
 } from '@angular/core'; // @browser
 import { Component } from '@angular/core'; // @browser
-import { VERSION } from '@angular/core'; // @browser
+import { VERSION, OnInit } from '@angular/core'; // @browser
+import { toSignal } from '@angular/core/rxjs-interop'; // @browser
+import { MatButtonModule } from '@angular/material/button'; // @browser
+import { MatCardModule } from '@angular/material/card'; // @browser
+import { MatDividerModule } from '@angular/material/divider'; // @browser
+import { MatIconModule } from '@angular/material/icon'; // @browser
+import { MatListModule } from '@angular/material/list'; // @browser
+import { MatTabsModule } from '@angular/material/tabs'; // @browser
 import {
   provideClientHydration,
   withEventReplay,
@@ -34,14 +41,7 @@ import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import Aura from '@primeng/themes/aura'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
-import { toSignal } from '@angular/core/rxjs-interop'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
-import { MatCardModule } from '@angular/material/card'; // @browser
-import { MatIconModule } from '@angular/material/icon'; // @browser
-import { MatDividerModule } from '@angular/material/divider'; // @browser
-import { MatButtonModule } from '@angular/material/button'; // @browser
-import { MatListModule } from '@angular/material/list'; // @browser
-import { MatTabsModule } from '@angular/material/tabs'; // @browser
 import {
   Taon,
   TaonBaseContext,
@@ -166,8 +166,9 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
     }
   `,
 })
-export class IsomorphicLibV21App {
+export class IsomorphicLibV21App implements OnInit {
   itemsLoaded = signal(false);
+
   navItems =
     IsomorphicLibV21ClientRoutes.length <= 1
       ? []
@@ -195,9 +196,13 @@ export class IsomorphicLibV21App {
   }
 
   taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
+
   angularVersion = VERSION.full;
+
   userApiService = inject(UserApiService);
+
   router = inject(Router);
+
   private refresh = new BehaviorSubject<void>(undefined);
 
   readonly users = toSignal(
@@ -232,6 +237,7 @@ export class IsomorphicLibV21App {
   }
 
   forceShowBaseRootApp = false;
+
   navigateTo(item: { path: string; label: string }): void {
     if (item.path === '/') {
       if (this.forceShowBaseRootApp) {

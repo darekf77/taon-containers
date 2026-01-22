@@ -1,9 +1,9 @@
 //#region imports
+import { TaskContext } from 'isomorphic-lib-v21/src';
+import { MIGRATIONS_CLASSES_FOR_TodoMvcContext } from 'isomorphic-lib-v21/src';
 import { TaonBaseContext, Taon } from 'taon/src';
 
 import { HOST_CONFIG } from '../../app.hosts';
-import { TaskContext } from 'isomorphic-lib-v21/src';
-import { MIGRATIONS_CLASSES_FOR_TodoMvcContext } from '../../migrations';
 //#endregion
 
 /**
