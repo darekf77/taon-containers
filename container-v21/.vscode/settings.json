@@ -13,6 +13,7 @@
 
   "workbench.colorTheme": "Default Light+",
   "typescript.tsdk": "node_modules/typescript/lib",
+
   "files.exclude": {
     "_changelog": false,
     ".sass-cache": false,
@@ -179,5 +180,11 @@
   },
 
   "prettier.prettierPath": "./node_modules/prettier",
-  "prettier.endOfLine": "auto"
+  "prettier.endOfLine": "auto",
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "json"
+  }
 }

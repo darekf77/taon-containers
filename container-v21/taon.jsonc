@@ -1159,12 +1159,24 @@
       // not maintained but so nice
       // "multispinner":"0.2.1",
 
+      "cli-progress": "3.12.0",
+
       // @trusted=patch
+      "progress-estimator": "0.3.1",
+
+      // @trusted=patch esm package
+      "cli-spinners": "3.4.0",
+
+      // @trusted=patch
+      "nanospinner": "1.2.2",
+
+      // @deprecated cjs
+      "@types/progress": "2.0.7",
+
+      // @deprecated cjs
       "progress": "2.0.3",
 
-      // @trusted=patch
-      "@types/progress": "~2.0.7",
-
+      // @deprecated cjs
       "ora": "3.4.0",
 
       // @trusted=patch
