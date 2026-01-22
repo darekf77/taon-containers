@@ -1,6 +1,6 @@
+import { Task, TaskRepository } from 'isomorphic-lib-v21/src';
 import { Taon, TaonBaseMigration, TaonMigration } from 'taon/src';
 import { QueryRunner } from 'taon-typeorm/src';
-import { Task, TaskRepository } from 'isomorphic-lib-v21/src';
 
 //#region Migration class for context "MainContext"
 @TaonMigration({
