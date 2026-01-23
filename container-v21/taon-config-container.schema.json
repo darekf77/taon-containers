@@ -5323,6 +5323,13 @@
           },
           "description": "Static resurces for site project, that are going to be included in release dist"
         },
+        "overridePackagesOrder": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "override order of packages during release or buildq so dependencies are released first"
+        },
         "createOnlyTagWhenRelease": {
           "type": "boolean",
           "description": "Don't release inside children -> only tag the version"
@@ -5342,6 +5349,7 @@
       },
       "required": [
         "isCoreProject",
+        "overridePackagesOrder",
         "packageJsonOverride",
         "type"
       ],
