@@ -281,6 +281,9 @@
       // @trusted=patch
       "lodash-es": "~4.17.22",
 
+      // @trusted=patch
+      "@types/lodash-es": "~4.17.12",
+
       // @trusted=minor
       "pretty-error": "4.0.0",
 
