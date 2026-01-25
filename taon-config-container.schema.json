@@ -5323,6 +5323,17 @@
           },
           "description": "Static resurces for site project, that are going to be included in release dist"
         },
+        "linkNodeModulesFromCoreContainer": {
+          "type": "boolean",
+          "description": "Force linking node_modules from core container"
+        },
+        "overridePackagesOrder": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "override order of packages during release or buildq so dependencies are released first"
+        },
         "createOnlyTagWhenRelease": {
           "type": "boolean",
           "description": "Don't release inside children -> only tag the version"
@@ -5342,6 +5353,7 @@
       },
       "required": [
         "isCoreProject",
+        "overridePackagesOrder",
         "packageJsonOverride",
         "type"
       ],
@@ -5356,8 +5368,8 @@
         "v4",
         "v16",
         "v18",
-        "v21",
-        "v21",
+        "v19",
+        "v20",
         "v21",
         "v22"
       ]

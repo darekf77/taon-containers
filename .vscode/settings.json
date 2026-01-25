@@ -167,5 +167,12 @@
     "**/dist-*": true,
     "*.rest": true,
     "**/*.rest": true
+  },
+
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "json"
   }
 }

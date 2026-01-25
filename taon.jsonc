@@ -4,6 +4,7 @@
   "isCoreProject": true,
   "appId": "com.domain.example.taon-containers",
   "autoReleaseConfigAllowedItems": [],
+  "linkNodeModulesFromCoreContainer": true,
   "createOnlyTagWhenRelease": true,
   "monorepo": true,
   "removeAfterPullingFromGit": ["container-v19/examples-v19"],

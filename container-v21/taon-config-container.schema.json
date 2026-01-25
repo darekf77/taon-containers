@@ -5323,6 +5323,10 @@
           },
           "description": "Static resurces for site project, that are going to be included in release dist"
         },
+        "linkNodeModulesFromCoreContainer": {
+          "type": "boolean",
+          "description": "Force linking node_modules from core container"
+        },
         "overridePackagesOrder": {
           "type": "array",
           "items": {
