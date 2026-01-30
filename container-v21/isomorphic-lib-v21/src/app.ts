@@ -35,6 +35,7 @@ import {
   ActivatedRoute,
   Routes,
   Route,
+  withHashLocation,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
@@ -319,7 +320,8 @@ export const IsomorphicLibV21AppConfig: ApplicationConfig = {
       useFactory: () => IsomorphicLibV21StartFunction,
     },
     provideBrowserGlobalErrorListeners(),
-    provideRouter(IsomorphicLibV21ClientRoutes),
+    // remove withHashLocation() to use SSR
+    provideRouter(IsomorphicLibV21ClientRoutes, withHashLocation()),
     provideClientHydration(withEventReplay()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

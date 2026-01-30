@@ -1,3 +1,4 @@
+# DEPRECATED - I am using esbuild for ts -> js
 {
   "extends": "./tsconfig.isomorphic.json",
   "compilerOptions": {

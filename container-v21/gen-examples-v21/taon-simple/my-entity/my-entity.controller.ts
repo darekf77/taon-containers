@@ -28,7 +28,7 @@ export class MyEntityController extends TaonBaseCrudController<MyEntity> {
     return async (req, res) => {
       const numOfEntities = await this.db.count();
       return (
-        `Hello ${yourName || 'world'} from ${ClassHelpers} ` +
+        `Hello ${yourName || 'world'} from ${ClassHelpers.getName(MyEntityController)} ` +
         `controller..  ${numOfEntities} entites in db..`
       );
     };

@@ -32,7 +32,7 @@ export class MyEntityController extends TaonBaseCrudController<MyEntity> {
       const numOfEntities = await this.db.count();
       const numberOfEvenEntities =
         await this.myEntityRepository.countEntitesWithEvenId();
-      return `Hello ${yourName || 'world'} from ${ClassHelpers}
+      return `Hello ${yourName || 'world'} from ${ClassHelpers.getName(MyEntityController)}
       controller..  ${numOfEntities} entites in db..
       ${numberOfEvenEntities} entites with even ids (2,4,6,8 etc.)
       `;

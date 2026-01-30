@@ -85,6 +85,7 @@
       "@types/oauth2orize": null,
       "@types/password-hash": null,
       "password-hash": null,
+      "json10-writer":null,
 
       //  @deprecated
       "@angular/flex-layout": null,
@@ -1371,9 +1372,6 @@
 
       // @updateToContainerMajor
       "typescript-class-helpers": "~21.0.0",
-
-      // @updateToContainerMajor
-      "json10-writer": "~21.0.0",
 
       // @updateToContainerMajor
       "tnp-helpers": "~21.0.0",
