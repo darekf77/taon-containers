@@ -26,7 +26,7 @@ export const commands: CommandType[] = (
     c.group = group;
   }
   if (!c.command) {
-    c.command = `extension.${Utils.camelize(c.group)}.${Utils.camelize(c.title)}`;
+    c.command = `extension.${Utils.camelize(c.group ?? 'ROOT')}.${Utils.camelize(c.title)}`;
   }
   return c;
 });
