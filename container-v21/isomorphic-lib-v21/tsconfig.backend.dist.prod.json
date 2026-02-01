@@ -3,9 +3,11 @@
   "compilerOptions": {
     "rootDir": "./tmp-source-dist-prod",
     "outDir": "dist-prod",
-    "module": "es2022",
-    "target": "es2022",
+    "module": "ESNext",
+    "target": "ESNext",
+    "importsNotUsedAsValues": "remove",
     "noEmitHelpers": true,
+    "sourceMap": false
   },
   "include": [
     "tmp-source-dist-prod/**/*"
