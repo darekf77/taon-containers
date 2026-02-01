@@ -3,7 +3,9 @@
   "compilerOptions": {
     "rootDir": "./tmp-source-dist-prod",
     "outDir": "dist-prod",
-    "noEmit": true
+    "module": "es2022",
+    "target": "es2022",
+    "noEmitHelpers": true,
   },
   "include": [
     "tmp-source-dist-prod/**/*"
