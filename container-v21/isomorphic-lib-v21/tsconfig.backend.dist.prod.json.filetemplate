@@ -7,8 +7,7 @@
      "target": "ESNext",
      # "isolatedModules": true, maybe later
      "importsNotUsedAsValues": "remove",
-     "noEmitHelpers": true,
-     "sourceMap": false
+     "noEmitHelpers": true
   },
   "include": [
     "tmp-source-dist-prod/**/*"
