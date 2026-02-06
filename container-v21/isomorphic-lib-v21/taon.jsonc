@@ -13,6 +13,7 @@
     {
       "artifactName": "angular-node-app",
       "releaseType": "static-pages",
+      "envName": "static-pages",
       "taskName": "static-pages",
     },
     {
