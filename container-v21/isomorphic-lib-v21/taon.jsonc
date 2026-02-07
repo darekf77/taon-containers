@@ -15,12 +15,14 @@
       "releaseType": "static-pages",
       "envName": "static-pages",
       "taskName": "static-pages",
+      "askUserBeforeFinalAction": true,
     },
     {
       "artifactName": "angular-node-app",
       "releaseType": "manual",
       "taonInstanceIp": "127.0.0.1",
-      "taskName": "local-demo",
+      "taskName": "localhost",
+      "askUserBeforeFinalAction": true,
     },
   ],
 

@@ -1,8 +1,8 @@
 const basename = '<<<TO_REPLACE_BASENAME>>>';
-import { UtilsOs } from 'tnp-core/src';
+const websqlMode = false;
 
 export const loadSqlJs = async () => {
-  if (UtilsOs.isWebSQL) {
+  if (websqlMode) {
     const localForge = (await import('localforage')).default;
 
     globalThis['localforage'] = localForge;

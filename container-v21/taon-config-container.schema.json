@@ -1,10 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/Models.TaonJsonContainer",
+  "$ref": "#/definitions/Models.TaonJsonCombined",
   "definitions": {
-    "Models.TaonJsonContainer": {
+    "Models.TaonJsonCombined": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
+        "type": {
+          "$ref": "#/definitions/LibTypeEnum"
+        },
         "version": {
           "$ref": "#/definitions/CoreModels.FrameworkVersion",
           "description": "version of taon framework for project"
@@ -5312,52 +5316,198 @@
           "additionalProperties": false,
           "deprecated": true
         },
-        "type": {
-          "type": "string",
-          "const": "container"
-        },
         "resources": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Static resurces for site project, that are going to be included in release dist"
+          "description": "(STANDALONE) Static resurces for standalone project, that are going to be included in release dist"
         },
         "linkNodeModulesFromCoreContainer": {
           "type": "boolean",
-          "description": "Force linking node_modules from core container"
+          "description": "(CONTAINER) Force linking node_modules from core container"
         },
         "overridePackagesOrder": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "override order of packages during release or buildq so dependencies are released first"
+          "description": "(CONTAINER) override order of packages during release or buildq so dependencies are released first"
         },
         "createOnlyTagWhenRelease": {
           "type": "boolean",
-          "description": "Don't release inside children -> only tag the version"
+          "description": "(CONTAINER) Don't release inside children -> only tag the version"
         },
         "monorepo": {
           "type": "boolean",
-          "description": "Project is monorepo"
+          "description": "(CONTAINER) Project is monorepo"
         },
         "organization": {
           "type": "boolean",
-          "description": "Project is organization/scope (like"
+          "description": "(CONTAINER) Project is organization/scope (like"
         },
         "microFrontendMainProjectName": {
           "type": "string",
-          "description": "! TODO implement this Container projects can be used as micro frontends with router:  <site-path>/  (microFrontendMainProjectName)  <site-path>/_/other-project-name"
+          "description": "(CONTAINER) Container projects can be used as micro frontends with router:  <site-path>/  (microFrontendMainProjectName)  <site-path>/_/other-project-name"
+        },
+        "overrideNpmName": {
+          "type": "string",
+          "description": "(STANDALONE) override npm name for build/relese"
+        },
+        "appId": {
+          "type": "string",
+          "description": "(STANDALONE) Application ID for standalone project. This is used to identify the application inside application stores,"
+        },
+        "numberOfContexts": {
+          "type": "number",
+          "description": "(STANDALONE) Number of contexts for this project. (default 2) Number can't be less than 2. This property tells taon how many ports/variables needs to be assigned inside app.hosts.ts"
+        },
+        "overrideNameWhenInsideOrganization": {
+          "type": "string",
+          "description": "(STANDALONE) it override name of project when is inside container that is organization.\n\nProperty \"overrideNpmName\" can override this name."
+        },
+        "overrideNameForCli": {
+          "type": "string",
+          "description": "(STANDALONE) override name of cli tool created from project"
+        },
+        "baseContentUrl": {
+          "type": "string",
+          "description": "(STANDALONE) Base url for content (docs, md files etc.) Required if README.md has relative pathes to links"
+        },
+        "baseImagesUrl": {
+          "type": "string",
+          "description": "(STANDALONE) Base url for content (docs, md files etc.) Required if README.md has relative pathes to images"
+        },
+        "storeGeneratedAssetsInRepository": {
+          "type": "boolean",
+          "description": "(STANDALONE) By default generated assets from logo.png are not stored in repository",
+          "default": false
+        },
+        "storeLocalReleaseFilesInRepository": {
+          "type": "boolean",
+          "description": "(STANDALONE) By default local release files are stored in repository",
+          "default": true
+        },
+        "dependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) Non-isomorphic dependencies for npm lib.\n\nAt beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this dependencies are going to be included in released npm lib as dependencies."
+        },
+        "isomorphicDependenciesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) Same as dependenciesNamesForNpmLib but these dependencies are isomorphic (can be used in browser and node)"
+        },
+        "peerDependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this peerDependencies are going to be included in released npm lib as peerDependencies."
+        },
+        "devDependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this peerDependencies are going to be included in released npm lib as peerDependencies."
+        },
+        "optionalDependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this optionalDependencies are going to be included in released npm lib as optionalDependencies."
+        },
+        "singleFileBundlingPackages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Description of external package\n- why it is external\n- what is it used for etc."
+              },
+              "packageName": {
+                "type": "string",
+                "description": "Name of package that is external"
+              },
+              "isExternalFor": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "Specify for which artifacts this package is external Example: vscode - for vscode plugin (vscode is in runtime of vscode plugin) electron - for electron apps (electron is in runtime of electron app)"
+              },
+              "replaceWithNothing": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "replace with nothing require('packageName') - if still is somewhere is final code"
+              },
+              "includeInBundleNodeModules": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "! FOR NOW ONLY FOR: 'electron-app' and 'angular-node-app'\n\nNative stuff that can't be minified and needs to be included in bundle. Taon will perform npm install for all packages marked with this"
+              }
+            },
+            "required": [
+              "description",
+              "packageName"
+            ],
+            "additionalProperties": false
+          },
+          "description": "(STANDALONE) Provide information about external packages for single file bundling process"
+        },
+        "additionalNpmNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "(STANDALONE) so I can release same npm lib with different name",
+          "deprecated": "does not make sense"
+        },
+        "isUsingOwnNodeModulesInsteadCoreContainer": {
+          "type": "boolean",
+          "description": "(STANDALONE)  Project is using own node_modules instead of core container"
+        },
+        "shouldGenerateAutogenIndexFile": {
+          "type": "boolean",
+          "description": "(STANDALONE) generate src/lib/index._auto-generated_.ts with all exports from lib ts files"
+        },
+        "shouldGenerateAutogenAppRoutesFile": {
+          "type": "boolean",
+          "description": "(STANDALONE) generate src/app.ts routes, imports and context initializations from ./src/app/*.routes.ts (recursive)"
+        },
+        "autoReleaseConfigAllowedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Models.TaonAutoReleaseItem"
+          },
+          "description": "(STANDALONE) Auto release helps with releasing multiple projects from a local machine. This is useful when we don't have Taon Cloud set up and want to release all projects with a single command."
         }
       },
       "required": [
+        "dependenciesNamesForNpmLib",
+        "devDependenciesNamesForNpmLib",
         "isCoreProject",
+        "isomorphicDependenciesForNpmLib",
+        "optionalDependenciesNamesForNpmLib",
         "overridePackagesOrder",
         "packageJsonOverride",
+        "peerDependenciesNamesForNpmLib",
+        "shouldGenerateAutogenAppRoutesFile",
+        "shouldGenerateAutogenIndexFile",
+        "singleFileBundlingPackages",
         "type"
-      ],
-      "additionalProperties": false
+      ]
+    },
+    "LibTypeEnum": {
+      "type": "string",
+      "enum": [
+        "isomorphic-lib",
+        "container",
+        "unknown-npm-project",
+        "unknown"
+      ]
     },
     "CoreModels.FrameworkVersion": {
       "type": "string",
@@ -6238,6 +6388,103 @@
       },
       "additionalProperties": false,
       "description": "An alternative configuration for workspaces."
+    },
+    "Models.TaonArtifactInclude": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReleaseArtifactTaon"
+          }
+        },
+        {
+          "type": "string",
+          "const": "*"
+        }
+      ]
+    },
+    "ReleaseArtifactTaon": {
+      "type": "string",
+      "enum": [
+        "npm-lib-and-cli-tool",
+        "angular-node-app",
+        "electron-app",
+        "mobile-app",
+        "vscode-plugin",
+        "docs-webapp"
+      ],
+      "description": "All possible release types for taon for MANUAL/CLOUD release"
+    },
+    "Models.TaonAutoReleaseItem": {
+      "type": "object",
+      "properties": {
+        "artifactName": {
+          "$ref": "#/definitions/ReleaseArtifactTaon"
+        },
+        "envName": {
+          "$ref": "#/definitions/CoreModels.EnvironmentName",
+          "description": "if not proviede default  env.<artifact-name>.__.ts will be in use"
+        },
+        "envNumber": {
+          "type": "number",
+          "description": "example for dev environtment > undefined - env.<artifact-name>.dev.ts > 1 - env.<artifact-name>.dev1.ts > 2 - env.<artifact-name>.dev2.ts ..."
+        },
+        "releaseType": {
+          "$ref": "#/definitions/ReleaseType",
+          "description": "select release type for automatic release"
+        },
+        "taonInstanceIp": {
+          "type": "string",
+          "description": "IP address of taon instance where to release"
+        },
+        "taskName": {
+          "type": "string",
+          "description": "friendly name of item in auto release list configuration"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of auto release item"
+        },
+        "askUserBeforeFinalAction": {
+          "type": "boolean",
+          "description": "Ask for confirmation before deployement to taon cloud"
+        }
+      },
+      "required": [
+        "artifactName",
+        "taskName"
+      ],
+      "additionalProperties": false
+    },
+    "CoreModels.EnvironmentName": {
+      "type": "string",
+      "enum": [
+        "__",
+        "localhost",
+        "dev",
+        "stage",
+        "prod",
+        "test",
+        "qa",
+        "sandbox",
+        "uat",
+        "preprod",
+        "demo",
+        "docs",
+        "static-pages",
+        "ci",
+        "training",
+        "staging"
+      ]
+    },
+    "ReleaseType": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "local",
+        "cloud",
+        "static-pages"
+      ]
     }
   }
 }
