@@ -20,9 +20,10 @@
     {
       "artifactName": "angular-node-app",
       "releaseType": "manual",
+      "envName": "localhost",
       "taonInstanceIp": "127.0.0.1",
       "taskName": "localhost",
-      "askUserBeforeFinalAction": true,
+      "askUserBeforeFinalAction": false,
     },
   ],
 

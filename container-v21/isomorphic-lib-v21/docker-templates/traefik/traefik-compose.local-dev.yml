@@ -34,6 +34,14 @@ services:
       # Enable TLS on websecure (self-signed for local dev)
       - "--entrypoints.websecure.http.tls=true"
 
+      # # Redirect HTTP -> HTTPS (CRITICAL)
+      # - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      # - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+
+      # # Access logs (ROUTING TRACE)
+      # - "--accesslog=true"
+      # - "--accesslog.format=json"
+
     ports:
       - "80:80"       # HTTP
       - "443:443"     # HTTPS (self-signed)
