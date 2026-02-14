@@ -12,18 +12,18 @@
     },
     {
       "artifactName": "angular-node-app",
-      "releaseType": "static-pages",
-      "envName": "static-pages",
-      "taskName": "static-pages",
       "askUserBeforeFinalAction": true,
+      "envName": "static-pages",
+      "releaseType": "static-pages",
+      "taskName": "static-pages",
     },
     {
       "artifactName": "angular-node-app",
-      "releaseType": "manual",
+      "askUserBeforeFinalAction": false,
       "envName": "localhost",
+      "releaseType": "manual",
       "taonInstanceIp": "127.0.0.1",
       "taskName": "localhost",
-      "askUserBeforeFinalAction": false,
     },
   ],
 
