@@ -433,8 +433,13 @@ export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
   await IsomorphicLibV21Context.initialize();
-  // @placeholder-for-contexts-init
-  // INIT ALL ACTIVE CONTEXTS HERE
+  const activeContextsForApp = [
+    // @placeholder-for-contexts-init
+  ];
+
+  for (const activeContext of activeContextsForApp) {
+    await activeContext.initialize();
+  }
 
   //#region @backend
   if (
