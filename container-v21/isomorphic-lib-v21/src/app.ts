@@ -62,6 +62,7 @@ import {
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
+import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env/env.angular-node-app';
 // @placeholder-for-imports
 //#endregion
 
@@ -325,7 +326,8 @@ export const IsomorphicLibV21AppConfig: ApplicationConfig = {
     provideRouter(IsomorphicLibV21ClientRoutes, withHashLocation()),
     provideClientHydration(withEventReplay()),
     provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled:
+        !isDevMode() && !ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER,
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
