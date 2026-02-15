@@ -15,3 +15,10 @@ export const MyEntityRoutes: Routes = [
   //     .then(m => m.AnotherLazyModule),
   // },
 ];
+
+/**
+ * By default exporting MyEntityRoutes,
+ * the command `taon generate:app:routes`
+ * will automatically add them to the root routes in ./src/app.ts.
+ */
+export default MyEntityRoutes;

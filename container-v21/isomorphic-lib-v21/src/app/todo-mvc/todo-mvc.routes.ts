@@ -15,3 +15,6 @@ export const TodoMvcRoutes: Routes = [
   //     .then(m => m.AnotherLazyModule),
   // },
 ];
+
+
+export default TodoMvcRoutes;

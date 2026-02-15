@@ -15,3 +15,5 @@ export const HelloWorldSimpleRoutes: Routes = [
   //     .then(m => m.AnotherLazyModule),
   // },
 ];
+
+export default HelloWorldSimpleRoutes;
