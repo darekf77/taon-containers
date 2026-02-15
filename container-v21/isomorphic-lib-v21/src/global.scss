@@ -1,25 +1,49 @@
 @use './vars.scss' as vars;
 @use 'bootstrap/scss/bootstrap' as *;
+@use '@angular/material' as mat;
 
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'primeflex/primeflex.css';
 @import 'primeflex/themes/primeone-light.css';
 @import 'primeicons/primeicons.css';
 @import 'animate.css/animate.min.css';
 
-// :root {
-//   /* Primary */
-//   --mdc-theme-primary: #4758b8;
-//   --mdc-theme-on-primary: #ffffff;
+@include mat.core();
 
-//   /* Secondary / Accent */
-//   --mdc-theme-secondary: #fedfdd;
-//   --mdc-theme-on-secondary: #000000;
+// Light palette
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+    ),
+  )
+);
 
-//   /* Optional */
-//   --mdc-theme-surface: #ffffff;
-//   --mdc-theme-background: #fafafa;
-// }
+// Dark palette
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+    ),
+  )
+);
+
+// Apply scoped themes
+.light-theme {
+  // color-scheme: light;
+  @include mat.all-component-themes($light-theme);
+  --main-bg-color: rgb(255, 255, 255);
+  --font-color: rgb(14, 15, 26);
+}
+
+.dark-theme {
+  // color-scheme: dark;
+  @include mat.all-component-themes($dark-theme);
+  --main-bg-color: rgb(42, 56, 71);
+  --font-color: rgb(198, 210, 219);
+  --mat-sys-primary: #4758b8;
+}
 
 @font-face {
   font-family: 'Material Icons';
@@ -52,6 +76,12 @@
 
 body,
 html {
+  background: var(--main-bg-color);
+
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+
   margin: 0px !important; // TODO QUICK FIX for weird chrome padding
   overflow: hidden; // for ngx-scrollbar to work
 }
