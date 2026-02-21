@@ -15,7 +15,7 @@
  * @param argsv process.argsv
  * @param filename needed if you want ipc communicaiton
  */
-export async function start(argsv: string[], filename: string): Promise<void> {
+export async function startCli(argsv: string[], filename: string): Promise<void> {
   //#region @backendFunc
   console.log('Hello from cli');
   console.log({ argsv });
@@ -42,3 +42,5 @@ export async function start(argsv: string[], filename: string): Promise<void> {
   //#endregion
   //#endregion
 }
+
+export default startCli;
