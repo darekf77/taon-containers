@@ -66,9 +66,11 @@ import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env
 // @placeholder-for-imports
 //#endregion
 
+//#region constants
 const firstHostConfig = (Object.values(HOST_CONFIG) || [])[0];
 console.log('Your backend host ' + firstHostConfig?.host);
 console.log('Your frontend host ' + firstHostConfig?.frontendHost);
+//#endregion
 
 //#region isomorphic-lib-v21 component
 
@@ -473,4 +475,6 @@ export const IsomorphicLibV21StartFunction = async (
 };
 //#endregion
 
+//#region default export
 export default IsomorphicLibV21StartFunction;
+//#endregion
