@@ -15,9 +15,6 @@
       // PROPER CLASS INJECTIONS https://github.com/typestack/typedi => usefull for typescript-class-helpers
       // PROPER CLASS MAPPIGN usefull => https://github.com/typestack/class-transformer
 
-      // 3. ELECTRON APPS HANDLE HOT KEYS
-      // @ngneat/hotkeys
-
       // 4. NICE MOBILE DEEP MENU jQUERY PLUGIN - find for angular
       //  https://github.com/alizahid/slinky -> create or find angular plugin
 
@@ -1336,6 +1333,10 @@
       // @trusted=patch
       "pm2": "~6.0.14",
 
+      //#endregion
+
+      //#region ACCESSIBILITY
+      "@ngneat/hotkeys": "~4.1.0",
       //#endregion
 
       //#region my packages
