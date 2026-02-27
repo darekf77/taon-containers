@@ -90,6 +90,12 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
     RouterModule,
     JsonPipe,
   ],
+  // // Uncomment to have simples template
+  // template: `
+  //   @if (itemsLoaded()) {
+  //     <router-outlet />
+  //   }
+  // `,
   template: `
     @if (itemsLoaded()) {
       @if (navItems.length > 0) {
