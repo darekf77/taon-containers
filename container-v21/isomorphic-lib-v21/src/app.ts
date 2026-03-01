@@ -440,7 +440,7 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
     User,
   },
   database: true,
-  // disabledRealtime: true,
+  disabledRealtime: true,
 }));
 //#endregion
 

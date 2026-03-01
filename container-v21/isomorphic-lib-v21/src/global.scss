@@ -30,14 +30,14 @@ $dark-theme: mat.define-theme(
 );
 
 // Apply scoped themes
-.light-theme {
+.light-taon-theme {
   // color-scheme: light;
   @include mat.all-component-themes($light-theme);
   --main-bg-color: rgb(255, 255, 255);
   --font-color: rgb(14, 15, 26);
 }
 
-.dark-theme {
+.dark-taon-theme {
   // color-scheme: dark;
   @include mat.all-component-themes($dark-theme);
   --main-bg-color: rgb(42, 56, 71);
