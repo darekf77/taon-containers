@@ -1435,6 +1435,11 @@
 
       //#endregion
 
+      //#region cloud flare
+      // "@cloudflare/vitest-pool-workers": "^0.12.4",
+      // "wrangler": "^4.69.0",
+      //#endregion
+
       "@playwright/test": "1.57.0",
       "@vitest/browser-playwright": "4.0.15",
       "@vitest/coverage-v8": "4.0.15",

@@ -5,7 +5,7 @@
 // in taon.jsonc of your project. 
 export * from './build-info._auto-generated_'; 
 export * from './my-organization-proj'; 
-export * from './start'; 
+export * from './start-cli'; 
 export * from './hello-world-shared/hello-world/hello-world-api.service'; // @browser
 export * from './hello-world-shared/hello-world/hello-world.constants'; 
 export * from './hello-world-shared/hello-world/hello-world.context'; 

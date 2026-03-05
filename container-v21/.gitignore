@@ -2,7 +2,6 @@
 /.DS_Store
 /.editorconfig
 /.firedev
-/.gitignore
 /.npmignore
 /.npmrc
 /.prettierignore
@@ -17,7 +16,6 @@
 /*.sqlite
 /**/.DS_Store
 /**/.editorconfig
-/**/.gitignore
 /**/.npmignore
 /**/.npmrc
 /**/.prettierignore
@@ -32,11 +30,10 @@
 /**/index.js
 /**/index.js.map
 /**/node_modules
-/**/package.json
 /**/run.js
 /**/tmp-*
-/**/tsconfig*
 /**/update-vscode-package-json.js
+/**/vitest.config.ts
 /**/webpack*
 /**/websql
 /browser
@@ -62,7 +59,6 @@
 /npm-debug.log
 /npm-debug.log*
 /package-lock.json
-/package.json
 /routes/*.rest
 /run.js
 /speed-measure-plugin*.json
@@ -80,8 +76,8 @@
 /Thumbs.db
 /tmp-*
 /tmp*
-/tsconfig*
 /update-vscode-package-json.js
+/vitest.config.ts
 /webpack*
 /websql
 /yarn-error.log
