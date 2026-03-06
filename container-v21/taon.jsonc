@@ -291,9 +291,6 @@
       // @trusted=major
       "ng2-pdfjs-viewer": "~25.0.18",
 
-      // @trusted=major
-      "google-libphonenumber": "~3.2.43",
-
       "copy-paste": "1.5.3",
 
       // fantastic bundling ts into single js file
@@ -1435,9 +1432,19 @@
 
       //#endregion
 
-      //#region cloud flare
-      // "@cloudflare/vitest-pool-workers": "^0.12.4",
-      // "wrangler": "^4.69.0",
+      //#region CLOUDFLARE/STRIPE/GOOGLE
+      // @trusted=major
+      "@cloudflare/vitest-pool-workers": "^0.12.4",
+      // @trusted=major
+      "wrangler": "^4.69.0",
+      // @trusted=major
+      "stripe": "^20.4.0",
+      // @trusted=major
+      "google-auth-library": "^10.6.1",
+      // @trusted=major
+      "@types/google.maps": "^3.58.1",
+      // @trusted=major
+      "google-libphonenumber": "~3.2.43",
       //#endregion
 
       "@playwright/test": "1.57.0",
