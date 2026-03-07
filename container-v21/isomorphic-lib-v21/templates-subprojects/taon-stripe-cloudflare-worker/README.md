@@ -44,8 +44,8 @@ To access your new KV Namespace in your Worker, add the following snippet to you
 3. Check is thing are created
 
 https://dash.cloudflare.com
-<img src="./image1.png" >
-<img src="./image2.png" >
+<img src="./images/image1.png" >
+<img src="./images/image2.png" >
 
 
 4. Deply local worker
@@ -74,7 +74,7 @@ Current Version ID: 59e1bc42-0931-4e7f-b612-70b7a4e080ad
 
 ```
 And from now in your dashboard you should have
-<img src="./image2.png" >
+<img src="./images/image2.png" >
 
 
 6. Install stripe cli
@@ -98,8 +98,8 @@ sudo apt install stripe
 
 **stripe trigger checkout.session.completed**
 
-<img src="./image4.png" >
-<img src="./image6.png" >
+<img src="./images/image4.png" >
+<img src="./images/image6.png" >
 
 7. Trigger stripe event to test worker
 
@@ -107,7 +107,7 @@ sudo apt install stripe
 ```bash
 stripe trigger checkout.session.completed
 ```
-<img src="./image8.png" >
+<img src="./images/image8.png" >
 
 8. Add stripe secret
 
@@ -116,7 +116,7 @@ npx wrangler secret put STRIPE_SECRET_KEY
 ```
 
 
-<img src="./image5.png" >
+<img src="./images/image5.png" >
 
 9. Add stripe webhook secret
 
@@ -125,4 +125,4 @@ npx wrangler secret put STRIPE_SECRET_KEY
 npx wrangler secret put STRIPE_WEBHOOK_SECRET
 ```
 
-<img src="./image7.png" >
+<img src="./images/image7.png" >
