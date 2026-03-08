@@ -4,7 +4,7 @@
 
 1. Login to cloud flare
 ```bash
-cd matrix-reloaded-731a
+cd taon-stripe-cloudflare-worker
 npm install
 npx wrangler login
 ```
