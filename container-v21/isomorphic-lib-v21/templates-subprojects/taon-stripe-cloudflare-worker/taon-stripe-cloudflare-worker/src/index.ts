@@ -56,42 +56,67 @@ export default {
 		// ---------- CREATE CHECKOUT SESSION ----------
 		if (url.pathname === '/create-checkout-session') {
 			if (request.method !== 'POST') {
-				return new Response('Method Not Allowed', { status: 405 });
+				return new Response('Method Not Allowed', {
+					status: 405,
+					headers: corsHeaders(),
+				});
 			}
 
-			const body: any = await request.json();
-			const { priceId, email } = body || {};
+			try {
+				const body: any = await request.json().catch(() => ({}));
+				const { priceId, email } = body || {};
 
-			if (!priceId || !email) {
-				return new Response('Missing params', { status: 400 });
-			}
+				if (!priceId || !email) {
+					return new Response('Missing params', {
+						status: 400,
+						headers: corsHeaders(),
+					});
+				}
 
-			const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
-				apiVersion: '2026-02-25.clover',
-				httpClient: Stripe.createFetchHttpClient(),
-			});
+				const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
+					apiVersion: '2026-02-25.clover',
+					httpClient: Stripe.createFetchHttpClient(),
+				});
 
-			const session = await stripe.checkout.sessions.create({
-				mode: 'payment',
-				line_items: [
+				const session = await stripe.checkout.sessions.create({
+					mode: 'payment',
+					line_items: [
+						{
+							price: priceId,
+							quantity: 1,
+						},
+					],
+					customer_email: email,
+
+					success_url: `${url.origin}?success=true`,
+					cancel_url: `${url.origin}?cancel=true`,
+				});
+
+				return new Response(
+					JSON.stringify({
+						url: session.url,
+					}),
 					{
-						price: priceId,
-						quantity: 1,
+						headers: {
+							'Content-Type': 'application/json',
+							...corsHeaders(),
+						},
 					},
-				],
-				customer_email: email,
-				success_url: `${url.origin}/success`,
-				cancel_url: `${url.origin}/cancel`,
-			});
-
-			return new Response(
-				JSON.stringify({
-					url: session.url,
-				}),
-				{
-					headers: { 'Content-Type': 'application/json', ...corsHeaders() },
-				},
-			);
+				);
+			} catch (err) {
+				return new Response(
+					JSON.stringify({
+						error: (err as Error).message,
+					}),
+					{
+						status: 500,
+						headers: {
+							'Content-Type': 'application/json',
+							...corsHeaders(),
+						},
+					},
+				);
+			}
 		}
 
 		// ---------- STRIPE WEBHOOK ----------
