@@ -64,9 +64,9 @@ export default {
 
 			try {
 				const body: any = await request.json().catch(() => ({}));
-				const { priceId, email } = body || {};
+				const { priceId, email, success_url, cancel_url } = body || {};
 
-				if (!priceId || !email) {
+				if (!priceId || !email || !success_url || !cancel_url) {
 					return new Response('Missing params', {
 						status: 400,
 						headers: corsHeaders(),
@@ -88,8 +88,8 @@ export default {
 					],
 					customer_email: email,
 
-					success_url: `${url.origin}?success=true`,
-					cancel_url: `${url.origin}?cancel=true`,
+					success_url,
+					cancel_url,
 				});
 
 				return new Response(
