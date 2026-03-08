@@ -28,6 +28,14 @@ const saveToDb = async (env: any, productId: string, clientEmail: string, stripe
 	return new Response('OK');
 };
 
+function corsHeaders() {
+	return {
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+		'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+	};
+}
+
 export default {
 	async fetch(request: Request, env: any): Promise<Response> {
 		const url = new URL(request.url);
@@ -127,7 +135,7 @@ export default {
 					hasAccess: !!purchase,
 				}),
 				{
-					headers: { 'Content-Type': 'application/json' },
+					headers: { 'Content-Type': 'application/json', ...corsHeaders() },
 				},
 			);
 		}
