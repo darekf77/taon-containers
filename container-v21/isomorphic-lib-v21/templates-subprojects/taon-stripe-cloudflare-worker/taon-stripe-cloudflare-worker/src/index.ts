@@ -48,8 +48,25 @@ type YtPlaylistVideo = {
 	order: number;
 };
 
+function extractPlaylistId(input: string): string {
+	const raw = (input || '').trim();
+
+	if (!raw) {
+		return '';
+	}
+
+	if (raw.startsWith('http://') || raw.startsWith('https://')) {
+		try {
+			const u = new URL(raw);
+			return (u.searchParams.get('list') || '').trim();
+		} catch {}
+	}
+
+	return raw.split('&')[0].trim();
+}
+
 function decodeYoutubeText(text: string): string {
-	return text
+	return (text || '')
 		.replace(/\\u0026/g, '&')
 		.replace(/\\u003d/g, '=')
 		.replace(/\\u002F/g, '/')
@@ -57,23 +74,50 @@ function decodeYoutubeText(text: string): string {
 		.replace(/\\\\/g, '\\');
 }
 
+function getTextFromRuns(obj: any): string {
+	if (!obj) {
+		return '';
+	}
+
+	if (typeof obj?.simpleText === 'string') {
+		return obj.simpleText;
+	}
+
+	if (Array.isArray(obj?.runs)) {
+		return obj.runs
+			.map((r: any) => r?.text || '')
+			.join('')
+			.trim();
+	}
+
+	return '';
+}
+
+function collectPlaylistVideoRenderers(node: any, out: any[] = []): any[] {
+	if (!node || typeof node !== 'object') {
+		return out;
+	}
+
+	if (node.playlistVideoRenderer) {
+		out.push(node.playlistVideoRenderer);
+	}
+
+	if (Array.isArray(node)) {
+		for (const item of node) {
+			collectPlaylistVideoRenderers(item, out);
+		}
+		return out;
+	}
+
+	for (const value of Object.values(node)) {
+		collectPlaylistVideoRenderers(value, out);
+	}
+
+	return out;
+}
+
 async function getYoutubePlaylistVideos(playlistIdOrUrl: string): Promise<YtPlaylistVideo[]> {
-	const playlistId = (() => {
-		const raw = (playlistIdOrUrl || '').trim();
-
-		if (!raw) {
-			return '';
-		}
-
-		if (raw.startsWith('http://') || raw.startsWith('https://')) {
-			try {
-				const u = new URL(raw);
-				return (u.searchParams.get('list') || '').trim();
-			} catch {}
-		}
-
-		return raw.split('&')[0].trim();
-	})();
+	const playlistId = extractPlaylistId(playlistIdOrUrl);
 
 	if (!playlistId) {
 		throw new Error('Missing playlistId');
@@ -94,30 +138,48 @@ async function getYoutubePlaylistVideos(playlistIdOrUrl: string): Promise<YtPlay
 
 	const html = await resp.text();
 
-	const matches = [...html.matchAll(/"videoId":"([a-zA-Z0-9_-]{11})".+?"title":\{"runs":\[\{"text":"(.*?)"\}\]/g)];
+	const initialDataMatch = html.match(/var ytInitialData = (\{[\s\S]*?\});<\/script>/);
 
+	if (!initialDataMatch?.[1]) {
+		throw new Error('Unable to extract ytInitialData from playlist page');
+	}
+
+	let initialData: any;
+	try {
+		initialData = JSON.parse(initialDataMatch[1]);
+	} catch (error) {
+		throw new Error('Unable to parse ytInitialData JSON');
+	}
+
+	const renderers = collectPlaylistVideoRenderers(initialData);
 	const seen = new Set<string>();
 
-	return matches
-		.map((m, index) => {
-			const videoId = m[1];
-			const title = decodeYoutubeText(m[2] || '').trim();
+	const videos = renderers
+		.map((item: any, index: number) => {
+			const videoId = item?.videoId || '';
+			const title = decodeYoutubeText(getTextFromRuns(item?.title));
+			const playlistIndexText = item?.index?.simpleText || item?.indexText?.simpleText || String(index + 1);
+
+			const order = Number(playlistIndexText) || index + 1;
 
 			return {
 				videoId,
 				title,
 				url: `https://www.youtube.com/watch?v=${videoId}`,
 				thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-				order: index + 1,
+				order,
 			};
 		})
 		.filter((item) => {
-			if (!item.videoId || seen.has(item.videoId)) {
+			if (!item.videoId || !item.title || seen.has(item.videoId)) {
 				return false;
 			}
 			seen.add(item.videoId);
 			return true;
-		});
+		})
+		.sort((a, b) => a.order - b.order);
+
+	return videos;
 }
 //#endregion
 
