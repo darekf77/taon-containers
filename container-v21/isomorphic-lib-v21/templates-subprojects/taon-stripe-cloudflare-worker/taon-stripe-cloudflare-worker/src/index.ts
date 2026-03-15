@@ -39,6 +39,88 @@ function corsHeaders() {
 }
 //#endregion
 
+//#region youtube playlist helpers
+type YtPlaylistVideo = {
+	videoId: string;
+	title: string;
+	url: string;
+	thumbnail: string;
+	order: number;
+};
+
+function decodeYoutubeText(text: string): string {
+	return text
+		.replace(/\\u0026/g, '&')
+		.replace(/\\u003d/g, '=')
+		.replace(/\\u002F/g, '/')
+		.replace(/\\"/g, '"')
+		.replace(/\\\\/g, '\\');
+}
+
+async function getYoutubePlaylistVideos(playlistIdOrUrl: string): Promise<YtPlaylistVideo[]> {
+	const playlistId = (() => {
+		const raw = (playlistIdOrUrl || '').trim();
+
+		if (!raw) {
+			return '';
+		}
+
+		if (raw.startsWith('http://') || raw.startsWith('https://')) {
+			try {
+				const u = new URL(raw);
+				return (u.searchParams.get('list') || '').trim();
+			} catch {}
+		}
+
+		return raw.split('&')[0].trim();
+	})();
+
+	if (!playlistId) {
+		throw new Error('Missing playlistId');
+	}
+
+	const ytUrl = `https://www.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
+
+	const resp = await fetch(ytUrl, {
+		headers: {
+			'accept-language': 'en-US,en;q=0.9',
+			'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+		},
+	});
+
+	if (!resp.ok) {
+		throw new Error(`YouTube request failed: ${resp.status} ${resp.statusText}`);
+	}
+
+	const html = await resp.text();
+
+	const matches = [...html.matchAll(/"videoId":"([a-zA-Z0-9_-]{11})".+?"title":\{"runs":\[\{"text":"(.*?)"\}\]/g)];
+
+	const seen = new Set<string>();
+
+	return matches
+		.map((m, index) => {
+			const videoId = m[1];
+			const title = decodeYoutubeText(m[2] || '').trim();
+
+			return {
+				videoId,
+				title,
+				url: `https://www.youtube.com/watch?v=${videoId}`,
+				thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+				order: index + 1,
+			};
+		})
+		.filter((item) => {
+			if (!item.videoId || seen.has(item.videoId)) {
+				return false;
+			}
+			seen.add(item.videoId);
+			return true;
+		});
+}
+//#endregion
+
 export default {
 	async fetch(request: Request, env: any): Promise<Response> {
 		const url = new URL(request.url);
@@ -213,6 +295,58 @@ export default {
 					headers: { 'Content-Type': 'application/json', ...corsHeaders() },
 				},
 			);
+		}
+		//#endregion
+
+		//#region ---------- YOUTUBE PLAYLIST VIDEOS ----------
+		if (url.pathname === '/youtube-playlist-videos') {
+			if (request.method !== 'GET') {
+				return new Response('Method Not Allowed', {
+					status: 405,
+					headers: corsHeaders(),
+				});
+			}
+
+			try {
+				const playlistId = url.searchParams.get('playlistId') || '';
+
+				if (!playlistId) {
+					return new Response(
+						JSON.stringify({
+							error: 'Missing playlistId',
+						}),
+						{
+							status: 400,
+							headers: {
+								'Content-Type': 'application/json',
+								...corsHeaders(),
+							},
+						},
+					);
+				}
+
+				const videos = await getYoutubePlaylistVideos(playlistId);
+
+				return new Response(JSON.stringify(videos), {
+					headers: {
+						'Content-Type': 'application/json',
+						...corsHeaders(),
+					},
+				});
+			} catch (err) {
+				return new Response(
+					JSON.stringify({
+						error: (err as Error).message,
+					}),
+					{
+						status: 500,
+						headers: {
+							'Content-Type': 'application/json',
+							...corsHeaders(),
+						},
+					},
+				);
+			}
 		}
 		//#endregion
 
