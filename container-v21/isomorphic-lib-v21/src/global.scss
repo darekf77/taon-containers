@@ -1,5 +1,5 @@
 @use './vars.scss' as vars;
-@use 'bootstrap/scss/bootstrap' as *;
+// @use 'bootstrap/scss/bootstrap' as *; Conflict with primeflex
 @use '@angular/material' as mat;
 
 @import 'primeflex/primeflex.css';
@@ -76,6 +76,12 @@ $dark-theme: mat.define-theme(
 
 body,
 html {
+  font-family: 'Roboto', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+
   background: var(--main-bg-color);
 
   transition:
