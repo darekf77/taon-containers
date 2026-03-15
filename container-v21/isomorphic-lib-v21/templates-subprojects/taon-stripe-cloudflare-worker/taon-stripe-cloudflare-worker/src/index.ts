@@ -2,6 +2,7 @@
 import Stripe from 'stripe';
 import type { TaonStripeCloudflareWorkerData } from 'tnp-core/src';
 
+//#region save to db client data
 const saveToDb = async (env: any, productId: string, clientEmail: string, stripeSessionId: string) => {
 	clientEmail = (clientEmail || '').toLowerCase().trim();
 	const purchaseKey = `purchase:${clientEmail}:${productId}`;
@@ -26,7 +27,9 @@ const saveToDb = async (env: any, productId: string, clientEmail: string, stripe
 
 	return new Response('OK');
 };
+//#endregion
 
+//#region cors headers
 function corsHeaders() {
 	return {
 		'Access-Control-Allow-Origin': '*',
@@ -34,18 +37,17 @@ function corsHeaders() {
 		'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 	};
 }
+//#endregion
 
 export default {
 	async fetch(request: Request, env: any): Promise<Response> {
 		const url = new URL(request.url);
 
+		//#region handle options
 		if (request.method === 'OPTIONS') {
 			return new Response(null, { headers: corsHeaders() });
 		}
-
-		if (url.pathname === '/') {
-			return new Response('Hello world!');
-		}
+		//#endregion
 
 		/**
 		 * By default worker is developemnt mode (WORKER_STRIP_MODE === undefined)
@@ -53,7 +55,13 @@ export default {
 		 */
 		const isProdMode = env.WORKER_STRIPE_MODE === 'production';
 
-		// ---------- CREATE CHECKOUT SESSION ----------
+		//#region ---------- Hello WORLD ----------
+		if (!isProdMode && url.pathname === '/') {
+			return new Response('Hello world!');
+		}
+		//#endregion
+
+		//#region ---------- CREATE CHECKOUT SESSION ----------
 		if (url.pathname === '/create-checkout-session') {
 			if (request.method !== 'POST') {
 				return new Response('Method Not Allowed', {
@@ -118,8 +126,9 @@ export default {
 				);
 			}
 		}
+		//#endregion
 
-		// ---------- STRIPE WEBHOOK ----------
+		//#region ---------- STRIPE WEBHOOK ----------
 		if (url.pathname === '/stripe-webhook') {
 			if (request.method !== 'POST') {
 				return new Response('Method Not Allowed', { status: 405 });
@@ -181,8 +190,9 @@ export default {
 
 			return new Response('Event ignored');
 		}
+		//#endregion
 
-		// ---------- CHECK ACCESS ----------
+		//#region ---------- CHECK ACCESS ----------
 		if (url.pathname === '/check-access') {
 			const clientEmail = url.searchParams.get('clientEmail');
 			const productId = url.searchParams.get('productId');
@@ -204,6 +214,7 @@ export default {
 				},
 			);
 		}
+		//#endregion
 
 		return new Response('Not Found', {
 			status: 404,
