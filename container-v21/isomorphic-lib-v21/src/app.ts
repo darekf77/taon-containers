@@ -60,6 +60,7 @@ import {
   TaonBaseMigration,
   TaonContext,
 } from 'taon/src';
+import { TaonNotFoundComponent } from 'taon-ui/src'; // @browser
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -307,6 +308,12 @@ export const IsomorphicLibV21ClientRoutes: Routes = [
   },
   // PUT ALL ROUTES HERE
   // @placeholder-for-routes
+
+  //  NOT FOUND routee
+  {
+    path: '**',
+    component: TaonNotFoundComponent,
+  },
 ];
 //#endregion
 //#endregion
