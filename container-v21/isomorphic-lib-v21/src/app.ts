@@ -18,6 +18,7 @@ import { VERSION, OnInit } from '@angular/core'; // @browser
 import { toSignal } from '@angular/core/rxjs-interop'; // @browser
 import { MatButtonModule } from '@angular/material/button'; // @browser
 import { MatCardModule } from '@angular/material/card'; // @browser
+import { MatDialog } from '@angular/material/dialog'; // @browser
 import { MatDividerModule } from '@angular/material/divider'; // @browser
 import { MatIconModule } from '@angular/material/icon'; // @browser
 import { MatListModule } from '@angular/material/list'; // @browser
@@ -60,7 +61,11 @@ import {
   TaonBaseMigration,
   TaonContext,
 } from 'taon/src';
-import { TaonNotFoundComponent } from 'taon-ui/src'; // @browser
+import {
+  TaonNotFoundComponent,
+  TaonThemeComponent,
+  TaonThemeService,
+} from 'taon-ui/src'; // @browser
 import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
@@ -75,7 +80,6 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
 //#endregion
 
 //#region isomorphic-lib-v21 component
-
 //#region @browser
 @Component({
   selector: 'app-root',
@@ -126,6 +130,12 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
               }
             </a>
           }
+          <a
+            mat-tab-link
+            href="javascript:void(0)"
+            (click)="openDialog(200, 200)">
+            <mat-icon>settings</mat-icon>
+          </a>
         </nav>
 
         <mat-tab-nav-panel #tabPanel>
@@ -134,6 +144,16 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
           }
         </mat-tab-nav-panel>
       }
+      @if (navItems.length === 0) {
+        <nav class="shadow-1 w-full p-2">
+          <button
+            mat-icon-button
+            (click)="openDialog(200, 200)">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </nav>
+      }
+
       @if (navItems.length === 0 || forceShowBaseRootApp) {
         <mat-card class="m-2">
           <mat-card-content>
@@ -149,7 +169,7 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
             <h3>Example users from backend API:</h3>
             <ul>
               @for (user of users(); track user.id) {
-                <li>
+                <li class="p-1">
                   {{ user | json }}
                   <button
                     mat-flat-button
@@ -180,7 +200,30 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
   `,
 })
 export class IsomorphicLibV21App implements OnInit {
+  /**Required for proper theme*/
+  theme = inject(TaonThemeService);
+
+  dialog = inject(MatDialog);
+
+  activatedRoute = inject(ActivatedRoute);
+
+  userApiService = inject(UserApiService);
+
+  router = inject(Router);
+
   itemsLoaded = signal(false);
+
+  taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
+
+  angularVersion = VERSION.full;
+
+  forceShowBaseRootApp = false;
+
+  private refresh = new BehaviorSubject<void>(undefined);
+
+  get activePath(): string {
+    return globalThis?.location.pathname?.split('?')[0];
+  }
 
   navItems =
     IsomorphicLibV21ClientRoutes.length <= 1
@@ -192,10 +235,20 @@ export class IsomorphicLibV21App implements OnInit {
           }),
         );
 
-  activatedRoute = inject(ActivatedRoute);
+  readonly hello$ = this.userApiService.userController
+    .helloWorld()
+    .request()
+    .observable.pipe(map(r => r.body.text));
 
-  get activePath(): string {
-    return globalThis?.location.pathname?.split('?')[0];
+  openDialog(
+    enterAnimationDuration: string | number,
+    exitAnimationDuration: string | number,
+  ): void {
+    this.dialog.open(TaonThemeComponent, {
+      width: '400px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   ngOnInit(): void {
@@ -208,16 +261,6 @@ export class IsomorphicLibV21App implements OnInit {
     });
   }
 
-  taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
-
-  angularVersion = VERSION.full;
-
-  userApiService = inject(UserApiService);
-
-  router = inject(Router);
-
-  private refresh = new BehaviorSubject<void>(undefined);
-
   readonly users = toSignal(
     this.refresh.pipe(
       switchMap(() =>
@@ -229,11 +272,6 @@ export class IsomorphicLibV21App implements OnInit {
     ),
     { initialValue: [] },
   );
-
-  readonly hello$ = this.userApiService.userController
-    .helloWorld()
-    .request()
-    .observable.pipe(map(r => r.body.text));
 
   async deleteUser(userToDelete: User): Promise<void> {
     await this.userApiService.userController
@@ -248,8 +286,6 @@ export class IsomorphicLibV21App implements OnInit {
     await this.userApiService.userController.save(newUser).request();
     this.refresh.next();
   }
-
-  forceShowBaseRootApp = false;
 
   navigateTo(item: { path: string; label: string }): void {
     if (item.path === '/') {
@@ -309,11 +345,11 @@ export const IsomorphicLibV21ClientRoutes: Routes = [
   // PUT ALL ROUTES HERE
   // @placeholder-for-routes
 
-  //  NOT FOUND routee
-  {
-    path: '**',
-    component: TaonNotFoundComponent,
-  },
+  // uncomment this to have NOT FOUND route
+  // {
+  //   path: '**',
+  //   component: TaonNotFoundComponent,
+  // },
 ];
 //#endregion
 //#endregion
