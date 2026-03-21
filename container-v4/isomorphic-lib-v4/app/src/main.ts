@@ -41,7 +41,7 @@ async function init() {
   } else {
     console.log('WEBSQL NOT LOADED')
   }
-  await Stor.awaitPendingOperatios();
+  await Stor.awaitPendingOperations();
   platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.error(err));
 }

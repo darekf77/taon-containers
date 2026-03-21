@@ -28,5 +28,4 @@ export const loadSqlJs = async () => {
   } else {
     console.log('WEBSQL NOT LOADED');
   }
-  // await Stor.awaitPendingOperatios();
 };
