@@ -60,8 +60,12 @@ import {
   TaonMigration,
   TaonBaseMigration,
   TaonContext,
+  TaonAdminService,
+  TaonAdmin,
 } from 'taon/src';
+import { TaonStor } from 'taon-storage/src';
 import {
+  TaonAdminModeConfigurationComponent,
   TaonNotFoundComponent,
   TaonThemeComponent,
   TaonThemeService,
@@ -94,6 +98,7 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
     MatListModule,
     MatTabsModule,
     RouterModule,
+    TaonAdminModeConfigurationComponent,
     JsonPipe,
   ],
   // // Uncomment to have simples template
@@ -103,6 +108,7 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
   //   }
   // `,
   template: `
+    <taon-admin-mode-configuration>
     @if (itemsLoaded()) {
       @if (navItems.length > 0) {
         <nav
@@ -196,12 +202,20 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
           </mat-card-content>
         </mat-card>
       }
+      <footer
+        class="text-center p-4 w-full"
+        (click)="taonAdminService.enableDeveloperIf5Timetap()">
+        Copyright <strong>isomorphic-lib-v21</strong> {{ year }}
+      </footer>
     }
+    </taon-admin-mode-configuration>
   `,
 })
 export class IsomorphicLibV21App implements OnInit {
   /**Required for proper theme*/
   theme = inject(TaonThemeService);
+
+  taonAdminService = inject(TaonAdminService);
 
   dialog = inject(MatDialog);
 
@@ -212,6 +226,8 @@ export class IsomorphicLibV21App implements OnInit {
   router = inject(Router);
 
   itemsLoaded = signal(false);
+
+  year = new Date().getFullYear();
 
   taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
 
@@ -491,6 +507,11 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
 export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
+  //#region @browser
+  TaonAdmin.init();
+  await TaonStor.awaitAll();
+  //#endregion
+
   await IsomorphicLibV21Context.initialize();
 
   //#region initialize auto generated active contexts
