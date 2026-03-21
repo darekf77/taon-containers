@@ -203,7 +203,7 @@ console.log('Your frontend host ' + firstHostConfig?.frontendHost);
         </mat-card>
       }
       <footer
-        class="text-center p-4 w-full"
+        class="text-center p-4 w-full select-none"
         (click)="taonAdminService.enableDeveloperIf5Timetap()">
         Copyright <strong>isomorphic-lib-v21</strong> {{ year }}
       </footer>
@@ -316,7 +316,6 @@ export class IsomorphicLibV21App implements OnInit {
   }
 }
 //#endregion
-
 //#endregion
 
 //#region  isomorphic-lib-v21 api service
