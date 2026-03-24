@@ -1135,6 +1135,9 @@
 
       "node-notifier": "~10.0.1",
 
+      // notifications for linux
+      "dbus-next": "0.10.2",
+
       // TODO provide types in tnp-core
       "@types/glob": "^5.0.35",
 
