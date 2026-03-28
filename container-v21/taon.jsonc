@@ -981,7 +981,7 @@
       //  + tooltips
       //  + color picker
       // @trusted=major
-      "@ng-matero/extensions": "~21.1.2",
+      "@ng-matero/extensions": "21.1.2",
 
       // @trusted=major
       "primeflex": "~4.0.0",
