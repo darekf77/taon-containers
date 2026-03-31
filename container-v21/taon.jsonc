@@ -260,7 +260,7 @@
 
       // http request
       //  @trusted=minor
-      "axios": "~1.13.2",
+      "axios": "1.13.6",
 
       // @trusted=patch
       "ts-json-schema-generator": "~2.4.0",
