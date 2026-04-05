@@ -77,9 +77,7 @@ import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env
 //#endregion
 
 //#region constants
-const firstHostConfig = (Object.values(HOST_CONFIG) || [])[0];
-console.log('Your backend host ' + firstHostConfig?.host);
-console.log('Your frontend host ' + firstHostConfig?.frontendHost);
+console.log('🚀 [ TAON IS STARTING ]');
 //#endregion
 
 //#region isomorphic-lib-v21 component
