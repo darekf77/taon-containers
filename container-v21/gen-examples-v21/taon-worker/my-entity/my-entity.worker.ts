@@ -8,19 +8,17 @@ import { MyEntityTerminalUI } from './my-entity.terminal-ui';
 //#endregion
 
 export class MyEntityWorker extends BaseCliWorker<
-MyEntityController,
+  MyEntityController,
   MyEntityTerminalUI
 > {
-
   //#region properties
   // TODO 'as any' for some reason is necessary
   // TypeScript d.ts generation bug
   workerContextTemplate = MyEntityContext as any;
 
-  // TODO ts ignore needed for some reason
-  // @ts-ignore
-  terminalUI = new MyEntityTerminalUI(this);
-  controllerClass = MyEntityController;
+  readonly terminalUI = new MyEntityTerminalUI(this);
+
+  readonly controllerClass = MyEntityController;
   //#endregion
 
   //#region constructor
@@ -38,5 +36,4 @@ MyEntityController,
     super(serviceID, startCommand, '0.0.0');
   }
   //#endregion
-
 }
