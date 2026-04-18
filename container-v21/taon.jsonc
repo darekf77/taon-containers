@@ -1417,6 +1417,12 @@
       // @updateToContainerMajor
       "ng2-rest": "~21.0.0",
 
+      // @updateToContainerMajor
+      "@taon-dev/cloud": "~21.0.0",
+
+      // @updateToContainerMajor
+      "@taon-dev/session": "~21.0.0",
+
       //#region REST SWAGGER GENERATORS
       // @updateToContainerMajor
       "ng2-rest-swagger-generator": "~21.0.0",
