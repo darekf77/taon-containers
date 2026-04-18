@@ -30,10 +30,10 @@ export class MyEntityWorker extends BaseCliWorker<
     /**
      * external command that will start service
      */
-    startCommand: string,
+    startCommandFn: ()=> string,
   ) {
     // replace '0.0.0' with CURRENT_PACKAGE_VERSION for versioning
-    super(serviceID, startCommand, '0.0.0');
+    super(serviceID, startCommandFn, '0.0.0');
   }
   //#endregion
 }
