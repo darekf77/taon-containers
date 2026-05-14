@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.isomorphic.json",
+  "compilerOptions": {
+     "rootDir": "./tmp-source-dist",
+     "outDir": "dist/lib-esm",
+      "module": "ESNext",
+      "target": "ESNext",
+      "importsNotUsedAsValues": "remove",
+      "noEmitHelpers": true
+  },
+  "include": [
+    "tmp-source-dist/**/*"
+  ],
+  "exclude": [
+    "tmp-source-dist/assets"
+  ]
+}
