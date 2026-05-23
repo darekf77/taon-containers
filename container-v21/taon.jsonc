@@ -223,6 +223,7 @@
 
       //  @trusted=minor
       "typescript": "5.9.3",
+      "@typescript/native-preview": "7.0.0-dev.20260522.1",
 
       //  @trusted=patch
       "type-fest": "~4.39.1",
