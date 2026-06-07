@@ -2,10 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": false,
-    "schematicCollections": [
-      "@cypress/schematic",
-      "@schematics/angular"
-    ]
+    "schematicCollections": ["@cypress/schematic", "@schematics/angular"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -74,24 +71,17 @@
           "defaultConfiguration": "development",
           "options": {
             "outputMode": "static",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "browser": "src/main.ts",
             "index": "src/index.html",
             "inlineStyleLanguage": "scss",
             "outputPath": {
               "base": "dist"
             },
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "scripts": [],
             "preserveSymlinks": true,
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "src/tailwind.css"],
             "tsConfig": "src/tsconfig.app.json"
           }
         },
@@ -119,15 +109,10 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "browsers": [
-              "chromium"
-            ],
+            "browsers": ["chromium"],
             "buildTarget": "angular-electron:build:testing",
             "coverage": true,
-            "coverageReporters": [
-              "html",
-              "lcovonly"
-            ],
+            "coverageReporters": ["html", "lcovonly"],
             "reporters": [
               [
                 "default",
@@ -226,9 +211,7 @@
             },
             "preserveSymlinks": true,
             "scripts": [],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "src/tailwind.css"],
             "tsConfig": "tsconfig.app.json"
           }
         },
@@ -308,9 +291,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "scripts": [],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "src/tailwind.css"],
             "tsConfig": "tsconfig.spec.json"
           }
         }
