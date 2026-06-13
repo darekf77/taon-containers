@@ -145,6 +145,9 @@
     "@storybook/test": ">=9.0.0-0 <10",
     "@storybook/theming": ">=9.0.0-0 <10",
     "@sweetalert2/ngx-sweetalert2": "~14.1.1",
+    "@tailwindcss/postcss": "~4.3.0",
+    "@taon-dev/cloud": "~21.0.0",
+    "@taon-dev/session": "~21.0.0",
     "@testdeck/jest": "~0.3.3",
     "@testdeck/mocha": "~0.3.3",
     "@types/chai": "~4.3.20",
@@ -178,6 +181,7 @@
     "@types/wait-on": "5.3.4",
     "@typescript-eslint/eslint-plugin": "~8.50.1",
     "@typescript-eslint/parser": "~8.50.1",
+    "@typescript/native-preview": "7.0.0-dev.20260522.1",
     "@vitest/browser-playwright": "4.0.15",
     "@vitest/coverage-v8": "4.0.15",
     "@vitest/ui": "4.0.15",
@@ -337,7 +341,6 @@
     "ngx-scrollbar": "~19.1.0",
     "ngx-scrolltop": "~21.0.1",
     "ngx-spinner": "~19.0.0",
-    "ngx-store": "3.1.1",
     "ngx-typed-js": "2.1.1",
     "node-7z": "~3.0.0",
     "node-cli-tester": "~21.0.0",
@@ -359,6 +362,7 @@
     "playwright": "~1.57.0",
     "pm2": "~6.0.14",
     "portfinder": "1.0.21",
+    "postcss": "~8.5.15",
     "prettier": "~3.7.4",
     "prettier-eslint": "~16.4.2",
     "pretty-error": "4.0.0",
@@ -398,6 +402,7 @@
     "supertest": "~7.1.4",
     "sweetalert2": "~11.4.38",
     "systeminformation": "^3.45.7",
+    "tailwindcss": "~4.3.0",
     "taon": "~21.0.0",
     "taon-storage": "~21.0.0",
     "taon-type-sql": "~21.0.0",
@@ -450,5 +455,9 @@
     "@parcel/watcher-linux-x64-glibc": "2.5.1",
     "@parcel/watcher-win32-x64-msvc": "2.5.1"
   },
-  "bin": {}
+  "bin": {
+    "isomorphic-lib-v21": "bin/isomorphic-lib-v21",
+    "isomorphic-lib-v21-debug": "bin/isomorphic-lib-v21-debug",
+    "isomorphic-lib-v21-debug-brk": "bin/isomorphic-lib-v21-debug-brk"
+  }
 }
