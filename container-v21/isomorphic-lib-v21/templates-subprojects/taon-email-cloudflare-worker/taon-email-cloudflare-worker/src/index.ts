@@ -111,6 +111,21 @@ async function verifyTurnstile(
   return result.success === true;
 }
 
+function buildFromHeader(env: TaonEmailContactEnv): string {
+  const senderEmail = cleanText(env.SENDER_EMAIL, 200);
+  const senderName = cleanText(env.SENDER_NAME || 'Website', 100)
+    .replace(/[<>]/g, '')
+    .trim();
+
+  if (!senderEmail || !isValidEmail(senderEmail)) {
+    throw new Error(
+      `Invalid SENDER_EMAIL: "${senderEmail}". Example: contact@website-emails.mattbachata.pl`,
+    );
+  }
+
+  return `${senderName} <${senderEmail}>`;
+}
+
 function escapeHtml(value: string): string {
   return value
     .replaceAll('&', '&amp;')
@@ -165,7 +180,7 @@ async function sendEmail(params: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: `${env.SENDER_NAME || 'Website'} <${senderEmail}>`,
+      from: buildFromHeader(env),
       to: [env.USER_EMAIL],
       reply_to: email,
       subject,
@@ -181,108 +196,131 @@ async function sendEmail(params: {
 }
 //#endregion
 
+//#region handle request
+async function handleRequest(
+  request: Request,
+  env: TaonEmailContactEnv,
+  corsHeaders: HeadersInit,
+): Promise<Response> {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: corsHeaders,
+    });
+  }
+
+  if (!isCorsAllowed(request, env)) {
+    return json(
+      { ok: false, error: 'Origin not allowed' },
+      { status: 403, headers: corsHeaders },
+    );
+  }
+
+  const url = new URL(request.url);
+
+  if (url.pathname !== '/contact') {
+    return json(
+      { ok: false, error: 'Not found' },
+      { status: 404, headers: corsHeaders },
+    );
+  }
+
+  if (request.method !== 'POST') {
+    return json(
+      { ok: false, error: 'Method not allowed' },
+      { status: 405, headers: corsHeaders },
+    );
+  }
+
+  let body: TaonEmailContactPayload;
+
+  try {
+    body = await request.json<TaonEmailContactPayload>();
+  } catch {
+    return json(
+      { ok: false, error: 'Invalid JSON' },
+      { status: 400, headers: corsHeaders },
+    );
+  }
+
+  // Honeypot: real users should never fill this.
+  if (body.website) {
+    return json({ ok: true }, { status: 200, headers: corsHeaders });
+  }
+
+  const name = cleanText(body.name, 100);
+  const email = cleanText(body.email, 200);
+  const message = cleanText(body.message, 3000);
+  const token = cleanText(body.turnstileToken, 4096);
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+
+  if (!name || !email || !message || !token) {
+    return json(
+      { ok: false, error: 'Missing required fields' },
+      { status: 400, headers: corsHeaders },
+    );
+  }
+
+  if (!isValidEmail(email)) {
+    return json(
+      { ok: false, error: 'Invalid email' },
+      { status: 400, headers: corsHeaders },
+    );
+  }
+
+  if (message.length < 10) {
+    return json(
+      { ok: false, error: 'Message is too short' },
+      { status: 400, headers: corsHeaders },
+    );
+  }
+
+  if (hasTooManyLinks(message)) {
+    return json(
+      { ok: false, error: 'Too many links' },
+      { status: 400, headers: corsHeaders },
+    );
+  }
+
+  const captchaOk = await verifyTurnstile(token, request, env);
+
+  if (!captchaOk) {
+    return json(
+      { ok: false, error: 'Captcha validation failed' },
+      { status: 403, headers: corsHeaders },
+    );
+  }
+
+  await sendEmail({
+    env,
+    name,
+    email,
+    message,
+    ip,
+  });
+
+  return json({ ok: true }, { status: 200, headers: corsHeaders });
+}
+//#endregion
+
 export default {
   async fetch(request: Request, env: TaonEmailContactEnv): Promise<Response> {
     const corsHeaders = getCorsHeaders(request, env);
 
-    if (request.method === 'OPTIONS') {
-      return new Response(null, {
-        status: 204,
-        headers: corsHeaders,
-      });
-    }
-
-    if (!isCorsAllowed(request, env)) {
-      return json(
-        { ok: false, error: 'Origin not allowed' },
-        { status: 403, headers: corsHeaders },
-      );
-    }
-
-    const url = new URL(request.url);
-
-    if (url.pathname !== '/contact') {
-      return json(
-        { ok: false, error: 'Not found' },
-        { status: 404, headers: corsHeaders },
-      );
-    }
-
-    if (request.method !== 'POST') {
-      return json(
-        { ok: false, error: 'Method not allowed' },
-        { status: 405, headers: corsHeaders },
-      );
-    }
-
-    let body: TaonEmailContactPayload;
-
     try {
-      body = await request.json<TaonEmailContactPayload>();
-    } catch {
+      return await handleRequest(request, env, corsHeaders);
+    } catch (error) {
+      console.error(error);
+
       return json(
-        { ok: false, error: 'Invalid JSON' },
-        { status: 400, headers: corsHeaders },
+        {
+          ok: false,
+          error:
+            error instanceof Error ? error.message : 'Internal server error',
+        },
+        { status: 500, headers: corsHeaders },
       );
     }
-
-    // Honeypot: real users should never fill this.
-    if (body.website) {
-      return json({ ok: true }, { status: 200, headers: corsHeaders });
-    }
-
-    const name = cleanText(body.name, 100);
-    const email = cleanText(body.email, 200);
-    const message = cleanText(body.message, 3000);
-    const token = cleanText(body.turnstileToken, 4096);
-    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-
-    if (!name || !email || !message || !token) {
-      return json(
-        { ok: false, error: 'Missing required fields' },
-        { status: 400, headers: corsHeaders },
-      );
-    }
-
-    if (!isValidEmail(email)) {
-      return json(
-        { ok: false, error: 'Invalid email' },
-        { status: 400, headers: corsHeaders },
-      );
-    }
-
-    if (message.length < 10) {
-      return json(
-        { ok: false, error: 'Message is too short' },
-        { status: 400, headers: corsHeaders },
-      );
-    }
-
-    if (hasTooManyLinks(message)) {
-      return json(
-        { ok: false, error: 'Too many links' },
-        { status: 400, headers: corsHeaders },
-      );
-    }
-
-    const captchaOk = await verifyTurnstile(token, request, env);
-
-    if (!captchaOk) {
-      return json(
-        { ok: false, error: 'Captcha validation failed' },
-        { status: 403, headers: corsHeaders },
-      );
-    }
-
-    await sendEmail({
-      env,
-      name,
-      email,
-      message,
-      ip,
-    });
-
-    return json({ ok: true }, { status: 200, headers: corsHeaders });
   },
 };
 // THIS FILE IS GENERATED BYT TAON - DO NOT MODIFY
