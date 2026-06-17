@@ -4,6 +4,7 @@ import {
   TaonEmailContactEnv,
 } from '@taon-dev/api-workers/src';
 
+//#region helpers
 const JSON_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
 };
@@ -18,26 +19,41 @@ function json(data: unknown, init?: ResponseInit): Response {
   });
 }
 
+function normalizeOrigin(origin: string): string {
+  return origin.trim().replace(/\/$/, '');
+}
+
+function getAllowedCorsDomains(env: TaonEmailContactEnv): string[] {
+  return String(env.CORS_DOMAIN || '')
+    .split(',')
+    .map(normalizeOrigin)
+    .filter(Boolean);
+}
+
 function getCorsHeaders(
   request: Request,
   env: TaonEmailContactEnv,
 ): HeadersInit {
-  const origin = request.headers.get('Origin') || '';
+  const origin = normalizeOrigin(request.headers.get('Origin') || '');
+  const allowedDomains = getAllowedCorsDomains(env);
 
-  if (!env.CORS_DOMAIN) {
+  if (allowedDomains.length === 0) {
     return {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
     };
   }
 
-  if (origin === env.CORS_DOMAIN) {
+  if (allowedDomains.includes(origin)) {
     return {
-      'Access-Control-Allow-Origin': env.CORS_DOMAIN,
+      'Access-Control-Allow-Origin': origin,
       Vary: 'Origin',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers':
+        request.headers.get('Access-Control-Request-Headers') || 'Content-Type',
+      'Access-Control-Max-Age': '86400',
     };
   }
 
@@ -45,11 +61,14 @@ function getCorsHeaders(
 }
 
 function isCorsAllowed(request: Request, env: TaonEmailContactEnv): boolean {
-  if (!env.CORS_DOMAIN) {
+  const origin = normalizeOrigin(request.headers.get('Origin') || '');
+  const allowedDomains = getAllowedCorsDomains(env);
+
+  if (allowedDomains.length === 0) {
     return true;
   }
 
-  return request.headers.get('Origin') === env.CORS_DOMAIN;
+  return allowedDomains.includes(origin);
 }
 
 function cleanText(value: unknown, maxLength: number): string {
@@ -160,6 +179,7 @@ async function sendEmail(params: {
     throw new Error(`Resend failed: ${response.status} ${errorText}`);
   }
 }
+//#endregion
 
 export default {
   async fetch(request: Request, env: TaonEmailContactEnv): Promise<Response> {
