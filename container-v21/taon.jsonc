@@ -965,6 +965,11 @@
       // prezi style presentatiosn
       "impress.js": "~1.1.0",
 
+      // photo gallery
+      "lightgallery": "~2.9.0",
+      "@fancyapps/ui": "~6.1.14",
+      "photoswipe": "~5.4.4",
+
       // nice menu for mobile apps (is based on deprecated flex layout)
       // "@angular-material-extensions/fab-menu": "6.1.0",
       // additonal thing for material https://ng-matero.github.io/extensions/components/progress/overview
