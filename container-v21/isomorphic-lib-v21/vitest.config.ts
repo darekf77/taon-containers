@@ -6,6 +6,6 @@ export default defineConfig({
     globals: true,
     include: ['dist/**/*.test.js'],
 
-    exclude: ['**/node_modules/**'],
+    exclude: ['**/node_modules/**', 'dist/lib-esm/**/*.test.js'],
   },
 });

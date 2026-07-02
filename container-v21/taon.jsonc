@@ -1428,6 +1428,9 @@
       "ng2-rest": "~21.0.0",
 
       // @updateToContainerMajor
+      "@taon-dev/i18n": "~21.0.0",
+
+      // @updateToContainerMajor
       "@taon-dev/cloud": "~21.0.0",
 
       // @updateToContainerMajor
