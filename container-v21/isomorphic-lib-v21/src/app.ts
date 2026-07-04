@@ -43,6 +43,8 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import Aura from '@primeng/themes/aura'; // @browser
+import { Translation, TranslationManager } from '@taon-dev/i18n/src';
+import { TranslateDirective } from '@taon-dev/i18n/src'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import {
@@ -66,6 +68,7 @@ import { TaonStor } from 'taon-storage/src';
 import {
   TaonAdminModeConfigurationComponent,
   TaonNotFoundComponent,
+  TaonSettingsComponent,
   TaonThemeComponent,
   TaonThemeService,
 } from 'taon-ui/src'; // @browser
@@ -78,6 +81,7 @@ import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env
 
 //#region constants
 console.log('🚀 [ TAON IS STARTING ]');
+const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
 //#endregion
 
 //#region isomorphic-lib-v21 component
@@ -95,6 +99,7 @@ console.log('🚀 [ TAON IS STARTING ]');
     MatListModule,
     MatTabsModule,
     RouterModule,
+    TranslateDirective,
     TaonAdminModeConfigurationComponent,
     JsonPipe,
   ],
@@ -136,7 +141,7 @@ console.log('🚀 [ TAON IS STARTING ]');
             <a
               mat-tab-link
               href="javascript:void(0)"
-              (click)="openDialog(200, 200)">
+              (click)="openSettings(200, 200)">
               <mat-icon>settings</mat-icon>
             </a>
           </nav>
@@ -161,15 +166,15 @@ console.log('🚀 [ TAON IS STARTING ]');
           <mat-card class="m-2">
             <mat-card-content>
               <h3>Basic app info</h3>
-              Name: isomorphic-lib-v21<br />
-              Angular version: {{ angularVersion }}<br />
-              Taon backend: {{ taonMode }}<br />
+              {{ t.gettext('Name') }}: isomorphic-lib-v21<br />
+              {{ t.gettext('Angular version:') }} {{ angularVersion }}<br />
+              {{ t.gettext('Taon backend:') }} {{ taonMode }}<br />
             </mat-card-content>
           </mat-card>
 
           <mat-card class="m-2">
             <mat-card-content>
-              <h3>Example users from backend API:</h3>
+              <h3>{{ exampleUserTitle() }}</h3>
               <ul>
                 @for (user of users(); track user.id) {
                   <li class="p-1">
@@ -194,21 +199,27 @@ console.log('🚀 [ TAON IS STARTING ]');
 
           <mat-card class="m-2">
             <mat-card-content>
-              <h3>Example hello world from backend API:</h3>
-              hello world from backend: <strong>{{ hello$ | async }}</strong>
+              <h3 translate>Example hello world from backend API:</h3>
+              {{ t.gettext('hello world from backend:') }}
+              <strong>{{ hello$ | async }}</strong>
             </mat-card-content>
           </mat-card>
         }
         <footer
           class="text-center p-4 w-full select-none"
           (click)="taonAdminService.enableDeveloperIf5Timetap()">
-          Copyright <strong>isomorphic-lib-v21</strong> {{ year }}
+          {{ t.gettext('Copyright') }} <strong>isomorphic-lib-v21</strong>
+          {{ year }}
         </footer>
       }
     </taon-admin-mode-configuration>
   `,
 })
 export class IsomorphicLibV21App implements OnInit {
+  t = t.for(this);
+
+  exampleUserTitle = this.t.signal.gettext('Example users from backend API:');
+
   /**Required for proper theme*/
   theme = inject(TaonThemeService);
 
@@ -257,7 +268,7 @@ export class IsomorphicLibV21App implements OnInit {
     enterAnimationDuration: string | number,
     exitAnimationDuration: string | number,
   ): void {
-    this.dialog.open(TaonThemeComponent, {
+    this.dialog.open(TaonSettingsComponent, {
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -269,7 +280,7 @@ export class IsomorphicLibV21App implements OnInit {
     //Add 'implements OnInit' to the class.
     console.log(globalThis?.location.pathname);
     // TODO set below from 1000 to zero in production
-    Taon.removeLoader(1000).then(() => {
+    void Taon.removeLoader(1000).then(() => {
       this.itemsLoaded.set(true);
     });
   }
@@ -309,7 +320,7 @@ export class IsomorphicLibV21App implements OnInit {
       return;
     }
     this.forceShowBaseRootApp = false;
-    this.router.navigateByUrl(item.path);
+    void this.router.navigateByUrl(item.path);
   }
 }
 //#endregion
@@ -503,6 +514,10 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
 export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
+  TranslationManager.Instance.visibleLanguages = ['en-US', 'pl-PL'];
+  await TranslationManager.Instance.changeGlobalLang('en-US');
+  // await TranslationManager.Instance.setOneLanguagePernament('en-US')
+
   //#region @browser
   TaonAdmin.init();
   await TaonStor.awaitAll();

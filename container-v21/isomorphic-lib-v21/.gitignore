@@ -11,6 +11,7 @@
 /.taon
 /.tnp
 /.vscode/launch.json
+/*.i18n.data.ts
 /*.rest
 /*.schema.json
 /*.sqlite
@@ -22,6 +23,7 @@
 /**/.prettierrc
 /**/.taon
 /**/.tnp
+/**/*.i18n.data.ts
 /**/*.schema.json
 /**/browser
 /**/dist*

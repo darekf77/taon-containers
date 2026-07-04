@@ -27,10 +27,14 @@
     },
   ],
 
+  "generateTranslationsFor": ["en-US", "pl-PL"],
   "isCoreProject": true,
   "resources": ["README.md"],
+
   // this generates exports from every ts files inside /src/lib folder
   "shouldGenerateAutogenIndexFile": true,
+
+  "shouldGenerateTranslationFiles": true,
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
@@ -38,5 +42,5 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {},
-  },
+  }
 }

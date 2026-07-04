@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Language: pl-PL\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/app.ts:221
+msgid "Example users from backend API:"
+msgstr "Przykładowi użytkownicy z serwera API"
+
+#: src/app.ts:202
+msgid "Example hello world from backend API:"
+msgstr "Przykładowe witaj świecie z server-a API"
+
+#: src/app.ts:169
+msgid "Name"
+msgstr "Nazwa"
+
+#: src/app.ts:170
+msgid "Angular version:"
+msgstr "Wersja Angulara:"
+
+#: src/app.ts:171
+msgid "Taon backend:"
+msgstr "Taon server:"
+
+#: src/app.ts:203
+msgid "hello world from backend:"
+msgstr "witaj świecie z servera:"
+
+#: src/app.ts:211
+msgid "Copyright"
+msgstr "Wszelkie prawa zastrzeżone"
