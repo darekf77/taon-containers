@@ -44,6 +44,7 @@ import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import Aura from '@primeng/themes/aura'; // @browser
 import { Translation, TranslationManager } from '@taon-dev/i18n/src';
+// TranslationManager.globalDefautlLanguageOverride = 'pl-PL';
 import { TranslateDirective } from '@taon-dev/i18n/src'; // @browser
 import { providePrimeNG } from 'primeng/config'; // @browser
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
@@ -81,7 +82,9 @@ import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env
 
 //#region constants
 console.log('🚀 [ TAON IS STARTING ]');
-const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
+const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
+  // debug: true
+});
 //#endregion
 
 //#region isomorphic-lib-v21 component
@@ -515,7 +518,8 @@ export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
   TranslationManager.Instance.visibleLanguages = ['en-US', 'pl-PL'];
-  await TranslationManager.Instance.changeGlobalLang('en-US');
+  // await TranslationManager.Instance.changeGlobalLang('en-US');
+
   // await TranslationManager.Instance.setOneLanguagePernament('en-US')
 
   //#region @browser

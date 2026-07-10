@@ -4,30 +4,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/app.ts:221
+#: src/app.ts:224
 msgid "Example users from backend API:"
 msgstr ""
 
-#: src/app.ts:202
+#: src/app.ts:205
 msgid "Example hello world from backend API:"
 msgstr ""
 
-#: src/app.ts:169
+#: src/app.ts:172
 msgid "Name"
 msgstr ""
 
-#: src/app.ts:170
+#: src/app.ts:173
 msgid "Angular version:"
 msgstr ""
 
-#: src/app.ts:171
+#: src/app.ts:174
 msgid "Taon backend:"
 msgstr ""
 
-#: src/app.ts:203
+#: src/app.ts:206
 msgid "hello world from backend:"
 msgstr ""
 
-#: src/app.ts:211
+#: src/app.ts:214
 msgid "Copyright"
 msgstr ""
