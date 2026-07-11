@@ -168,7 +168,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
         @if (navItems.length === 0 || forceShowBaseRootApp) {
           <mat-card class="m-2">
             <mat-card-content>
-              <h3>Basic app info</h3>
+              <h3>{{ t.gettext('Basic app info') }}</h3>
               {{ t.gettext('Name') }}: isomorphic-lib-v21<br />
               {{ t.gettext('Angular version:') }} {{ angularVersion }}<br />
               {{ t.gettext('Taon backend:') }} {{ taonMode }}<br />

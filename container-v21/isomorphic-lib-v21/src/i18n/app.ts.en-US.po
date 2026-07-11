@@ -12,6 +12,10 @@ msgstr ""
 msgid "Example hello world from backend API:"
 msgstr ""
 
+#: src/app.ts:171
+msgid "Basic app info"
+msgstr ""
+
 #: src/app.ts:172
 msgid "Name"
 msgstr ""
