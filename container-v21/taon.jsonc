@@ -707,6 +707,9 @@
       // image manipulation
       "sharp": "~0.34.2",
 
+      // ai background remove
+      "@imgly/background-removal-node": "~1.4.5",
+
       "pwa-asset-generator": "~8.0.5",
       "favicons": "~7.2.0",
 
