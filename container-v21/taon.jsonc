@@ -1369,6 +1369,10 @@
       "@ngneat/hotkeys": "~4.1.0",
       //#endregion
 
+      //#region local AI
+      "@huggingface/transformers": "~4.2.0",
+      //#endregion
+
       //#region my packages
       // @updateToContainerMajor
       "taon-typeorm": "~21.0.0",

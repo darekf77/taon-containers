@@ -102,6 +102,7 @@
     "@electron-forge/plugin-fuses": "^7.8.1",
     "@electron/fuses": "^1.8.0",
     "@fancyapps/ui": "~6.1.14",
+    "@huggingface/transformers": "~4.2.0",
     "@iconify/icons-fa-solid": "~1.2.4",
     "@iconify/icons-mdi": "~1.2.48",
     "@imgly/background-removal-node": "~1.4.5",
