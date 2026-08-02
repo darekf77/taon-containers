@@ -274,6 +274,9 @@
       // @trusted=patch
       "json5": "~2.2.3",
 
+      // replacemnt for xml2js
+      "fast-xml-parser": "~5.10.1",
+
       // @trusted=patch TODO slow migration or hot replace with lodash-es
       "lodash": "~4.17.21",
 
