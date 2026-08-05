@@ -5,7 +5,8 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "taon-custom-worker",
-	"main": "src/index.ts",
+	"main": "dist/worker.js",
+  "no_bundle": true,
 	"compatibility_date": "2026-03-02",
 	"observability": {
 		"enabled": true
