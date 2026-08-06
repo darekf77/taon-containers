@@ -270,6 +270,9 @@
       // @trusted=major
       // "ngx-store": "3.1.1",
 
+      // relacement for codeshitft
+      "jsonc-parser": "~3.3.1",
+
       // SECUTIRY FIXES
       // @trusted=patch
       "json5": "~2.2.3",
