@@ -1,5 +1,4 @@
-import { createFakeExpressApp } from 'taon/src';
-
-const app = createFakeExpressApp();
-
-export { app };
+//#region @cjsRemove
+import ApplicationQuizStartFunction from './app';
+export default ApplicationQuizStartFunction;
+//#endregion
