@@ -1,4 +1,9 @@
 //#region @cjsRemove
-import ApplicationQuizStartFunction from './app';
-export default ApplicationQuizStartFunction;
+import ApplicationFunction from './app';
+
+export default args => {
+  // SET CLOUDFLARE STUFF HERE
+
+  return ApplicationFunction(args);
+};
 //#endregion
