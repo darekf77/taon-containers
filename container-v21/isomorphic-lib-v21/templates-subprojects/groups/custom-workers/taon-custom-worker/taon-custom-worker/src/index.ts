@@ -5,7 +5,7 @@ import {
   createFakeExpressApp,
 } from 'taon/src';
 
-import startFn from '../../../../../../src/app.cloudflare';
+import startFn from '../../../../../../tmp-source-esm-dist/app';
 const app = createFakeExpressApp();
 
 startFn({

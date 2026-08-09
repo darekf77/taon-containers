@@ -551,12 +551,14 @@ export const IsomorphicLibV21StartFunction = async (
   //#endregion
 
   //#region @backend
+   //#region @esmRemove
   if (
     startParams?.onlyMigrationRun ||
     startParams?.onlyMigrationRevertToTimestamp
   ) {
     process.exit(0);
   }
+  //#endregion
   //#endregion
 
   //#region @backend
