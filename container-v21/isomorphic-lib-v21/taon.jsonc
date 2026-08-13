@@ -25,6 +25,13 @@
       "taonInstanceIp": "127.0.0.1",
       "taskName": "localhost",
     },
+    {
+      "artifactName": "angular-node-app",
+      "askUserBeforeFinalAction": false,
+      "envName": "cloudflare",
+      "releaseType": "manual",
+      "taskName": "cloudflare",
+    },
   ],
 
   "generateTranslationsFor": ["en-US", "pl-PL"],
