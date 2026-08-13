@@ -1,87 +1,34 @@
 import { context, analyzeMetafile } from 'esbuild';
 import fse from 'fs-extra';
 import path from 'path';
+import external from './external';
 
 const isWatchBuild = process.argv.includes('-w') || process.argv.includes('--watch');
 const ctx = await context({
 	entryPoints: ['src/index.ts'],
 	outfile: 'dist/worker.js',
-
 	bundle: true,
 	format: 'esm',
 	platform: 'node',
 	treeShaking: true,
-  minify: true,
-	legalComments: 'none',
+  // minify: true,
+	// legalComments: 'none',
 	metafile: true,
-
 	inject: [
 		path.resolve(process.cwd(), 'src/esbuild-tslib-inject.ts'),
 	],
-
 	mainFields: ['module', 'main'],
-
-	external: [
-    "express",//  ✅
-    "express-session", //  ✅
-    'node:*',//  ✅
-    'fs',//  ✅
-    'path',//  ✅
-    'http',//  ✅
-    'http2',//  ✅
-    'buffer',//  ✅
-    'url',//  ✅
-    'electron',//  ✅
-    'body-parser', //  ✅
-    'cookie-parser', //  ✅
-    'method-override', //  ✅
-    'child_process', //  ✅
-    'cors', //  ✅
-    'crypto',//  ✅
-    'os',//  ✅
-    'net',//  ✅
-    'tls',//  ✅
-    'pg',//  ✅
-    'mysql',//  ✅
-    'mysql2',//  ✅
-    'mariadb',//  ✅
-    'sql.js',//  ✅
-    'mongodb',//  ✅
-    'sqlite3',//  ✅
-    'better-sqlite3', //  ✅
-    'highlight.js',//  ✅
-    'cheerio',//  ✅
-    '@inquirer/editor',//  ✅
-    '@inquirer/core',//  ✅
-    '@inquirer/prompts',//  ✅
-    'prompts',//  ✅
-    'inquirer',//  ✅
-    'enquirer',//  ✅
-    'engine.io-client',//  ✅
-    'chokidar',//  ✅
-    'copy-paste',//  ✅
-    'cross-spawn-async', //  ✅
-    'inquirer-select-pro',//  ✅
-    'socket.io-client',//  ✅
-    'socket.io',//  ✅
-    'cfonts',//  ✅
-    'node-notifier',//  ✅
-    '@huggingface/transformers',//  ✅
-    'dbus-next', //  ✅
-    '@parcel/watcher', //  ✅
-    'favicons', //  ✅
-    'multer',//  ✅
-	],
+	external,
 });
 
 if (isWatchBuild) {
 
 	await ctx.watch();
-	console.log('Compilation Done...');
+	console.log('[DEV] Compilation Done...');
 } else {
 
 	const result = await ctx.rebuild();
-	console.log('Single build Done...');
+	console.log('[DEV] Single build Done...');
 
 	const report = await analyzeMetafile(result.metafile, {
 		verbose: true,
@@ -92,7 +39,7 @@ if (isWatchBuild) {
 		report,
 		'utf8',
 	);
-	console.log('Metadata Analysiis Done...');
+	console.log('[DEV] Metadata Analysiis Done...');
 	process.exit(0)
 }
 
