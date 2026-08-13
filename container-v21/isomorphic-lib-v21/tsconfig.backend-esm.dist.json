@@ -12,6 +12,6 @@
     "tmp-source-esm-dist/**/*"
   ],
   "exclude": [
-    "tmp-source-esm-dist"
+    "tmp-source-esm-dist/assets"
   ]
 }
