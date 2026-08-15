@@ -1479,7 +1479,7 @@
       // @trusted=major
       "@cloudflare/workers-types": "^5.20260815.1",
       // @trusted=major
-      "wrangler": "^4.69.0",
+      "wrangler": "4.116.0",
       // @trusted=major
       "stripe": "^20.4.0",
       // @trusted=major
