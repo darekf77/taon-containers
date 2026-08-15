@@ -12,9 +12,9 @@
     "enabled": true,
   },
   "compatibility_flags": ["nodejs_compat"],
-  "build": {
-    "command": "node build.prod.js",
-  },
+  // "build": {
+  //   "command": "node build.prod.js",
+  // },
 
   "kv_namespaces": [{ "binding": "TAON_KV" }],
 
