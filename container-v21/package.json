@@ -92,6 +92,7 @@
     "@capacitor/text-zoom": "^8.0.0",
     "@capacitor/toast": "^8.0.0",
     "@cloudflare/vitest-pool-workers": "^0.12.4",
+    "@cloudflare/workers-types": "^5.20260815.1",
     "@compodoc/compodoc": "~1.1.32",
     "@electron-forge/cli": "^7.8.1",
     "@electron-forge/maker-deb": "^7.8.1",

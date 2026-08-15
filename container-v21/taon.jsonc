@@ -1477,6 +1477,8 @@
       // @trusted=major
       "@cloudflare/vitest-pool-workers": "^0.12.4",
       // @trusted=major
+      "@cloudflare/workers-types": "^5.20260815.1",
+      // @trusted=major
       "wrangler": "^4.69.0",
       // @trusted=major
       "stripe": "^20.4.0",
