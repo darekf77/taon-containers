@@ -551,7 +551,7 @@ export const IsomorphicLibV21StartFunction = async (
   //#endregion
 
   //#region @backend
-   //#region @esmRemove
+  //#region @esmRemove
   if (
     startParams?.onlyMigrationRun ||
     startParams?.onlyMigrationRevertToTimestamp
@@ -562,7 +562,9 @@ export const IsomorphicLibV21StartFunction = async (
   //#endregion
 
   //#region @backend
+  //#region @esmRemove
   console.log(`Hello in NodeJs backend! os=${os.platform()}`);
+  //#endregion
   //#endregion
 };
 //#endregion
