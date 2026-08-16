@@ -8,6 +8,7 @@ const env: Partial<EnvOptions> = {
     ssr: true,
   },
   website: {
+    ...baseEnv.website,
     useDomain: true,
   },
 };

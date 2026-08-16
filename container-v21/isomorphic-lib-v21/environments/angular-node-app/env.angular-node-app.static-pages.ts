@@ -9,6 +9,7 @@ const env: Partial<EnvOptions> = {
     prod: true,
   },
   website: {
+    ...baseEnv.website,
     useDomain: false,
   },
 };

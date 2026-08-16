@@ -8,6 +8,7 @@ const env: Partial<EnvOptions> = {
     websql: true,
   },
   website: {
+    ...baseEnv.website,
     useDomain: true,
   },
 };

@@ -7,6 +7,7 @@ const env: Partial<EnvOptions> = {
     ...baseEnv.build,
   },
   website: {
+    ...baseEnv.website,
     useDomain: false,
   },
 };
