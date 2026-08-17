@@ -28,6 +28,10 @@ msgstr "Wersja Angulara:"
 msgid "Taon backend:"
 msgstr "Taon server:"
 
+#: src/app.ts:198
+msgid "Add new example user with random name"
+msgstr "Dodaj nowego przykładowego użytkownika z losowym imieniem"
+
 #: src/app.ts:206
 msgid "hello world from backend:"
 msgstr "witaj świecie z servera:"

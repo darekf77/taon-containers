@@ -24,9 +24,9 @@ export const CURRENT_PACKAGE_TAON_VERSION = 'v21';
  */
 export const CURRENT_PACKAGE_VERSION = '16.0.0';
 
-
-
-
+export namespace TAON_CLOUDFLARE_WORKERS_URLS {
+	export const IsomorphicLib21110Af = 'https://isomorphic-lib-21-110af.undefined.workers.dev';
+}
 
 // THIS FILE IS GENERATED - DO NOT MODIFY
       

@@ -13,7 +13,6 @@ const env: Partial<EnvOptions> = {
         color: 'black',
       }
      }
-  }
-
+  },
 };
 export default env;

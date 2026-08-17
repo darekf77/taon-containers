@@ -195,7 +195,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
                 class="ml-1"
                 matButton="outlined"
                 (click)="addUser()">
-                Add new example user with random name
+                {{ t.gettext('Add new example user with random name') }}
               </button>
             </mat-card-content>
           </mat-card>
