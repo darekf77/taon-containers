@@ -11,6 +11,9 @@
   "observability": {
     "enabled": true,
   },
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA",
+  },
   "compatibility_flags": ["nodejs_compat"],
   // "build": {
   //   "command": "npm-run bun run build.prod.js",
@@ -19,7 +22,7 @@
   "assets": {
     "directory": "./browser",
     "binding": "ASSETS",
-    "not_found_handling": "none"
+    "not_found_handling": "none",
   },
 
   "kv_namespaces": [{ "binding": "TAON_KV" }],
