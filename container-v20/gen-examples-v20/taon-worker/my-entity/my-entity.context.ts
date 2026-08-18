@@ -19,6 +19,6 @@ export const MyEntityContext = Taon.createContextTemplate(() => ({
   controllers: { MyEntityController },
   ...getBaseCliWorkerDatabaseConfig(
     appId,
-    'DROP_DB+MIGRATIONS',
+    'DROP_DB__RUN_MIGRATIONS',
   ),
 }))
