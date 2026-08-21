@@ -542,6 +542,9 @@
       // @trusted=major
       "typedoc-plugin-markdown": "~4.9.0",
 
+      // @trusted=path
+      "markdown-it": "~14.3.0",
+
       // generate changelog based on commits metadata
       // @trusted=major
       "conventional-changelog-cli": "~5.0.0",
@@ -1146,6 +1149,9 @@
 
       // @trusted=patch
       "fuzzy": "0.1.3",
+
+      // @trusted=patch more start than fuzzy, lightweight
+      "fuse.js": "~7.5.0",
 
       "portfinder": "1.0.21",
 
