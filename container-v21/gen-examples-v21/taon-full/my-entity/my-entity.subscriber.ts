@@ -1,6 +1,6 @@
 //#region imports
 import { TaonBaseSubscriberForEntity, TaonSubscriber } from 'taon/src';
-import { MyEntity } from './my-entity.entity';
+import { MyEntityEntity } from './my-entity.entity';
 import { MyEntityProvider } from './my-entity.provider';
 //#endregion
 
@@ -10,7 +10,7 @@ import { MyEntityProvider } from './my-entity.provider';
 })
 export class MyEntitySubscriber extends TaonBaseSubscriberForEntity {
   myEntityProvider = this.injectProvider(MyEntityProvider);
-  listenTo(): typeof MyEntity {
-    return MyEntity;
+  listenTo(): typeof MyEntityEntity {
+    return MyEntityEntity;
   }
 }

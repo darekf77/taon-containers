@@ -3,18 +3,18 @@ import { Taon, ClassHelpers, TaonController, GET } from 'taon/src';
 import { _ } from 'tnp-core/src';
 import { TaonBaseCliWorkerController } from 'tnp-helpers/src';
 
-import { MyEntity } from './my-entity.entity';
+import { MyEntityEntity } from './my-entity.entity';
 import { MyEntityRepository } from './my-entity.repository';
 //#endregion
 
-@TaonController({
+@TaonController<MyEntityController>({
   className: 'MyEntityController',
 })
 export class MyEntityController extends TaonBaseCliWorkerController {
   myEntityRepository = this.injectCustomRepo(MyEntityRepository);
 
   @GET()
-  getEntities(): Taon.Response<MyEntity[]> {
+  getEntities(): Taon.Response<MyEntityEntity[]> {
     //#region @backendFunc
     return async (req, res) => {
       return this.myEntityRepository.find();

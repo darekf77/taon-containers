@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { MyEntity } from '../../my-entity';
+import { MyEntityEntity } from '../../my-entity.entity';
 import { MyEntityApiService } from '../../my-entity-api.service';
 import { MyEntityComponent } from '../my-entity/my-entity.component';
 //#endregion
@@ -22,7 +22,7 @@ import { MyEntityComponent } from '../my-entity/my-entity.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyEntityListComponent {
-  allMyEntities$: Observable<MyEntity[]> = of([]);
+  allMyEntities$: Observable<MyEntityEntity[]> = of([]);
   readonly myEntityApiService: MyEntityApiService = inject(MyEntityApiService);
   constructor() {
     this.allMyEntities$ = this.myEntityApiService.allMyEntities$;

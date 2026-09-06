@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Taon, TaonBaseAngularService } from 'taon/src';
 
-import type { MyEntity } from './my-entity.entity';
+import type { MyEntityEntity } from './my-entity.entity';
 import { MyEntityController } from './my-entity.controller';
 //#endregion
 
@@ -12,7 +12,7 @@ import { MyEntityController } from './my-entity.controller';
 export class MyEntityApiService extends TaonBaseAngularService {
   private myEntityController = this.injectController(MyEntityController);
 
-  public get allMyEntities$(): Observable<MyEntity[]> {
+  public get allMyEntities$(): Observable<MyEntityEntity[]> {
     return this.myEntityController.getEntities().request!().observable.pipe(
       map(res => res.body.json),
     );

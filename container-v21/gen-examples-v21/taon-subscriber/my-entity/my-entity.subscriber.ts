@@ -1,6 +1,6 @@
 //#region imports
 import { TaonBaseSubscriberForEntity, TaonSubscriber } from 'taon/src';
-import { MyEntity } from './my-entity.entity';
+import { MyEntityEntity } from './my-entity.entity';
 //#endregion
 
 @TaonSubscriber<MyEntitySubscriber>({
@@ -8,7 +8,7 @@ import { MyEntity } from './my-entity.entity';
   // allowedEvents: ['afterUpdate'],
 })
 export class MyEntitySubscriber extends TaonBaseSubscriberForEntity {
-  listenTo(): typeof MyEntity {
-    return MyEntity;
+  listenTo(): typeof MyEntityEntity {
+    return MyEntityEntity;
   }
 }

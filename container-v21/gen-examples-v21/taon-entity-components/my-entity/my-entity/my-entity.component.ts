@@ -7,7 +7,7 @@ import {
   output,
 } from '@angular/core';
 
-import { MyEntity } from '../../my-entity';
+import { MyEntityEntity } from '../../my-entity.entity';
 //#endregion
 
 @Component({
@@ -18,8 +18,8 @@ import { MyEntity } from '../../my-entity';
   imports: [],
 })
 export class MyEntityComponent {
-  model = input.required<MyEntity>();
-  change = output<MyEntity>();
+  model = input.required<MyEntityEntity>();
+  change = output<MyEntityEntity>();
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

@@ -9,15 +9,15 @@ import {
 } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
-import { MyEntity } from './my-entity.entity';
+import { MyEntityEntity } from './my-entity.entity';
 import { MyEntityRepository } from './my-entity.repository';
 //#endregion
 
-@TaonController({
+@TaonController<MyEntityController>({
   className: 'MyEntityController',
 })
-export class MyEntityController extends TaonBaseCrudController<MyEntity> {
-  entityClassResolveFn: () => typeof MyEntity = () => MyEntity;
+export class MyEntityController extends TaonBaseCrudController<MyEntityEntity> {
+  entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
   myEntityRepository = this.injectCustomRepo(MyEntityRepository);
 

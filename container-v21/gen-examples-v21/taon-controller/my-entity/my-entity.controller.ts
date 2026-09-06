@@ -3,14 +3,14 @@ import { GET, Taon, TaonBaseCrudController, TaonController } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
 
-import { MyEntity } from './my-entity';
+import { MyEntityEntity } from './my-entity.entity';
 //#endregion
 
 @TaonController({
   className: 'MyEntityController',
 })
-export class MyEntityController extends TaonBaseCrudController<MyEntity> {
-  entityClassResolveFn: () => typeof MyEntity = () => MyEntity;
+export class MyEntityController extends TaonBaseCrudController<MyEntityEntity> {
+  entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
   @GET()
   helloWorld(): Taon.Response<string> {

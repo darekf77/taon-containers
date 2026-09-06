@@ -11,10 +11,10 @@ import { MyEntityDefaultsValues } from './my-entity.constants';
 //#endregion
 
 @TaonEntity({
-  className: 'MyEntity',
+  className: 'MyEntityEntity',
   createTable: true,
 })
-export class MyEntity extends TaonBaseAbstractEntity<MyEntity> {
+export class MyEntityEntity extends TaonBaseAbstractEntity<MyEntityEntity> {
   //#region @websql
   @CustomColumn({
     type: 'varchar',
