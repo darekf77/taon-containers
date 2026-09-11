@@ -1054,7 +1054,7 @@
       "eslint-plugin-prettier": "~5.5.4",
 
       // @trusted=major
-      "prettier": "~3.7.4",
+      "prettier": "~3.8.1",
 
       // @trusted=major
       "prettier-eslint": "~16.4.2",
