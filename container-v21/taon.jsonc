@@ -1489,7 +1489,13 @@
       // @trusted=major
       "stripe": "^20.4.0",
       // @trusted=major
-      "google-auth-library": "^10.6.1",
+      "google-auth-library": "^11.0.2",
+      // @trusted=major
+      "@azure/msal-node": "^6.0.0",
+      // @trusted=major
+      "@azure/msal-browser": "^5.21.0",
+      // @trusted=major
+      "apple-signin-auth": "^2.1.0",
       // @trusted=major
       "@types/google.maps": "^3.58.1",
       // @trusted=major
