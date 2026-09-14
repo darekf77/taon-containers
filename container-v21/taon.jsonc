@@ -716,6 +716,8 @@
       // image manipulation
       "sharp": "~0.34.2",
 
+      "@viz-js/viz": "~3.30.0",
+
       // ai background remove
       "@imgly/background-removal-node": "~1.4.5",
 
