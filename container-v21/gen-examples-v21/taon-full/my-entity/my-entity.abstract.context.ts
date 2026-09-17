@@ -9,8 +9,8 @@ import { MyEntityMiddleware } from './my-entity.middleware';
 import { MyEntitySubscriber } from './my-entity.subscriber';
 //#endregion
 
-export const MyEntityContext = createContext(() => ({
-  contextName: 'MyEntityContext',
+export const MyEntityAbstractContext = createContext(() => ({
+  contextName: 'MyEntityAbstractContext',
   abstract: true,
   contexts: { TaonBaseContext },
   entities: { MyEntityEntity },
