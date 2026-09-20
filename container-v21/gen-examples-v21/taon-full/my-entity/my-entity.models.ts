@@ -1,4 +1,6 @@
-export enum MyEntityState {
-  Active = 'active',
-  Inactive = 'inactive',
+export namespace MyEntityModels {
+  export enum MyEntityState {
+    Active = 'active',
+    Inactive = 'inactive',
+  }
 }

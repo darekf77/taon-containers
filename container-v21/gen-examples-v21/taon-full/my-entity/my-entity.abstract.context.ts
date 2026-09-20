@@ -4,9 +4,10 @@ import { createContext, TaonBaseContext } from 'taon';
 import { MyEntityEntity } from './my-entity.entity';
 import { MyEntityController } from './my-entity.controller';
 import { MyEntityRepository } from './my-entity.repository';
+// import { MyEntityKvRepository } from './my-entity.kv.repository';
 import { MyEntityProvider } from './my-entity.provider';
-import { MyEntityMiddleware } from './my-entity.middleware';
-import { MyEntitySubscriber } from './my-entity.subscriber';
+// import { MyEntityMiddleware } from './my-entity.middleware';
+// import { MyEntitySubscriber } from './my-entity.subscriber';
 //#endregion
 
 export const MyEntityAbstractContext = createContext(() => ({
@@ -15,8 +16,11 @@ export const MyEntityAbstractContext = createContext(() => ({
   contexts: { TaonBaseContext },
   entities: { MyEntityEntity },
   controllers: { MyEntityController },
-  repositories: { MyEntityRepository },
+  repositories: {
+    // MyEntityKvRepository
+    MyEntityRepository,
+  },
   providers: { MyEntityProvider },
-  middlewares: { MyEntityMiddleware },
-  subscribers: { MyEntitySubscriber },
+  // middlewares: { MyEntityMiddleware },
+  // subscribers: { MyEntitySubscriber },
 }));

@@ -1,0 +1,9 @@
+../../taon-full/my-entity/my-entity.api.service.ts
+../../taon-full/my-entity/my-entity.config.service.ts
+../../taon-full/my-entity/my-entity.abstract.context.ts
+../../taon-full/my-entity/my-entity.models.ts
+../../taon-full/my-entity/my-entity.constants.ts
+../../taon-full/my-entity/my-entity.controller.ts
+../../taon-full/my-entity/my-entity.entity.ts
+../../taon-full/my-entity/my-entity.repository.ts
+../../taon-full/my-entity/my-entity.provider.ts

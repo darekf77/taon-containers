@@ -1,4 +1,5 @@
-export * from './my-entity-api.service'; // @browser
+export * from './my-entity.api.service'; // @browser
+export * from './my-entity.config.service'; // @browser
 export * from './my-entity.abstract.context';
 export * from './my-entity.constants';
 export * from './my-entity.controller';

@@ -1,6 +1,6 @@
 //#region imports
 import {
-  CustomColumn,
+  CustomColumn, Column,
   Taon,
   TaonBaseAbstractEntity,
   TaonEntity,
