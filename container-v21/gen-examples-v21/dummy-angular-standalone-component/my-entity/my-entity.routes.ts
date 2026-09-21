@@ -1,13 +1,12 @@
 //#region imports
 import { Routes } from '@angular/router';
-
-import { MyEntityComponent } from './my-entity.component';
 //#endregion
 
 export const MyEntityRoutes: Routes = [
   {
     path: '',
-    component: MyEntityComponent,
+    loadComponent: () =>
+      import('./my-entity.component').then(m => m.MyEntityComponent),
   },
   // {
   //   path: 'anothermodulepath',
