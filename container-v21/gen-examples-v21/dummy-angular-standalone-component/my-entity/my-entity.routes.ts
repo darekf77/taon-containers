@@ -1,5 +1,6 @@
 //#region imports
 import { Routes } from '@angular/router';
+import { adminLazyRoute } from '@taon-dev/ui/src';
 //#endregion
 
 export const MyEntityRoutes: Routes = [
@@ -7,12 +8,18 @@ export const MyEntityRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./my-entity.component').then(m => m.MyEntityComponent),
+
+    children: [
+      // adminLazyRoute({
+      //   path: 'dashboard',
+      //   menuItem: 'Dashboard',
+      //   icon: 'dashboard',
+      //   expandable: false,
+      //   loader: () =>
+      //     import('./anothermodule.routes').then(m => m.DashboardRoutes),
+      // }),
+    ],
   },
-  // {
-  //   path: 'anothermodulepath',
-  //   loadChildren: () => import('anothermodule')
-  //     .then(m => m.AnotherLazyModule),
-  // },
 ];
 
 /**
