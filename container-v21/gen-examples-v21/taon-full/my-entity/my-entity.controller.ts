@@ -16,7 +16,13 @@ import { MyEntityRepository } from './my-entity.repository';
 @TaonController<MyEntityController>({
   className: 'MyEntityController',
 })
-export class MyEntityController extends TaonBaseCrudController<MyEntityEntity> {
+export class MyEntityController extends TaonBaseCrudController<
+  MyEntityEntity,
+  {
+    /* file upload query params type */
+  },
+  MyEntityController
+> {
   entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
   myEntityRepository = this.injectCustomRepo(MyEntityRepository);
