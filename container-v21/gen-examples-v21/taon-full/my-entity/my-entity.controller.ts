@@ -15,6 +15,7 @@ import { MyEntityRepository } from './my-entity.repository';
 
 @TaonController<MyEntityController>({
   className: 'MyEntityController',
+  // allowedMethods: []
 })
 export class MyEntityController extends TaonBaseCrudController<
   MyEntityEntity,
@@ -25,7 +26,7 @@ export class MyEntityController extends TaonBaseCrudController<
 > {
   entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
-  myEntityRepository = this.injectCustomRepo(MyEntityRepository);
+  private readonly myEntityRepository = this.injectCustomRepo(MyEntityRepository);
 
   //#region methods & getters / hello world
   /**

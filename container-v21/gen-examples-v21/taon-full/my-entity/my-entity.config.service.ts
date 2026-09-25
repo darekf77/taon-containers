@@ -14,4 +14,9 @@ export class MyEntityConfigService extends TaonBaseAngularService {
   get isEnableOption() {
     return this.myEntityProvider.enabledMyEntityOption;
   }
+
+  clone(): Partial<MyEntityProvider> {
+    const cloned = this.myEntityProvider.clone();
+    return cloned;
+  }
 }
