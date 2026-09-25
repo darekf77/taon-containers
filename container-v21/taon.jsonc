@@ -877,8 +877,14 @@
       // @trusted=major
       "@ngneat/overview": "~7.0.0",
 
-      // @trusted=major
+      // @deprecated
       "@ngneat/hot-toast": "~7.0.0",
+
+      // @trusted=patch
+      "@ngxpert/hot-toast": "~6.4.1",
+
+      // @trusted=patch
+      "@ngxpert/input-otp": "~3.0.0",
 
       // beautifull modal / notifications
       // @trusted=patch
