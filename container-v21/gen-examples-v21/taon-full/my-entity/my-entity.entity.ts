@@ -1,6 +1,7 @@
 //#region imports
 import {
-  CustomColumn, Column,
+  CustomColumn,
+  Column,
   Taon,
   TaonBaseAbstractEntity,
   TaonEntity,
@@ -10,9 +11,14 @@ import { _ } from 'tnp-core/src';
 import { MyEntityDefaultsValues } from './my-entity.constants';
 //#endregion
 
-@TaonEntity({
+@TaonEntity<MyEntityEntity>({
   className: 'MyEntityEntity',
   createTable: true,
+  // defaultModelMapping: () => ({
+  //   '': MyEntityEntity,
+  //   nestedObjectField: ClassField,
+  //   nestedArrField: [ClassObjArrField],
+  // }),
 })
 export class MyEntityEntity extends TaonBaseAbstractEntity<MyEntityEntity> {
   //#region @websql
