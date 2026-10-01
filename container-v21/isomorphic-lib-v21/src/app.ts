@@ -67,7 +67,6 @@ import {
 import { TaonAdminService, TaonAdmin } from 'taon/src'; // @browser
 import { TaonStor } from 'taon-storage/src';
 import {
-  TaonAdminModeConfigurationComponent,
   TaonNotFoundComponent,
   TaonSettingsComponent,
   TaonThemeComponent,
@@ -103,7 +102,6 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
     MatTabsModule,
     RouterModule,
     TranslateDirective,
-    TaonAdminModeConfigurationComponent,
     JsonPipe,
   ],
   // // Uncomment to have simples template
@@ -113,7 +111,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
   //   }
   // `,
   template: `
-    <taon-admin-mode-configuration>
+
       @if (itemsLoaded()) {
         @if (navItems.length > 0) {
           <nav
@@ -215,7 +213,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
           {{ year }}
         </footer>
       }
-    </taon-admin-mode-configuration>
+
   `,
 })
 export class IsomorphicLibV21App implements OnInit {
