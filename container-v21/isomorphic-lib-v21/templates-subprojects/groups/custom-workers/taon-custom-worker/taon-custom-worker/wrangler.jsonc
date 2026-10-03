@@ -29,7 +29,7 @@
 
   "d1_databases": [{ "binding": "TAON_D1" }],
 
-  "r2_buckets": [{ "binding": "TAON_R2" }],
+  "r2_buckets": [{ "binding": "TAON_R2" }, { "binding": "TAON_TEMP_STORAGE" }],
 
   // "kv_namespaces": [
   // 	{
