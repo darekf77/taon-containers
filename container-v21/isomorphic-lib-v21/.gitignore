@@ -1,4 +1,5 @@
 /_changelog
+/.ai/examples
 /.DS_Store
 /.editorconfig
 /.firedev
@@ -15,6 +16,7 @@
 /*.rest
 /*.schema.json
 /*.sqlite
+/**/.ai/examples
 /**/.DS_Store
 /**/.editorconfig
 /**/.npmignore
@@ -45,6 +47,12 @@
 /coverage
 /databases/**/*.json
 /databases/**/*.sqlite
+/databases/**/*.sqlite.drawio
+/databases/**/*.sqlite.overview.txt
+/databases/**/*.sqlite.png
+/databases/**/*.sqlite.schema.txt
+/databases/**/*.sqlite.txt
+/databases/bucket
 /dist
 /dist-nocutsrc
 /dist-nocutsrc-prod
@@ -70,10 +78,11 @@
 /src/app.hosts.ts
 /src/assets/generated
 /src/assets/shared/shared_folder_info.txt
+/src/lib/build-info._auto-generated_.ts
 /src/lib/env/**/*.*
 /src/lib/lib-info.md
 /src/lib/migrations/migrations-info.md
-/src/tests/mocha-tests-info.md
+/src/tests/tests-folder-info.md
 /src/vars.scss
 /testem.log
 /tests-environments
