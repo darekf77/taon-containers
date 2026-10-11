@@ -1485,6 +1485,12 @@
       "@taon-dev/analytics": "~21.0.0",
 
       // @updateToContainerMajor
+      "@taon-dev/seo": "~21.0.0",
+
+      // @updateToContainerMajor
+      "@taon-dev/marketing": "~21.0.0",
+
+      // @updateToContainerMajor
       "@taon-dev/e-commerce": "~21.0.0",
 
       // @updateToContainerMajor
