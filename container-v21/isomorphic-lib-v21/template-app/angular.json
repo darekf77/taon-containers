@@ -78,7 +78,7 @@
             "outputPath": {
               "base": "dist"
             },
-            "polyfills": ["zone.js"],
+            "polyfills": ["src/polyfills.ts"],
             "scripts": [],
             "preserveSymlinks": true,
             "styles": ["src/styles.scss", "src/tailwind.css"],
@@ -209,6 +209,7 @@
               "browser": "browser",
               "server": "server"
             },
+            "polyfills": ["src/polyfills.ts"],
             "preserveSymlinks": true,
             "scripts": [],
             "styles": ["src/styles.scss", "src/tailwind.css"],
@@ -289,7 +290,7 @@
             "inlineStyleLanguage": "scss",
             "karmaConfig": "karma.conf.js",
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "scripts": [],
             "styles": ["src/styles.scss", "src/tailwind.css"],
             "tsConfig": "tsconfig.spec.json"
