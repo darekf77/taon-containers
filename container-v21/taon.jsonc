@@ -1476,6 +1476,9 @@
       "@taon-dev/ui": "~21.0.0",
 
       // @updateToContainerMajor
+      "@taon-dev/cms": "~21.0.0",
+
+      // @updateToContainerMajor
       "@taon-dev/baseline": "~21.0.0",
 
       // @updateToContainerMajor

@@ -165,6 +165,7 @@
     "@taon-dev/api-workers": "~21.0.0",
     "@taon-dev/baseline": "~21.0.0",
     "@taon-dev/cloud": "~21.0.0",
+    "@taon-dev/cms": "~21.0.0",
     "@taon-dev/core-docs": "~21.0.0",
     "@taon-dev/e-commerce": "~21.0.0",
     "@taon-dev/emails": "~21.0.0",
