@@ -8,7 +8,7 @@
     }
   ],
 
-  "window.title": "npm/taon-dev/taon-containers  [ ${activeEditorShort} ]",
+  "window.title": "taon-dev/taon-containers () [ ${activeEditorShort}]",
 
   "workbench.colorCustomizations": {
     "activityBar.background": "#7643ad",
@@ -170,14 +170,18 @@
     "dist-*": true,
     "**/dist-*": true,
     "*.rest": true,
-    "**/*.rest": true
+    "**/*.rest": true,
+    "src/app.auto-gen-docs.md": true,
+    "src/app.auto-gen-ver.js": true
   },
 
   "typescript.suggest.autoImports": false,
   "javascript.suggest.autoImports": false,
 
   "files.associations": {
-    "tsconfig.json": "json"
+    "tsconfig.json": "plaintext",
+    "**/tsconfig.json": "plaintext",
+    "**/tsconfig.*.json": "plaintext"
   },
 
   "search.followSymlinks": false
