@@ -26,9 +26,10 @@ export class MyEntityController extends TaonBaseCrudController<
 > {
   entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
-  private readonly myEntityRepository = this.injectCustomRepo(MyEntityRepository);
+  private readonly myEntityRepository =
+    this.injectCustomRepo(MyEntityRepository);
 
-  //#region methods & getters / hello world
+  //#region methods / hello world
   /**
    * TODO remove this demo example method
    */
@@ -43,6 +44,18 @@ export class MyEntityController extends TaonBaseCrudController<
       controller..  ${numOfEntities} entites in db..
       ${numberOfEvenEntities} entites with even ids (2,4,6,8 etc.)
       `;
+    };
+    //#endregion
+  }
+  //#endregion
+
+  //#region methods / get all entities
+  @GET()
+  getEntities(): Taon.Response<MyEntityEntity[]> {
+    //#region @backendFunc
+    return async (req, res) => {
+      // @ts-ignore
+      return this.deploymentsRepository.find();
     };
     //#endregion
   }

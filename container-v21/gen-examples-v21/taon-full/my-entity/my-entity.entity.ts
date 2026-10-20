@@ -15,7 +15,6 @@ import { MyEntityDefaultsValues } from './my-entity.constants';
   className: 'MyEntityEntity',
   createTable: true,
   // defaultModelMapping: () => ({
-  //   '': MyEntityEntity,
   //   nestedObjectField: ClassField,
   //   nestedArrField: [ClassObjArrField],
   // }),
