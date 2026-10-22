@@ -924,6 +924,10 @@
       // @trusted=patch
       "jszip": "3.10.1",
 
+      // similar to jszip but better for snaphoots and streaming
+      // @trusted=patch
+      "@zip.js/zip.js": "~2.24.0",
+
       // creating zips in nodejs
       "yazl": "~3.3.1",
 
