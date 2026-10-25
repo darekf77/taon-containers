@@ -5,7 +5,7 @@
 // tailwind included out of box
 @import 'tailwindcss';
 
-@import 'primeicons/primeicons.css';
+// @import 'primeicons/primeicons.css'; // not needed -> imported in imports.html
 @import 'animate.css/animate.min.css';
 
 @include mat.core();
