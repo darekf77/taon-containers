@@ -1409,16 +1409,16 @@
       "taon-type-sql": "~21.0.0",
 
       // @updateToContainerMajor
-      "record-replay-req-res-scenario": "~21.0.0",
+      "record-replay-req-res-scenario": null,
 
       // @updateToContainerMajor
-      "ng-talkback": "~21.0.0",
+      "ng-talkback": null,
 
       // @updateToContainerMajor
-      "vpn-split": "~21.0.0",
+      "vpn-split": null,
 
       // @updateToContainerMajor
-      "node-cli-tester": "~21.0.0",
+      "node-cli-tester": null,
 
       // @updateToContainerMajor
       "static-columns": "~21.0.0",
@@ -1506,7 +1506,7 @@
 
       //#region REST SWAGGER GENERATORS
       // @updateToContainerMajor
-      "ng2-rest-swagger-generator": "~21.0.0",
+      "ng2-rest-swagger-generator": null,
       // general openapi generator
       // "@hey-api/openapi-ts": "0.90.3",
       // coudl be use for swagger parsing and building new swagger gen
