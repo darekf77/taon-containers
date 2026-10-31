@@ -87,12 +87,14 @@ Do NOT create an Observable solely for translation.
 For simple template text, use the project's supported template translation mechanism when appropriate:
 
 ```html
+<!-- needs TranslateDirective and "t" field inside component class -->
 <span translate>No results found</span>
 ```
 
 or:
 
 ```html
+<!-- PREFERED WAY, needs only "t" field inside component class -->
 <span>{{ t.gettext('No results found') }}</span>
 ```
 
