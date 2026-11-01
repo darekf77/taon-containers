@@ -11,7 +11,10 @@ import { _ } from 'tnp-core/src';
 
 import { MyEntityEntity } from './my-entity.entity';
 import { MyEntityRepository } from './my-entity.repository';
+import { Translation } from '@taon-dev/i18n/src';
 //#endregion
+
+const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
 
 @TaonController<MyEntityController>({
   className: 'MyEntityController',
@@ -24,6 +27,7 @@ export class MyEntityController extends TaonBaseCrudController<
   },
   MyEntityController
 > {
+  t = t;
   entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
   private readonly myEntityRepository =
