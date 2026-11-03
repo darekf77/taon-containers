@@ -1415,10 +1415,10 @@
       "ng-talkback": null,
 
       // @updateToContainerMajor
-      "vpn-split": null,
+      "vpn-split": "~21.0.0",
 
       // @updateToContainerMajor
-      "node-cli-tester": null,
+      "node-cli-tester":  "~21.0.0",
 
       // @updateToContainerMajor
       "static-columns": "~21.0.0",
