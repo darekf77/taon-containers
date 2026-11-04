@@ -800,6 +800,9 @@
       // @trusted=major
       "ngx-editor": "~18.0.0",
 
+      // table for ngx-editor
+      "prosemirror-tables": "~1.8.5",
+
       // @trusted=major
       "ngx-monaco-editor": "12.0.0",
 
