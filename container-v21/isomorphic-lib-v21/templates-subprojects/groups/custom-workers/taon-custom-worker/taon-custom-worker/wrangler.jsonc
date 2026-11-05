@@ -11,6 +11,25 @@
   "observability": {
     "enabled": true,
   },
+  // "observability": {
+  //   "enabled": true,
+
+  //   "logs": {
+  //     "enabled": true,
+  //     "invocation_logs": true,
+  //     "head_sampling_rate": 1,
+  //   },
+
+  //   "traces": {
+  //     "enabled": true,
+  //     "head_sampling_rate": 1,
+  //   },
+
+  //   "issues": {
+  //     "enabled": true,
+  //   },
+  // },
+
   "version_metadata": {
     "binding": "CF_VERSION_METADATA",
   },
@@ -27,7 +46,7 @@
 
   "kv_namespaces": [{ "binding": "TAON_KV" }],
 
-  "d1_databases": [{ "binding": "TAON_D1" }],
+  "d1_databases": [{ "binding": "TAON_D1" }, { "binding": "TAON_INIT_D1" }],
 
   "r2_buckets": [{ "binding": "TAON_R2" }, { "binding": "TAON_TEMP_STORAGE" }],
 
