@@ -111,109 +111,107 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
   //   }
   // `,
   template: `
-
-      @if (itemsLoaded()) {
-        @if (navItems.length > 0) {
-          <nav
-            mat-tab-nav-bar
-            class="shadow-1"
-            [tabPanel]="tabPanel">
-            @for (item of navItems; track item.path) {
-              <a
-                mat-tab-link
-                href="javascript:void(0)"
-                [style.text-decoration]="
-                  (activePath === item.path && !forceShowBaseRootApp) ||
-                  ('/' === item.path && forceShowBaseRootApp)
-                    ? 'underline'
-                    : 'none'
-                "
-                (click)="navigateTo(item)">
-                @if (item.path === '/') {
-                  <mat-icon
-                    aria-hidden="false"
-                    aria-label="Example home icon"
-                    fontIcon="home"></mat-icon>
-                } @else {
-                  {{ item.label }}
-                }
-              </a>
-            }
+    @if (itemsLoaded()) {
+      @if (navItems.length > 0) {
+        <nav
+          mat-tab-nav-bar
+          class="shadow-1"
+          [tabPanel]="tabPanel">
+          @for (item of navItems; track item.path) {
             <a
               mat-tab-link
               href="javascript:void(0)"
-              (click)="openSettings(200, 200)">
-              <mat-icon>settings</mat-icon>
+              [style.text-decoration]="
+                (activePath === item.path && !forceShowBaseRootApp) ||
+                ('/' === item.path && forceShowBaseRootApp)
+                  ? 'underline'
+                  : 'none'
+              "
+              (click)="navigateTo(item)">
+              @if (item.path === '/') {
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  fontIcon="home"></mat-icon>
+              } @else {
+                {{ item.label }}
+              }
             </a>
-          </nav>
+          }
+          <a
+            mat-tab-link
+            href="javascript:void(0)"
+            (click)="openSettings(200, 200)">
+            <mat-icon>settings</mat-icon>
+          </a>
+        </nav>
 
-          <mat-tab-nav-panel #tabPanel>
-            @if (!forceShowBaseRootApp) {
-              <router-outlet />
-            }
-          </mat-tab-nav-panel>
-        }
-        @if (navItems.length === 0) {
-          <nav class="shadow-1 w-full p-2">
-            <button
-              mat-icon-button
-              (click)="openDialog(200, 200)">
-              <mat-icon>settings</mat-icon>
-            </button>
-          </nav>
-        }
-
-        @if (navItems.length === 0 || forceShowBaseRootApp) {
-          <mat-card class="m-2">
-            <mat-card-content>
-              <h3>{{ t.gettext('Basic app info') }}</h3>
-              {{ t.gettext('Name') }}: isomorphic-lib-v21<br />
-              {{ t.gettext('Angular version:') }} {{ angularVersion }}<br />
-              {{ t.gettext('Taon backend:') }} {{ taonMode }}<br />
-            </mat-card-content>
-          </mat-card>
-
-          <mat-card class="m-2">
-            <mat-card-content>
-              <h3>{{ exampleUserTitle() }}</h3>
-              <ul>
-                @for (user of users(); track user.id) {
-                  <li class="p-1">
-                    {{ user | json }}
-                    <button
-                      mat-flat-button
-                      (click)="deleteUser(user)">
-                      <mat-icon>delete user</mat-icon>
-                    </button>
-                  </li>
-                }
-              </ul>
-              <br />
-              <button
-                class="ml-1"
-                matButton="outlined"
-                (click)="addUser()">
-                {{ t.gettext('Add new example user with random name') }}
-              </button>
-            </mat-card-content>
-          </mat-card>
-
-          <mat-card class="m-2">
-            <mat-card-content>
-              <h3 translate>Example hello world from backend API:</h3>
-              {{ t.gettext('hello world from backend:') }}
-              <strong>{{ hello$ | async }}</strong>
-            </mat-card-content>
-          </mat-card>
-        }
-        <footer
-          class="text-center p-4 w-full select-none"
-          (click)="taonAdminService.enableDeveloperIf5Timetap()">
-          {{ t.gettext('Copyright') }} <strong>isomorphic-lib-v21</strong>
-          {{ year }}
-        </footer>
+        <mat-tab-nav-panel #tabPanel>
+          @if (!forceShowBaseRootApp) {
+            <router-outlet />
+          }
+        </mat-tab-nav-panel>
+      }
+      @if (navItems.length === 0) {
+        <nav class="shadow-1 w-full p-2">
+          <button
+            mat-icon-button
+            (click)="openDialog(200, 200)">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </nav>
       }
 
+      @if (navItems.length === 0 || forceShowBaseRootApp) {
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3>{{ t.gettext('Basic app info') }}</h3>
+            {{ t.gettext('Name') }}: isomorphic-lib-v21<br />
+            {{ t.gettext('Angular version:') }} {{ angularVersion }}<br />
+            {{ t.gettext('Taon backend:') }} {{ taonMode }}<br />
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3>{{ exampleUserTitle() }}</h3>
+            <ul>
+              @for (user of users(); track user.id) {
+                <li class="p-1">
+                  {{ user | json }}
+                  <button
+                    mat-flat-button
+                    (click)="deleteUser(user)">
+                    <mat-icon>delete user</mat-icon>
+                  </button>
+                </li>
+              }
+            </ul>
+            <br />
+            <button
+              class="ml-1"
+              matButton="outlined"
+              (click)="addUser()">
+              {{ t.gettext('Add new example user with random name') }}
+            </button>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="m-2">
+          <mat-card-content>
+            <h3 translate>Example hello world from backend API:</h3>
+            {{ t.gettext('hello world from backend:') }}
+            <strong>{{ hello$ | async }}</strong>
+          </mat-card-content>
+        </mat-card>
+      }
+      <footer
+        class="text-center p-4 w-full select-none"
+        (click)="taonAdminService.enableDeveloperIf5Timetap()">
+        {{ t.gettext('Copyright') }} <strong>isomorphic-lib-v21</strong>
+        {{ year }}
+      </footer>
+    }
   `,
 })
 export class IsomorphicLibV21App implements OnInit {
@@ -515,12 +513,11 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
 export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
-  TranslationManager.Instance.visibleLanguages = ['en-US', 'pl-PL'];
-  // await TranslationManager.Instance.changeGlobalLang('en-US');
-
-  // await TranslationManager.Instance.setOneLanguagePernament('en-US')
 
   //#region @browser
+  TranslationManager.Instance.visibleLanguages = ['en-US', 'pl-PL'];
+  // await TranslationManager.Instance.changeGlobalLang('en-US');
+  // await TranslationManager.Instance.setOneLanguagePernament('en-US')
   TaonAdmin.init();
   await TaonStor.awaitAll();
   //#endregion
