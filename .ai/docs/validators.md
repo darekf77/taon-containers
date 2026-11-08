@@ -1,0 +1,2 @@
+- create FOLDER_NAME.validators.ts for validatros
+- use namespace with functions
