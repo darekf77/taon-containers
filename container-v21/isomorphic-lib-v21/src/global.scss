@@ -103,6 +103,7 @@ $dark-theme: mat.define-theme(
 
 body,
 html {
+  touch-action: manipulation;
   font-family: 'Roboto', sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
