@@ -5,6 +5,7 @@ import {
   createFakeExpressApp,
 } from 'taon/src';
 
+// @ts-ignore
 import startFn from '../../../../../../tmp-source-esm-dist/app';
 import { GlobalStorage, UtilsSecretEnv } from 'tnp-core/src';
 const app = createFakeExpressApp();
@@ -13,7 +14,13 @@ export default {
   fetch: createWorkerAdapter(app, async (overrideHost, req, res, env) => {
     const start = performance.now();
     const TAON_LOCAL_DEV = env.TAON_LOCAL_DEV === 'true';
+
     GlobalStorage.set('TAON_LOCAL_DEV', TAON_LOCAL_DEV);
+    GlobalStorage.set(
+      'DISPLAY_RAW_SQL_COMMANDS',
+      env.DISPLAY_RAW_SQL_COMMANDS,
+    );
+    GlobalStorage.set('TAON_DEPLOYMENT_ID', env.TAON_DEPLOYMENT_ID);
     GlobalStorage.set('TAON_TEMP_STORAGE', env.TAON_TEMP_STORAGE);
     GlobalStorage.set(
       UtilsSecretEnv.MASTER_PASS_KEY,
@@ -45,7 +52,7 @@ export default {
         c.initControllersHook(ContextsEndpointStorageInstance),
       ),
     );
-    console.log('[WORKER] controllers hooks DONE');
+    console.log(`[WORKER] controllers hooks DONE ${performance.now() - start}`);
     console.log(ContextsEndpointStorageInstance.SPECIAL_APP_READY_MESSAGE);
   }),
 };
