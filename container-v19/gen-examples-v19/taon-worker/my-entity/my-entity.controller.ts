@@ -11,7 +11,7 @@ import { MyEntityRepository } from './my-entity.repository';
   className: 'MyEntityController',
 })
 export class MyEntityController extends TaonBaseCliWorkerController {
-  myEntityRepository = this.injectCustomRepo(MyEntityRepository);
+  myEntityRepository = this.inject(MyEntityRepository);
 
   // @ts-ignore
   @Taon.Http.GET()

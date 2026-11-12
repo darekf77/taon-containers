@@ -8,7 +8,7 @@ import { TaskController } from './task.controller';
 
 @Injectable()
 export class TaskApiService extends TaonBaseAngularService {
-  protected taskController = this.injectController(TaskController);
+  protected taskController = this.inject(TaskController);
 
   public refreshList = new BehaviorSubject<void>(undefined);
 

@@ -9,7 +9,7 @@ import { MyEntityProvider } from './my-entity.provider';
   // allowedEvents: ['afterUpdate'],
 })
 export class MyEntitySubscriber extends TaonBaseSubscriberForEntity {
-  private readonly myEntityProvider = this.injectProvider(MyEntityProvider);
+  private readonly myEntityProvider = this.inject(MyEntityProvider);
   listenTo(): typeof MyEntityEntity {
     return MyEntityEntity;
   }

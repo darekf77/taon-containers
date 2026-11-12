@@ -12,7 +12,7 @@ import { MyEntityRepository } from './my-entity.repository';
 export class MyEntityController extends Taon.Base.CrudController<MyEntity> {
   entityClassResolveFn: () => typeof MyEntity = () => MyEntity;
 
-  myEntityRepository = this.injectCustomRepo(MyEntityRepository);
+  myEntityRepository = this.inject(MyEntityRepository);
 
   //#region methods & getters / hello world
   /**

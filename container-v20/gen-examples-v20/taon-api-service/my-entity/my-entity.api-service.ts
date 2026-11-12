@@ -10,5 +10,5 @@ import { MyEntityController } from './my-entity.controller';
 @Injectable()
 //#endregion
 export class MyEntityApiService extends Taon.Base.AngularService {
-  myEntityController = this.injectController(MyEntityController);
+  myEntityController = this.inject(MyEntityController);
 }

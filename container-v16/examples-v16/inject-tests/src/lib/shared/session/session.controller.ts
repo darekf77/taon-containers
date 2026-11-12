@@ -12,8 +12,8 @@ import { UserRepository } from '../user/user.repository';
 export class SessionController extends Firedev.Base.CrudController<Session> {
   entityClassResolveFn = () => Session;
 
-  userCustomRepo = this.injectCustomRepo(UserRepository);
-  adminController = this.injectController(AdminController);
+  userCustomRepo = this.inject(UserRepository);
+  adminController = this.inject(AdminController);
 
   sessionRepo = this.injectRepo(Session);
 

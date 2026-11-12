@@ -9,7 +9,7 @@ import { MyEntityProvider } from './my-entity.provider';
 
 @Injectable()
 export class MyEntityConfigService extends TaonBaseAngularService {
-  private myEntityProvider = this.injectProvider(MyEntityProvider);
+  private myEntityProvider = this.inject(MyEntityProvider);
 
   get isEnableOption() {
     return this.myEntityProvider.enabledMyEntityOption;

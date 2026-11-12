@@ -7,7 +7,7 @@ import { HelloWorldController } from './hello-world.controller';
 
 @Injectable()
 export class HelloWorldApiService extends TaonBaseAngularService {
-  protected helloWorldController = this.injectController(HelloWorldController);
+  protected helloWorldController = this.inject(HelloWorldController);
 
   public helloWorldMessage(): Observable<string> {
     return this.helloWorldController

@@ -9,7 +9,7 @@ import { UserRepository } from './user.repository';
 export class UserController extends Firedev.Base.CrudController<User> {
   entityClassResolveFn = () => User;
 
-  backend?: UserRepository = this.injectCustomRepo(UserRepository);
+  backend?: UserRepository = this.inject(UserRepository);
   back = this.injectRepo(User);
 
   async initExampleDbData(): Promise<any> {

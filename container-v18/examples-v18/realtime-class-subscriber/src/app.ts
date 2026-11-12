@@ -103,7 +103,7 @@ export class RealtimeClassSubscriber extends Taon.Base.SubscriberForEntity {
 export class RealtimeUserController extends Taon.Base
   .CrudController<UserEntity> {
   entityClassResolveFn = () => UserEntity;
-  realtimeClassSubscriber = this.injectSubscriber(RealtimeClassSubscriber);
+  realtimeClassSubscriber = this.inject(RealtimeClassSubscriber);
   async initExampleDbData() {
     //#region @websql
     await this.saveNewUser();
