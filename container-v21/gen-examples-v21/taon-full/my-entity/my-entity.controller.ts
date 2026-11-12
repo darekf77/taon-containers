@@ -30,8 +30,7 @@ export class MyEntityController extends TaonBaseCrudController<
   t = t;
   entityClassResolveFn: () => typeof MyEntityEntity = () => MyEntityEntity;
 
-  private readonly myEntityRepository =
-    this.inject(MyEntityRepository);
+  private readonly myEntityRepository = this.inject(MyEntityRepository);
 
   //#region methods / hello world
   /**

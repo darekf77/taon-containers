@@ -10,8 +10,11 @@ import { MyEntityController } from './my-entity.controller';
 
 @Injectable()
 export class MyEntityApiService extends TaonBaseAngularService {
-  private readonly myEntityController =
-    this.inject(MyEntityController);
+  /**
+   * don't use controller directly - always create
+   * function or getter in api service
+   */
+  private readonly myEntityController = this.inject(MyEntityController);
 
   public get crudController(): MyEntityController {
     return this.myEntityController;

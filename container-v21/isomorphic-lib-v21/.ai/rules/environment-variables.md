@@ -138,7 +138,7 @@ export class MyEntityProvider extends TaonBaseProvider {
   className: 'MyEntityRepository',
 })
 export class MyEntityRepository extends TaonBaseRepostory {
-  protected myEntityProvider = this.injectProvider(MyEntityProvider);
+  protected myEntityProvider = this.inject(MyEntityProvider);
 
   @GET()
   getSecret(): Taon.Response<string> {
@@ -163,7 +163,7 @@ import { TaonBaseAngularService } from 'taon/src';
 
 @Injectable()
 export class MyEntityConfigService extends TaonBaseAngularService {
-  protected myEntityProvider = this.injectProvider(MyEntityProvider);
+  protected myEntityProvider = this.inject(MyEntityProvider);
 
   requestWithPublicKey() {
     fetchSomething({

@@ -49,7 +49,7 @@ Use the full class-based name of controllers injected into API services.
 
 ```ts
 class MyExampleApiService extends TaonBaseAngularService {
-  userController = this.injectController(UserController);
+  userController = this.inject(UserController);
 }
 ```
 
@@ -57,7 +57,7 @@ Use the full class-based name of providers injected into config services.
 
 ```ts
 class MyExampleConfigService extends TaonBaseAngularService {
-  myUserProvider = this.injectProvider(MyUserProvider);
+  myUserProvider = this.inject(MyUserProvider);
 }
 ```
 
@@ -65,11 +65,11 @@ Avoid shortened or generic names such as:
 
 ```ts
 // BAD
-controller = this.injectController(UserController);
-userCtrl = this.injectController(UserController);
+controller = this.inject(UserController);
+userCtrl = this.inject(UserController);
 
-provider = this.injectProvider(MyUserProvider);
-userProv = this.injectProvider(MyUserProvider);
+provider = this.inject(MyUserProvider);
+userProv = this.inject(MyUserProvider);
 ```
 
 ---
@@ -80,9 +80,9 @@ For Taon repositories, providers, controllers, and other injectable building blo
 
 ```ts
 class MyExampleController {
-  myUserRepository = this.injectCustomRepo(MyUserRepository);
+  myUserRepository = this.inject(MyUserRepository);
 
-  myBookProvider = this.injectProvider(MyBookProvider);
+  myBookProvider = this.inject(MyBookProvider);
 }
 ```
 
@@ -90,11 +90,11 @@ Avoid shortened or generic names:
 
 ```ts
 // BAD
-repo = this.injectCustomRepo(MyUserRepository);
-userRepo = this.injectCustomRepo(MyUserRepository);
+repo = this.inject(MyUserRepository);
+userRepo = this.inject(MyUserRepository);
 
-provider = this.injectProvider(MyBookProvider);
-bookProv = this.injectProvider(MyBookProvider);
+provider = this.inject(MyBookProvider);
+bookProv = this.inject(MyBookProvider);
 ```
 
 ### General rule

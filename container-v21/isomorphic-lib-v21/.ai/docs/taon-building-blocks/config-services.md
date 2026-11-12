@@ -10,7 +10,7 @@ Config service is a place where you can:
 export class UserConfigService extends TaonBaseAngularService {
   // for now - only injectable here are controllers
   // controllers should be a "glue" between backend and frontend
-  userProvider = this.injectProvider(UserProvider);
+  userProvider = this.inject(UserProvider);
  
 
   get isLoginAvailable(): boolean {

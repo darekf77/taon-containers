@@ -1,6 +1,9 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'; // @browser
 import { MyEntityErrors } from './my-entity.constants';
 
+/**
+ * Backend/Frontend validators here
+ */
 export namespace MyEntityValidators {
   //#region @browser
   /**
@@ -21,5 +24,4 @@ export namespace MyEntityValidators {
       : { [MyEntityErrors.INVALID_PASSWORD_EXAMPLE_ERROR]: true };
   };
   //#endregion
-
 }

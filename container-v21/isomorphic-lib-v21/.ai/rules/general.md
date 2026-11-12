@@ -169,7 +169,10 @@ The only exception is migration creation:
 taon mc my-new-migration
 ```
 
-Use this command **only when the current user request explicitly requires creating a new migration**.
+and language extractor
+```bash
+taon lang:extract
+```
 
 Do not run any other `taon` command unless the user explicitly requests it in the current prompt.
 

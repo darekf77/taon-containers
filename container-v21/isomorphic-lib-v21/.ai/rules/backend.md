@@ -1,58 +1,58 @@
 # Backend
 
-## IMPORTANT: isomorphic code
+## Isomorphic source
 
-Never assume that a `.ts` file containing backend code is backend-only.
+Do not assume that a `.ts` file containing backend code is backend-only.
+Taon transforms shared source for different runtimes. Isolate code that uses
+runtime-specific APIs with the appropriate markers:
 
-Taon source files are isomorphic and are transformed for different runtimes.
+- `@backend` and `@backendFunc` for backend code.
+- `@websql` and `@websqlFunc` for code included in Node.js and WebSQL builds.
+- `@browser` for browser-only code.
+- `@websqlOnly` for WebSQL-only code.
+- `@esmRemove` and `@cjsRemove` for backend module-format differences.
 
-Before adding Node.js-only code, determine whether it needs:
-- @websql / @websqlFunc
-- @backend / @backendFunc
-- @browser
-- @websqlOnly
-- @esmRemove
+See [Isomorphic code regions](../docs/isomorphic-code-regions.md) for marker
+semantics and examples.
 
-See `.ai/docs/isomorphic-code-regions-cutting.md`.
+## Runtime differences
 
-## Taon runtimes
-Taon isomorphic backend is shared between multiple environemnts:
-- **Normal** NodeJS server on TaonCloud 
-(runtime with access to everything inculuding fs,child_process)
-- **Cloudfalre** Workers NodeJS (limited esm node runtime)
-- **Websql** mode (typeorm backend inside browser)
-- **Electron** mode (similar to normal NodeJS mode)
+Taon supports these distinct backend targets:
 
-## Wrapping function and methods
+- **Node.js** has access to Node.js APIs according to the app's environment
+  and permissions.
+- **Cloudflare Workers** use an ESM runtime with Worker APIs and do not provide
+  the full Node.js runtime.
+- **WebSQL** runs backend logic in the browser.
+- **Electron** uses a main-process backend with privileged Node.js APIs.
 
-- for each new function (normal or class method)
-wrap content of function in #region 
+Review [Transport layer](../docs/transport-layer.md) before relying on
+networking, realtime communication, or platform APIs across targets.
+
+## Runtime-specific functions
+
+Wrap a function body in `@backendFunc` when it requires Node.js-only APIs.
+The browser build keeps the function and returns `undefined`.
 
 ```ts
 export namespace Utils {
   export const createBackendFile = () => {
-    // #region @backendFunc
-    
-    /* Only NodeJS code shold be here  */
-
-
-    // #endregion
-  }
+    //#region @backendFunc
+    /* ... */
+    //#endregion
+  };
 }
-
 ```
-but if you think your code can run in websql mode 
+
+Use `@websqlFunc` instead when the implementation should be included in both
+Node.js and WebSQL builds.
 
 ```ts
 export namespace Utils {
   export const createBackendFile = () => {
-    // #region @websqlFunc
-    
-    /* This code will be visible to browser in websql mode */
-
-
-    // #endregion
-  }
+    //#region @websqlFunc
+    /* ... */
+    //#endregion
+  };
 }
-
 ```
