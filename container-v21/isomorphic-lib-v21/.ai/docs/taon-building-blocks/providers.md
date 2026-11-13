@@ -1,5 +1,4 @@
-
-### Taon providers
+# Taon providers
 
 Injectable (service like) classes singleton (in context) classes.
 

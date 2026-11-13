@@ -1,5 +1,4 @@
-
-### Taon subscribers
+# Taon subscribers
 
 Injectable classes for subscribing to
 entity events base on <https://typeorm.io/listeners-and-subscribers>

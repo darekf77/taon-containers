@@ -1,4 +1,4 @@
-### Taon API service
+# Taon API service
 
 An API service injects Taon controllers and provides an application-scoped
 place to adapt requests and responses or maintain state. Avoid `providedIn:

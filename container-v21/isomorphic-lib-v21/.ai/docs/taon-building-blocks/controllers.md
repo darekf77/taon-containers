@@ -1,4 +1,4 @@
-### Taon controllers
+# Taon controllers
 
 Taon controllers define backend endpoints that frontend code can call through an Angular API service. Inject controllers only in `*.api.service.ts` files. Angular components call the API service.
 

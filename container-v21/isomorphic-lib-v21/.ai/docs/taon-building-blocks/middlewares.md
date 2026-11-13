@@ -1,4 +1,4 @@
-### Taon middleware and interceptors
+# Taon middleware and interceptors
 
 Taon middleware lets you intercept backend requests and frontend API calls. Server hooks follow the Express middleware pattern. Client hooks follow the Angular HTTP interceptor pattern and work with Axios responses and RxJS.
 

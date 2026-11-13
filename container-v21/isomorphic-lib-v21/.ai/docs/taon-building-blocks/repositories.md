@@ -1,4 +1,4 @@
-### Taon repositories
+# Taon repositories
 
 Taon repositories are injectable classes that encapsulate backend data access, similar to [TypeORM custom repositories](https://typeorm.io/custom-repository). Use repositories in backend code. Browser UI code accesses their functionality through Taon controller endpoints.
 

@@ -127,8 +127,9 @@ For projects that support other runtime targets, the CLI also provides the follo
 | `taon app:websql` | Browser-local WebSQL backend |
 | `taon app:cloudflare` | Cloudflare Worker |
 | `taon app:electron` | Electron |
+| `taon app:normal` | Normal NodeJS |
 
-See the [CLI command guide](https://github.com/darekf77/tnp/blob/master/docs/COMMANDS.md) and [cloud tooling guide](https://github.com/darekf77/tnp/blob/master/docs/CLOUD-SERVICE.md) for build, release, and deployment workflows.
+See the [CLI command guide](tnp/docs/COMMANDS.md).
 
 ## Further reading
 
