@@ -5524,6 +5524,10 @@
           "type": "boolean",
           "description": "(STANDALONE) generate src/lib/generated-docs for all .md fiels"
         },
+        "shouldAddApiDocsIndexGeneratedSearch": {
+          "type": "boolean",
+          "default": "false\n(STANDALONE) may be slow if big api"
+        },
         "shouldGenerateAutogenIndexFile": {
           "type": "boolean",
           "description": "(STANDALONE) generate src/lib/index._auto-generated_.ts with all exports from lib ts files"
