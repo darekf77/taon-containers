@@ -4,7 +4,7 @@
       "fileMatch": [
         "/taon.jsonc"
       ],
-      "url": "./taon-config-container.schema.json"
+      "url": "./taon-config.schema.json"
     }
   ],
 
@@ -21,7 +21,8 @@
     "tmp-*/**": true,
     "**/node_modules/**": true,
     "**/dist/**": true,
-    "**/dist-nocutsrc/**": true
+    "**/dist-nocutsrc/**": true,
+    "**/src/**": true
   },
 
   "[markdown]": {
