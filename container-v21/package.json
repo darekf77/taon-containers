@@ -212,6 +212,7 @@
     "@vercel/ncc": "~0.38.3",
     "@vitest/browser-playwright": "4.0.15",
     "@vitest/coverage-v8": "4.0.15",
+    "@vitest/runner": "4.0.17",
     "@vitest/ui": "4.0.15",
     "@viz-js/viz": "~3.30.0",
     "@zip.js/zip.js": "~2.24.0",
