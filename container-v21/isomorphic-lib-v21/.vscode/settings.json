@@ -94,7 +94,9 @@
     "databases": true,
     "**/.ai": true,
     "**/databases": true,
-    "sub-projects": true
+    "sub-projects": true,
+    "**/src/app.auto-gen-docs.md": true,
+    "**/src/app.auto-gen-ver.js": true
   },
 
   "[typescriptreact]": {
