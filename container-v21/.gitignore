@@ -1,6 +1,7 @@
 /_changelog
 /!templates-subprojects/**/package.json
 /.ai
+/.ai/examples
 /.babelrc
 /.DS_Store
 /.editorconfig
@@ -23,6 +24,11 @@
 /*.rest
 /*.sqlite
 /**/.DS_Store
+/**/dist-*
+/**/dist*
+/**/tmp-*
+/**/tmp*
+/**/tsconfig*
 /AGENTS.md
 /angular.json
 /browser
@@ -35,6 +41,9 @@
 /eslint-rules
 /eslint.config.js
 /eslint.config.ts
+/index.d.ts
+/index.js
+/index.js.map
 /karma.conf.js
 /libpeerconnection.log
 /local_release
@@ -43,6 +52,7 @@
 /npm-debug.log*
 /package.json
 /protractor.conf.js
+/run.js
 /speed-measure-plugin*.json
 /src/assets/generated
 /sub-projects/**/browser
@@ -57,6 +67,11 @@
 /tmp*
 /tsconfig*
 /tslint.*
+/update-vscode-package-json.js
+/vitest-angular-resources.plugin.ts
+/vitest.config-backend.ts
+/vitest.config-browser.ts
+/vitest.setup-browser.ts
 /webpack.*
 /websql
 /yarn-error.log

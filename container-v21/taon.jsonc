@@ -717,6 +717,8 @@
       // image manipulation
       "sharp": "~0.34.2",
 
+      "html-to-image": "1.11.13",
+
       "@viz-js/viz": "~3.30.0",
 
       // ai background remove
