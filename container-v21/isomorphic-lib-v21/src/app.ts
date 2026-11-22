@@ -156,7 +156,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
         <nav class="shadow-1 w-full p-2">
           <button
             mat-icon-button
-            (click)="openDialog(200, 200)">
+            (click)="openSettings(200, 200)">
             <mat-icon>settings</mat-icon>
           </button>
         </nav>
@@ -263,7 +263,7 @@ export class IsomorphicLibV21App implements OnInit {
     .request()
     .observable.pipe(map(r => r.body.text));
 
-  openDialog(
+  openSettings(
     enterAnimationDuration: string | number,
     exitAnimationDuration: string | number,
   ): void {
@@ -513,7 +513,6 @@ var IsomorphicLibV21Context = Taon.createContext(() => ({
 export const IsomorphicLibV21StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
-
   //#region @browser
   TranslationManager.Instance.visibleLanguages = ['en-US', 'pl-PL'];
   // await TranslationManager.Instance.changeGlobalLang('en-US');
