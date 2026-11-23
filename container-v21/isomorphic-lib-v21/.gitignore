@@ -18,6 +18,10 @@
 /*.rest
 /*.sqlite
 /**/.DS_Store
+/**/dist-*
+/**/dist*
+/**/tmp-*
+/**/tmp*
 /angular.json
 /browser
 /BUILD-INFO.md

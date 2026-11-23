@@ -1,5 +1,13 @@
 # Where environment variables are stored
 
+<span style="color: red">
+  Important: When deploying to Cloudflare, Taon securely passes the master
+  password to your Worker as an environment secret. Managing environment
+  variables and secrets works similarly to a standard Node.js process (no additional work required).
+</span>
+<br>
+<br>
+<br>
 Each Taon Project stores its environment variables — both secret and public — in:
 
 ```bash
