@@ -142,98 +142,20 @@ Do not assume that a task must be contained within a single Git repository merel
 Project and artifact management is the user's responsibility.
 
 Do **not**:
-
-- initialize Taon projects
+ 
 - create Git branches in container projects
-- build Taon projects or artifacts
 - publish packages
 - release packages or applications
 - deploy applications
 - install dependencies
 - update dependencies
-- run project setup commands
-- run project initialization commands
-- modify generated artifacts
+- run project setup commands except `taon init`
+- run project initialization commands except `taon init`
 
 Your responsibility normally ends after making the requested production source-code changes inside the appropriate `/src` directories.
 
 ---
-
-# Taon CLI Commands
-
-Do **not** run `taon` commands.
-
-The only exception is migration creation:
-
-```bash
-taon mc my-new-migration
-```
-
-and language extractor
-```bash
-taon lang:extract
-```
-
-Do not run any other `taon` command unless the user explicitly requests it in the current prompt.
-
----
-
-# ABSOLUTE RULE: Never Create or Modify Tests
-
-Testing is **not part of your responsibility** unless explicitly requested by the user in the current prompt.
-
-You MUST NOT create, generate, modify, move, or delete test files or test directories.
-
-This includes, but is not limited to:
-
-```text
-*.spec.ts
-*.test.ts
-*.spec.js
-*.test.js
-/test/**
-/tests/**
-/__tests__/**
-```
-
-It also includes:
-
-- test fixtures
-- test helpers
-- temporary test files
-- test configuration
-- generated tests
-- modifications to existing tests
-
-Do NOT add or modify tests merely because:
-
-- the implementation would normally require tests
-- existing code has tests
-- repository conventions suggest tests
-- tests would help verify the implementation
-- adding tests is considered best practice
-- acceptance criteria describe expected behavior
-
-Do not create temporary tests and delete them afterward.
-
-If a requested task would normally include test changes, **skip the test portion and implement only the production source code**.
-
-## Explicit User Override
-
-Tests may be created or modified **only when the user explicitly requests test work in the current prompt**.
-
-Do not infer permission from:
-
-- previous prompts
-- previous tasks
-- existing tests
-- repository conventions
-- the nature of the feature
-- acceptance criteria
-- best practices
-
----
-
+ 
 # Configuration and Dependencies
 
 Unless explicitly requested otherwise, never modify project, package, build, or workspace configuration.
@@ -267,8 +189,6 @@ Do not perform additional:
 - project maintenance
 - dependency maintenance
 - configuration changes
-- test work
-- builds
 - publishing
 - releasing
 - deployment

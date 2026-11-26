@@ -6,6 +6,8 @@ cover it.
 
 ## Core rules
 
+- Before starting work on a project, run `taon init` in its root directory to
+  get the latest updates to its `.ai` folder
 - Do not install dependencies with `npm install` or `yarn install`; use the
   Taon project workflow.
 - Make application changes in `/src`, preserve Taon patterns and generated
@@ -22,6 +24,7 @@ cover it.
 - [Isomorphic code regions](.ai/docs/isomorphic-code-regions.md)
 - [Building-block references](.ai/docs/taon-building-blocks/)
 - [Coding rules](.ai/rules/)
+- [Testing](.ai/rules/testing.md)
 - [Canonical examples](.ai/examples/)
 
 ## Existing code and verification
